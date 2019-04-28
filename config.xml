@@ -176,6 +176,7 @@ Gautam Sharma
         <string>100</string>
     </gap:config-file>
     <splash src="splash.png" />
+    <icon src="icon.png" />	
     <access origin="*" />
     <plugin name="cordova-plugin-whitelist" version="1" />
     <allow-intent href="http://*/*" />

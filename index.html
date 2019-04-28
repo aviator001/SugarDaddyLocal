@@ -266,12 +266,9 @@
 					<label>Password</label>
 					<input id="password" type="password" />
 					<br />
+					<div id="inmsg" class="checkbox">
 
-					<div class="checkbox">
-						<input id="remember" type="checkbox" />
-						<label for="remember">Remember me on this computer</label>
 					</div>
-
 					<div class="action_btns">
 						<div class="one_half" style="padding:3px;margin:0"><a id="back_btn" style="background:white!Important;color:#333!Important;box-shadow:0 0 10px rgba(0,0,0,0.1)" href="javascript:backLogin()" class="btn btn_back"><i class="fa fa-angle-double-left"></i> Back</a></div>
 						<div class="one_half last" style="padding:3px;margin:0"><a onclick="login1()" style="background:white!Important;color:#333!Important;box-shadow:0 0 10px rgba(0,0,0,0.1)"href="#" class="btn">Login</a></div>
@@ -593,24 +590,32 @@
 	}
 	
 	function login1() {
+		$('#inmsg').html('')
 		var m = $("#email").val(),
 			p = $("#password").val();
-			console.log("x_login.php?user_input=" + m + "&pswd=" + p)
+			console.log("https://lushmatch.com/x_login.php?user_input=" + m + "&pswd=" + p)
 		$.ajax({
 			url: "https://lushmatch.com/x_login.php?user_input=" + m + "&pswd=" + p,
 			type: "GET",
 			dataType: "html",
 			cache: !1,
 			success: function(em) {
-				var o = JSON.parse(em);
-				setCookie("logged", "1")
-				setCookie("mid", o.mid)
-				setCookie("login", o.login)
-				setCookie("mobile", o.mobile)
-				setCookie("long_code", o.long_code)
-				setCookie("location", o.location)
-				setCookie("email", o.email)
-				window.top.location.href = "home.html"
+				console.log(em)
+				var ms = JSON.parse(em);
+				if (ms.result=='error') {
+					$('#inmsg').html(ms.msg)
+					return false
+				} else {
+					var o=ms.result
+					setCookie("logged", "1")
+					setCookie("mid", o.mid)
+					setCookie("login", o.login)
+					setCookie("mobile", o.mobile)
+					setCookie("long_code", o.long_code)
+					setCookie("location", o.location)
+					setCookie("email", o.email)
+					window.top.location.href = "home.html"
+				}
 			}
 		})
 	}

@@ -3,21 +3,18 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
-		<meta name="description" content="A gay sugar daddy dating site that connects handsome wealthy and caring men to hot young women. Worlds first gay sugar daddy site to use disruptive SMS messaging. Find a Gay Sugar Daddy today!" />		
+		<meta name="description" content="A sugar daddy dating site that connects handsome wealthy and caring men to hot young women. Worlds first sugar daddy site to use disruptive SMS messaging. Find a Sugar Daddy today!" />		
 		<meta name="Author" content="Gautam Sharma" />		
 		<meta name="format-detection" content="telephone=no"/>
-		<title>gay sugar daddy dating | lushmatch.com</title>
-		<link rel="canonical" href="">
-		<link rel="icon" href="https://lushmatch.com/assets/img/favicon.png">
+		<title>Sugar Daddy & Sugar Baby Dating | sugardaddylocal.com</title>
+		<link rel="canonical" href="https://sugardaddylocal.com">
+		<link rel="icon" href="favicon.png">
 		<link href="https://lushmatch.com/assets/css/font-awesome.css" rel="stylesheet" >
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css" rel="stylesheet" />
+		<link href="https://lushmatch.com/assets/css/jquery-confirm.css" rel="stylesheet" />
 		<link href="https://lushmatch.com/assets/css/shadows.css" rel="stylesheet" />
-		<link href="https://lushmatch.com/assets/css/jquery-ui.css" rel="stylesheet" />
-		<link href="https://lushmatch.com/assets/css/dropzone.css" rel="stylesheet">
 		<link href="https://lushmatch.com/assets/css/bootstrap.css" rel="stylesheet">
-		<link href="https://lushmatch.com/assets/css/menu.css" rel="stylesheet">
-		<link href="https://lushmatch.com/assets/css/font-awesome.css" rel="stylesheet">
-		<link href="style.css" rel="stylesheet"> 
+		<link href="style.css" rel="stylesheet">
+		<link href="https://lushmatch.com/assets/css/animate.css" rel="stylesheet">
 		<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic|Open+Sans:300' rel='stylesheet' type='text/css'>
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -25,17 +22,60 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		<style>
-		#fsImage{
-			margin:15px!Important;
-			margin-right:0;
-		}
-		</style>
-</head>
-	<body style="background:#f0f0f0">
+			div,span,p,td {
+				font-family:Open sans!Important
+			}
+			input[type=checkbox]{
+				background-color: #f0f0f0;
+				width:30px;
+				height:30px;
+			}
+			input[type=checkbox]:checked{
+				background-color: silver;
+				width:30px;
+				height:30px;
+			}
+			.loginP {
+				font-family:Open Sans!Important;
+				font-weight:300;
+				color:maroon;
+				font-size:32px!Important;
+				text-align:center
+			}
+			.genderP {
+				font-family:Open Sans!Important;
+				font-weight:bold;
+				color:#333;
+				font-size:16px!Important;
+				width:100%;
+				text-align:center;
+			}
+			.locationP {
+				font-family:Open Sans;
+				font-weight:300;
+				color:#333;
+				font-size:21px;
+				width:100%;
+				text-align:center;
+			}
+			.general_infoP {
+				font-family:Open Sans;
+				font-weight:300;
+				color:#000;
+				font-size:16px;
+				width:100%;
+				text-align:left;
+				border-radius:4px;
+				background:#fcfcfc;
+				padding:10px;
+			}			
+	</style>
+
+		<body style="background:url(assets/images/b1e2.jpg)center;background-size:cover;"><script src="assets/js/custom_menu_no_footer.js"></script>
 
 	<div class="page-loader">
-			<img src="https://lushmatch.com/assets/img/loader.gif" alt="">
-		</div>
+		<img src="https://lushmatch.com/assets/img/loader.gif" alt="">
+	</div>
 
 	<section id="oSection" class="page-wrapper www_box"  style="width:100%;max-width:1200px;margin:auto;margin-top:0">
 		<div class="container" style="text-align:center">
@@ -46,7 +86,6 @@
 			</div>
 
 			</div>
-			<img id="imgWait" src="https://lushmatch.com/assets/images/load.gif" alt="waiting for my sugar daddy or sugar baby" style="position:absolute;z-index:999999999999;margin-top:-500px;margin-left:-50px;width:100px;display:none">
 		</div>
 	</section>
 	<div id="frmHolder">
@@ -72,7 +111,7 @@
 <div id="send_sms" onkeyup="deduct()" class="modal_window" style="font-size:0.8em;padding:10px;border-radius:6px;position:absolute;z-index:9999999999999;display:none;background:#f0f0f0;top:50px;left:0;right:0;margin:auto;width:320px;max-width:320px;height:500px;font-family:Open Sans;font-size:24px;"><span id="tip" style='color:brown;font-family:Open Sans'>SEND ANONYMOUS SMS<br><br><span style="font-size:18px;color:#333;font-family:Open Sans">1. Your number will not be revealed</span></span><br><div contentEditable onblur='fill_txt()' onclick='erase_txt()' id='message_text' style='word-wrap:break-word;font-family:Open Sans;font-size:24px;contentEditable:true;color:#0093D9;cursor:hand;cursor:pointer;border-radius:4px;border:3px solid lightblue;height:170px;max-height:170px;color:#333;overflow-y:scroll;overflow-x:hidden;color:grey;background:#fff;padding:20px;background:#fff'>Type Message Here</div><div><span style="left:20px;position:absolute">CHARACTERS REMAINING: <b><span id="cr">160</span></b></span></div><br><br><div style='margin-top:10px'><span style="font-size:16px"  class="btn btn-info" onclick='send_sms()' id="send_mail">SEND</span>&nbsp;<span style="font-size:16px"  class="btn btn-danger" onclick="document.all.modal_text.style.display='none'" id="">GO BACK</span></div></div>
 
 	<div id="loader" style="display:none;z-index:99999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.3;margin:auto;background:#000;font-family:Open Sans Condensed;"></div>
-	<img id="img_loader" style="display:none;z-index:999999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:1;margin:auto;width:50px" src="https://sugardaddydays.com/assets/images/wait.gif">
+	<img id="img_loader" style="display:none;z-index:999999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:1;margin:auto;width:50px" src="https://lushmatch.com/assets/images/wait.gif">
 
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://lushmatch.com/assets/js/jquery-ui.js"></script>
@@ -80,7 +119,7 @@
 <script src="https://lushmatch.com/assets/js/events.js"></script>
 <script src="https://lushmatch.com/assets/js/bootstrap.min.js"></script>
 <script src="https://lushmatch.com/assets/js/scripts.js"></script>
-<script src="jsSocketNode.js"></script>
+<script src="https://lushmatch.com/jsSocketNode.js"></script>
 <script src="https://lushmatch.com/assets/js/jquery-confirm.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-pdjniiApMjAV7j92Nfn5zgd3k2s3ze4&libraries=places" type="text/javascript"></script>
 <script src="dz/dropzone.min.js"></script>

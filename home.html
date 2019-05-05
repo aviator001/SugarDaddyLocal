@@ -6,8 +6,8 @@
 		<meta name="description" content="A sugar daddy dating site that connects handsome wealthy and caring men to hot young women. Worlds first sugar daddy site to use disruptive SMS messaging. Find a Sugar Daddy today!" />		
 		<meta name="Author" content="Gautam Sharma" />		
 		<meta name="format-detection" content="telephone=no"/>
-		<title>Sugar Daddy & Sugar Baby Dating | lushmatch.com</title>
-		<link rel="canonical" href="https://lushmatch.com"
+		<title>Sugar Daddy & Sugar Baby Dating | sugardaddylocal.com</title>
+		<link rel="canonical" href="https://sugardaddylocal.com"
 		<link rel="icon" href="favicon.png">
 		<link href="https://lushmatch.com/assets/css/font-awesome.css" rel="stylesheet" >
 		<link href="https://lushmatch.com/assets/css/jquery-confirm.css" rel="stylesheet" />
@@ -41,28 +41,28 @@
 					return ""; 
 				}
 			} 
-			if (getCookie('mid')=='') location.href='https://lushmatch.com/index?force=login'
+			if (getCookie('mid')=='') location.href='index.html?force=login'
 			setTimeout(function(){
 				delCookie('nextMID')
 			},1)
 	</script>	
 	</head>
-	<body style="background:url(assets/images/b1e2.jpg)center;background-size:cover;"><script src="js/custom_menu.js"></script>
+	<body style="background:url(https://lushmatch.com/assets/images/b1e2.jpg)center;background-size:cover;"><script src="assets/js/custom_menu.js"></script>
 	<div id="notify" style="display:none;opacity:0.8;right:10px;top:100px;z-index:99999999999999;background:#333;box-shadow:0 0 20px #000;width:250px;height:40px;position:fixed;border-radius:4px">
 		<span id="notify_txt"  style="padding:5px;color:#f0f0f0"></span>
 	</div>
 	<script>
 		function upload_photos() {
-			if(!getCookie('mid')) location.href='https://lushmatch.com/index?force=login'
-				else location.href='https://lushmatch.com/uploadPhotos.html?member_id='+getCookie('mid')
+			if(!getCookie('mid')) location.href='index?force=login'
+				else location.href='uploadPhotos.html?member_id='+getCookie('mid')
 		}
 		function view_profile() {
-			if(!getCookie('mid')) location.href='https://lushmatch.com/index.html?force=login'
-				else location.href='https://lushmatch.com/profile.html?member_id='+getCookie('mid')
+			if(!getCookie('mid')) location.href='index.html?force=login'
+				else location.href='profile.html?member_id='+getCookie('mid')
 		}
 		function view_album() {
-			if(!getCookie('mid')) location.href='https://lushmatch.com/index.html?force=login'
-				else location.href='https://lushmatch.com/viewAlbum.html?member_id='+getCookie('mid')
+			if(!getCookie('mid')) location.href='index.html?force=login'
+				else location.href='viewAlbum.html?member_id='+getCookie('mid')
 		}
 		function qs(name, url) {
 			if (!url) {
@@ -328,7 +328,7 @@
 	function viewMessageDetail(xid,xlogin) {
 		setCookie('chatting_with',xid)
 		setCookie('chatting_with_login',xlogin)
-		location.href='https://lushmatch.com/viewMessage.html?xid='+xid
+		location.href='viewMessage.html?xid='+xid
 	}
 	
 				function cbg() {

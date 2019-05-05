@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>		
-		<title>gaysugardaddyfinder.com :: Sugar Daddy Dating Site</title>		
-		<meta name="keywords" content="sugar daddy, sugardaddy, sugardaddy, wealthy men, twink, hot young women, sugar daddy dating site, find sugar daddy, gaysugardaddyfinder" />		
+		<title>sugardaddylocal.com :: Sugar Daddy Dating Site</title>		
+		<meta name="keywords" content="sugar daddy, sugardaddy, sugardaddy, wealthy men, twink, hot young women, sugar daddy dating site, find sugar daddy, sugardaddylocal" />		
 		<meta name="description" content="A place that connects handsome wealthy and caring men to hot young women" />		
 		<meta name="Author" content="Gautam Sharma" />		
 		<!-- mobile settings -->		 
 		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />		
 		<!-- Fav Icons -->		
-		<link rel="icon" href="https://gaysugardaddyfinder.com/assets/img/favicon.ico">		
-		<link rel="apple-touch-icon" href="https://gaysugardaddyfinder.com/assets/img/favicon.ico">		
+		<link rel="icon" href="https://sugardaddylocal.com/assets/img/favicon.ico">		
+		<link rel="apple-touch-icon" href="https://sugardaddylocal.com/assets/img/favicon.ico">		
 		<!-- WEB FONTS -->		
 		<style>
 			iframe { width: 100%; }
@@ -24,12 +24,13 @@
 		<link href='https://fonts.googleapis.com/css?family=Economica' rel='stylesheet' type='text/css'>
 		<meta charset="utf-8">
 		<meta name="format-detection" content="telephone=no"/>
-		<link rel="icon" href="https://gaysugardaddyfinder.com/images/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="https://sugardaddylocal.com/images/favicon.ico" type="image/x-icon">
 		<style>
     html,body {
         margin: 0 0;
         width: 100%;
         overflow: none;
+		font-size:18px!Important;
         -webkit-overflow-scrolling: touch;
 		max-width:500px!Important;
     }	
@@ -71,9 +72,9 @@
 			height:33px!Important;
 		}
 		</style>
-	<link rel="stylesheet" href="https://gaysugardaddyfinder.com/assets/css/font-awesome.css">
-	<script src="https://gaysugardaddyfinder.com/assets/js/jquery.js"></script>
-	<script src="https://gaysugardaddyfinder.com/assets/js/framework.js"></script>
+	<link rel="stylesheet" href="https://lushmatch.com/assets/css/font-awesome.css">
+	<script src="https://lushmatch.com/assets/js/jquery.js"></script>
+	<script src="https://lushmatch.com/assets/js/framework.js"></script>
 	<link href='https://fonts.googleapis.com/css?family=Poiret+One|Open+Sans|Economica' rel='stylesheet' type='text/css'>
 	<style>
 		html,body,div,span,p,table,td,tr,section,label,tbody, input,iframe, button,select, slide {
@@ -242,7 +243,7 @@
 
 <br><br><br><br><br><br>
 <div id="section" style="text-align:center">
-					<div class="" style="left:0;right:0;margin:auto;width:320px;text-align:center;padding:0px;margin-top:80px">
+					<br><br><div class="" style="">
 							<div class="row" style="margin-top:25px">
 									<h3 id="hot" class="www_box www_box5" style="left:0;right:0;margin:auto;position:absolute;font-family:Ubuntu Condensed;width:340px;text-align:center;font-size:18px;padding:5px;margin-top:-50px"></h3>
 																</div>
@@ -336,12 +337,12 @@
 		var message=document.getElementById('reply_text_' + xid).innerHTML
 		var to=sid
 		var from=mid
-		var url = 'inc/x_get_mail.php?xid=' + xid + '&mid=' + mid
+		var url = 'https://lushmatch.com/x_get_mail.php?xid=' + xid + '&mid=' + mid
 		get_messages(url,xid)
 	} 
 
 	function del_all(xid,mid) {
-		var url = 'inc/x_del_multi.php?xid=' + xid + '&mid=' + mid
+		var url = 'https://lushmatch.com/x_del_multi.php?xid=' + xid + '&mid=' + mid
 		get_messages(url,xid)
 		location.reload()
 	}
@@ -355,7 +356,7 @@
 		var message=document.getElementById('reply_text_' + sid).innerHTML
 		var to=sid
 		var from=mid
-		var url = 'inc/x_send_mail.php?to=' + to + '&from=' + from + '&message=' + message
+		var url = 'https://lushmatch.com/x_send_mail.php?to=' + to + '&from=' + from + '&message=' + message
 		remote_script(url,sid,mid)
 	}
 	var s
@@ -368,7 +369,7 @@
 		if (!x_start) x_start=0
 		if (!x_start) start[hid]=0
 			else start[hid]=x_start
-		m_url='x_hotlist.php?i='+hid+'&start='+start[hid]+'&member_id='+getCookie('mid')
+		m_url='https://lushmatch.com/x_hotlist.php?i='+hid+'&start='+start[hid]+'&member_id='+getCookie('mid')
 		console.log(m_url)
 		document.getElementById('hot').style.display='none'
 		var request = $.ajax({
@@ -406,7 +407,7 @@
 	}
 	
 	function getHotHeader(hid) {
-		m_url='x_hot_header.php?member_id='+getCookie('mid')
+		m_url='https://lushmatch.com/x_hot_header.php?member_id='+getCookie('mid')
  		var request = $.ajax({
 			url: m_url, 
 			type: "GET",
@@ -457,7 +458,7 @@
 	}
 
 	function xxx_delete_message(msg_id,rid) {
-		var x_url = 'https://gaysugardaddyfinder.com/inc/x_delete_message.php?message_id=' + msg_id
+		var x_url = 'https://lushmatch.com/inc/x_delete_message.php?message_id=' + msg_id
 		var request = $.ajax({
 			url: x_url, 
 			type: "GET",
@@ -474,7 +475,7 @@
 
 	function delete_single_log(nid,hid) {
 		jwait('Updating...')
-		var x_url = 'x_delete_hot_list.php?id=' + hid
+		var x_url = 'https://lushmatch.com/x_delete_hot_list.php?id=' + hid
 		var request = $.ajax({
 			url: x_url, 
 			type: "GET",
@@ -493,7 +494,7 @@
 	}
 
 	function delete_single_message(msg_id,xid,mid) {
-		var x_url = 'inc/x_delete_message.php?message_id=' + msg_id
+		var x_url = 'https://lushmatch.com/x_delete_message.php?message_id=' + msg_id
 		var request = $.ajax({
 			url: x_url, 
 			type: "GET",
@@ -579,10 +580,10 @@
 	
 </script>
 <!--
-	<img style="position:fixed;z-index:99999999999999;left:0px;bottom:0px;width:50px;" src="https://gaysugardaddyfinder.com/assets/images/tab_messaging.png">
-	<img style="position:fixed;z-index:99999999999999;left:0px;top:5px;width:50px;opacity:1" src="https://gaysugardaddyfinder.com/assets/tab_home.png">
-	<img style="position:fixed;z-index:99999999999999;left:0px;bottom:45px;width:50px;opacity:1" src="https://gaysugardaddyfinder.com/assets/tab_search.png">
-	<img style="position:fixed;z-index:99999999999999;right:0px;top:45%;width:40px;opacity:1" src="https://gaysugardaddyfinder.com/assets/images/tab_rt_help.png">
+	<img style="position:fixed;z-index:99999999999999;left:0px;bottom:0px;width:50px;" src="https://lushmatch.com/assets/images/tab_messaging.png">
+	<img style="position:fixed;z-index:99999999999999;left:0px;top:5px;width:50px;opacity:1" src="https://lushmatch.com/assets/tab_home.png">
+	<img style="position:fixed;z-index:99999999999999;left:0px;bottom:45px;width:50px;opacity:1" src="https://lushmatch.com/assets/tab_search.png">
+	<img style="position:fixed;z-index:99999999999999;right:0px;top:45%;width:40px;opacity:1" src="https://lushmatch.com/assets/images/tab_rt_help.png">
 -->
  
 <script type="text/javascript">
@@ -597,13 +598,7 @@
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(wf, s);
   })(); 
-		if ((page=='members_home')||(page=='mail')) {
-			$('#bottom_barx').hide()
-		}
-		setTimeout('updateLink()',500)
-		function updateLink() {
-			if (document.getElementById('az1')) document.getElementById('az1').href=getCookie('prevPage')
-			if (document.getElementById('az2')) document.getElementById('az2').href=getCookie('prevPage')
-		}		
+
+
 	
 	</script>

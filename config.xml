@@ -152,6 +152,10 @@ Gautam Sharma
         <feature name="Vibration">
             <param name="android-package" value="org.apache.cordova.vibration.Vibration" />
         </feature>
+	    <config-file target="res/values/strings.xml" parent="/*">
+        <string name="title">SDLocal</string>
+        <string name="filter_view_https_sugardaddy">sugardaddy</string>
+		</config-file> 	
         <manifest android:hardwareAccelerated="true" android:versionCode="30001" android:versionName="3.0.1" package="rmc3.videoconference" xmlns:android="http://schemas.android.com/apk/res/android">
             <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:resizeable="true" android:smallScreens="true" android:xlargeScreens="true" />
             <uses-permission android:name="android.permission.INTERNET" />
@@ -172,7 +176,7 @@ Gautam Sharma
             <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 			<activity
 				android:name="com.example.android"
-				android:label="@string/title_sugardaddy" >
+				android:label="@string/title" >
 				<intent-filter android:label="@string/filter_view_https_sugardaddy">
 					<action android:name="android.intent.action.VIEW" />
 					<category android:name="android.intent.category.DEFAULT" />

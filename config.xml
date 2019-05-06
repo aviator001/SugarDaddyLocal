@@ -187,7 +187,7 @@ Gautam Sharma
 						  android:pathPrefix="/sugardaddy" />
 					<!-- note that the leading "/" is required for pathPrefix-->
 				</intent-filter>
-				<intent-filter android:label="@string/filter_view_example_local">
+				<intent-filter android:label="@string/filter_view_https_sugardaddy">
 					<action android:name="android.intent.action.VIEW" />
 					<category android:name="android.intent.category.DEFAULT" />
 					<category android:name="android.intent.category.BROWSABLE" />

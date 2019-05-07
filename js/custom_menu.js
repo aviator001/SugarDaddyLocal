@@ -17,7 +17,7 @@
 	str+='						<a href="javascript:history.go(-1)"><img id="m0" style="position:fixed;z-index:99;height:50px;top:0px;left:0px" src="https://lushmatch.com/assets/images/m0.png"></a>'
 	str+='					</td>'
 	str+='					<td style="opacity:0.9;width:90%;text-align:center">'
-	str+='						<a href="home.html"><img id="narrow" src="https://lushmatch.com/assets/images/logo_narrow.png" style="width:200px;">'
+	str+='						<a href="home.html"><img id="narrow" src="assets/img/logo_narrow.png" style="width:200px;">'
 	str+='					</td>'
 	str+='					<td>'
 	str+='						<img id="m1" style="position:fixed;z-index:99;height:50px;top:0px;right:0px" src="https://lushmatch.com/assets/images/m1.png" onclick="show_drop_down_menu()">'

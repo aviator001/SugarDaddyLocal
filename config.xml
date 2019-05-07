@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.sugardaddylocal.app" version="1.1.0" versionCode="10" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.sugardaddylocal.app" version="2.0.0" versionCode="10" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>SDLocal</name>
     <description>
 A new experience from the pioneeers of sugar daddy dating - the first site based on disruptive technologies
 </description>
     <author email="lushdates001@gmail.com" href="http://sugardaddylocal.com">
-Gautam Sharma
+Sugar Daddy Local Developer
 </author>
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
@@ -218,5 +218,5 @@ Gautam Sharma
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <engine name="android" spec="^7.0" />
+    <engine name="android" spec="^6.3.0" />
 </widget>

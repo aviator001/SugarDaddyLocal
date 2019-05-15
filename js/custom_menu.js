@@ -1,4 +1,53 @@
+			var json,admin,bg,status,cl
+			document.body.onload = function(){
+				$.ajax({
+					url:'https://lushmatch.com/x_check_status.php',
+					success:function(data){
+						var json=JSON.parse(data)
+						if (data.admin=='1') admin=true
+						if (data.status=='9')  {
+							status='Profile Pending Approval'
+							bg='red'
+							cl='white'
+							showerror(status)
+						} else if (data.status=='1') {
+							status='Profile Declined.'
+							bg='lightyellow'
+							cl='white'
+							showerror(status)
+						} else if (data.status=='2') {
+							status='Profile Declined due photos that violate Terms'
+							bg='gold'
+							showerror(status)
+						} else if (data.status=='3') {
+							status='Profile Banned'
+							bg='red'
+							showerror(status)
+						} else if (data.status=='4') {
+							status='user Permanently Banned and IP Adrress Flagged'
+							location.href='banned.html'
+						}
+					}
+				})
+		
+				if (status) {
+					$$('notifyUser').style.color=cl
+					$$('notifyUser').style.background=bg
+					$$('notifyUser').style.padding='10px'
+					$$('notifyUser').innerHTML=status
+				}
+			}
+				
+				function showerror(msg) {
+					$.alert({title:'',theme:'supervan',content:msg, onClose: function () {
+							showerror(msg)
+						}
+					})
+				}
+
 			setTimeout(function(){
+				// document.getElementById('tbar3').style.zIndex='99999999999999999'
+				// document.getElementById('tbar2').style.zIndex='1'
 				if (!getCookie('mid')) {
 					$.confirm({
 						title: 'Login Required!',
@@ -251,7 +300,7 @@
 			if (document.getElementById('xresults')) document.getElementById('xresults').style.bottom='110px'
 			if (document.getElementById('xresults')) document.getElementById('xresults').style.width='100%'
 			if (document.getElementById('qsearch')) document.getElementById('qsearch').style.bottom='50px'
-			if (document.getElementById('tbar2')) document.getElementById('tbar2').style.bottom='50px'
+			if (document.getElementById('tbar2')) document.getElementById('tbar2').style.display='none'
 		} else {
 			setCookie('isMobile','')
 			setCookie('isMobile','')

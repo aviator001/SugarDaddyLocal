@@ -24,31 +24,28 @@
 	str+='					</td>'
 	str+='				</tr>'
 	str+='			</table>'
-	str+='			<a href="old/help.html">'
-	str+='				<img id="m10" style="position:fixed;z-index:99;width:50px;top:55px;right:0px;display:none" src="https://lushmatch.com/assets/images/tab_help.png">'
-	str+='			</a>'
-	str+='			<a href="home.html">'
+	str+='			<a href="javascript:show_wait();home()">'
 	str+='				<img id="m2" style="position:fixed;z-index:99;width:50px;top:105px;right:0px;display:none" src="https://lushmatch.com/assets/images/tab_members_home.png">'
 	str+='			</a>'
-	str+='			<a href="settings.html">'
+	str+='			<a href="javascript:show_wait();settings()">'
 	str+='				<img id="m3" style="position:fixed;z-index:99;width:50px;top:155px;right:0px;display:none" src="https://lushmatch.com/assets/images/tab_settings.png">'
 	str+='			</a>'
-	str+='			<a href="javascript:preview_profile()">'
+	str+='			<a href="javascript:show_wait();preview_profile()">'
 	str+='				<img id="m4" style="position:fixed;z-index:99;width:50px;top:205px;right:0px;display:none" src="https://lushmatch.com/assets/images/tab_my_profile.png">'
 	str+='			</a>'
-	str+='			<a href="inbox.html">'
+	str+='			<a href="javascript:show_wait();inbox()">'
 	str+='				<img id="m5" style="position:fixed;z-index:99;width:50px;top:255px;right:0px;display:none" src="https://lushmatch.com/assets/images/tab_mailbox.png">'
 	str+='			</a>'
-	str+='			<a href="search.html">'
+	str+='			<a href="javascript:show_wait();show_search()">'
 	str+='				<img id="m6" style="position:fixed;z-index:99;width:50px;top:305px;right:0px;display:none" src="https://lushmatch.com/assets/images/tab_search.png">'
 	str+='			</a>'
-	str+='			<a href="browse.html">'
+	str+='			<a href="javascript:show_wait();browse()">'
 	str+='				<img id="m7" style="position:fixed;z-index:99;width:50px;top:355px;right:0px;display:none" src="https://lushmatch.com/assets/images/tab_browse.png">'
 	str+='			</a>'
-	str+='			<a href="userHotLists.html">'
+	str+='			<a href="javascript:show_wait();hotlists()">'
 	str+='				<img id="m8" style="position:fixed;z-index:99;width:50px;top:405px;right:0px;display:none" src="https://lushmatch.com/assets/images/tab_hotlists.png">'
 	str+='			</a>'
-	str+='			<a href="logout.html">'
+	str+='			<a href="javascript:show_wait();logout()">'
 	str+='				<img id="m9" style="position:fixed;z-index:99;width:50px;top:455px;right:0px;display:none" src="https://lushmatch.com/assets/images/tab_logout.png">'
 	str+='			</a>'
 	str+='		</div>'
@@ -64,13 +61,13 @@
 	str+='				<tbody>'
 	str+='					<tr><td style="padding:0;margin:0;font-size:0">'
 	str+='						<img style="width:12.5%;text-align:center;margin:0!Important;padding:0!Important;cursor:hand;cursor:pointer" src="https://lushmatch.com/assets/images/wt01.png" onclick="javascript:history.go(-1)">'
-	str+='						<a href="home.html"><img style="width:12.5%;text-align:center;margin:0!Important;padding:0!Important" src="https://lushmatch.com/assets/images/wt02.png"></a>'
-	str+='						<a href="settings.html"><img style="width:12.5%;text-align:center;margin:0!Important;padding:0!Important" src="https://lushmatch.com/assets/images/wt03.png" onclick="javascript:xback()">'
-	str+='						<a href="javascript:preview_profile()"><img style="width:12.5%;text-align:center;margin:0!Important;padding:0!Important" src="https://lushmatch.com/assets/images/wt04.png"></a>'
-	str+='						<a href="inbox.html"><img style="width:12.5%;text-align:center;margin:0!Important;padding:0!Important" src="https://lushmatch.com/assets/images/wt05.png"></a>'
-	str+='						<a href="javascript:show_search()"><img style="width:12.5%;text-align:center;margin:0!Important;padding:0!Important" src="https://lushmatch.com/assets/images/wt06.png"></a>'
-	str+='						<a href="browse.html"><img style="width:12.5%;text-align:center;margin:0!Important;padding:0!Important" src="https://lushmatch.com/assets/images/wt07.png"></a>'
-	str+='						<a href="logout.html"><img style="width:12.5%;text-align:center;margin:0!Important;padding:0!Important" src="https://lushmatch.com/assets/images/tab_logout.png"></a>'
+	str+='						<a href="javascript:show_wait();home()"><img style="width:12.5%;text-align:center;margin:0!Important;padding:0!Important" src="https://lushmatch.com/assets/images/wt02.png"></a>'
+	str+='						<a href="javascript:show_wait();settings()"><img style="width:12.5%;text-align:center;margin:0!Important;padding:0!Important" src="https://lushmatch.com/assets/images/wt03.png" onclick="javascript:xback()">'
+	str+='						<a href="javascript:show_wait();preview_profile()"><img style="width:12.5%;text-align:center;margin:0!Important;padding:0!Important" src="https://lushmatch.com/assets/images/wt04.png"></a>'
+	str+='						<a href="javascript:show_wait();inbox()"><img style="width:12.5%;text-align:center;margin:0!Important;padding:0!Important" src="https://lushmatch.com/assets/images/wt05.png"></a>'
+	str+='						<a href="javascript:show_wait();show_search()"><img style="width:12.5%;text-align:center;margin:0!Important;padding:0!Important" src="https://lushmatch.com/assets/images/wt06.png"></a>'
+	str+='						<a href="javascript:show_wait();browse()"><img style="width:12.5%;text-align:center;margin:0!Important;padding:0!Important" src="https://lushmatch.com/assets/images/wt07.png"></a>'
+	str+='						<a href="javascript:show_wait();logout()"><img style="width:12.5%;text-align:center;margin:0!Important;padding:0!Important" src="https://lushmatch.com/assets/images/tab_logout.png"></a>'
 	str+='					</td></tr>'
 	str+='				</tbody>'
 	str+='			</table>'
@@ -78,6 +75,29 @@
 	var dv=document.createElement('div')
 	dv.innerHTML=str
 	document.documentElement.appendChild(dv)	
+
+	function show_wait() {
+		$('.page-loader').show()
+	}
+	
+	function home() {
+		location.href='home.html'
+	}
+	function settings() {
+		location.href='settings.html'
+	}
+	function inbox() {
+		location.href='inbox.html'
+	}
+	function browse() {
+		location.href='browse.html'
+	}
+	function hotlists() {
+		location.href='userHotLists.html'
+	}
+	function logout() {
+		location.href='logout.html'
+	}
 	
 	function getCookie(cname)	{ 
 		if (window.location.href.indexOf('file://')>=0) {

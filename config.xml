@@ -200,7 +200,7 @@ Sugar Daddy Local LLC
     <gap:config-file parent="CFBundleShortVersionString" platform="ios">
         <string>100</string>
     </gap:config-file>
-    <splash src="splash.jpg" />
+    <splash src="splash.png" />
     <icon src="favicon.png" />	
     <access origin="*" />
     <plugin name="cordova-plugin-whitelist" version="1" />

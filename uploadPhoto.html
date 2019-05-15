@@ -329,28 +329,17 @@
 	  if( !status.hasPermission ) error();
 	}
 
-
 	var imx=0
 	function takeVideo(){
-		navigator.device.capture.captureVideo(function(videoData){
-		},attachMedia.captureVideoError, {
+				navigator.device.capture.captureVideo(function(videoData){
+			},attachMedia.captureVideoError, {
 		limit : 1,
 		duration: 60,
 		saveToPhotoAlbum:true
 		});
 	};
-
-    function onPhotoURISuccess(imageURI) {
-        uploadFile(imageURI,"library");
-    }
-    
-	function getVideo(source, type) {
-		navigator.camera.getPicture(onPhotoURISuccess, onFail2, { quality:50, destinationType: destinationType.FILE_URI, sourceType: source, mediaType: type});
-    }
 	
-    function onFail2(message) {
-        alert('Error');
-    }
+/* don't need, it should automatically get saved*/
 	
 	function take_photo() {
 		navigator.camera.getPicture(onSuccess, onFail, { 
@@ -360,63 +349,8 @@
 			allowEdit: true
 		});
 	}
-
-	function onSuccessv(mediaFiles) {
-		var i, len;
-		for (i = 0, len = mediaFiles.length; i < len; i += 1) {
-			uploadFile(mediaFiles[i]);
-		}
-	}
-
-	function uploadFile(mediaFile) {
-		var fileURL = mediaFile.toURL();
-		var success = function (r) {
-			alert("Successful upload...");
-			alert("Code = " + r.responseCode);
-		}
-		var fail = function (error) {
-			alert("An error has occurred: Code = " + error.code);
-		}
-		var options = new FileUploadOptions();
-		options.fileKey = "file";
-		options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
-		options.mimeType = "image/jpeg";
-		var params = {};
-		params.value1 = "test";
-		params.value2 = "param";
-		options.params = params;
-		var ft = new FileTransfer();
-		ft.upload(fileURL, encodeURI("https://lushmatch.com/iupload.php"), success1, fail1, options);
-	}
-
-	function success1() {
-		$.confirm({
-			buttons: {
-				b1: {
-					text: 'Add More',
-					btnClass: 'btn-blue',
-					action: function(){
-						take_photo()
-					}
-				},
-				b2: {
-					text: 'Go Back',
-					btnClass: 'btn-red',
-					action: function(){
-						history.go(-1)
-					}
-				}
-			}
-		});
-	}
-
-	function fail1() {
-		alert('fail')
-	}
-/* don't need, it should automatically get saved*/
 	
 	function onSuccess(imageData) {
-		alert(imageData)
 		var image = document.createElement('img');
 		var sp = document.createElement('span');
 		image.id="img"+imx
@@ -436,17 +370,12 @@
 		alert('Failed because: ' + message);
 	}
 
-	function onFailv(message) {
-		alert('Failed because: ' + message);
-	}
-
 	function uploadPhoto(imageData) {
-		alert(imageData)
 		var fname=getCookie('login') + '_' + Math.round(Math.random()*10000000000) + '.jpg'
 	    $.ajax({url: "https://lushmatch.com/iupload.php",
 	          type: 'POST',
 	          data: {filename: fname, image: imageData,login: getCookie('login'), mid: getCookie('mid')},
-	          success: function(data, status, xhr) {alert()}
+	          success: function(data, status, xhr) {alert("Upload Suuccesfull')}
 	    });      
 	}
 

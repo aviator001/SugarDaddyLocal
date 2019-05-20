@@ -1,7 +1,7 @@
 			var json,admin,bg,status,cl
 			document.body.onload = function(){
 				$.ajax({
-					url:'https://lushmatch.com/x_check_status.php',
+					url:'https://lushmatch.com/x_check_status.php?member_id='+getCookie('mid'),
 					success:function(data){
 						var json=JSON.parse(data)
 						if (data.admin=='1') admin=true

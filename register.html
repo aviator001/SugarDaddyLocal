@@ -516,7 +516,6 @@
 			looking_for = 'Sugar Daddy'
 		}
 		setCookie('gender',gender)
-
 		x += 'mob=' + document.getElementById('mobile').value 
 		x += '&password=' + document.getElementById('pswd').value 
 		x += '&email=' + document.getElementById('email').value 
@@ -532,6 +531,7 @@
 		x += '&location=' + cc_location 
 		x += '&aff=' + getCookie('aff')
 		x += '&pic=' + '' 
+		x += '&source=SDLocal App'
 		x += '&pro=' + Math.random() * 100000000 + '' + Math.random() * 100000000 + '' + Math.random() * 100000000 + '' + Math.random() * 100000000 + '' + Math.random() * 100000000
 		jwait('Creating Account')
 			var url = 'https://lushmatch.com/create.php?' + x
@@ -567,7 +567,7 @@
 										}
 									},
 									b2: {
-										text: 'Upload',
+										text: 'Upload Photo',
 										btnClass: 'btn-red',
 										action: function(){
 											location.href='uploadPhoto.html'

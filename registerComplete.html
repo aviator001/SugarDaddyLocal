@@ -53,6 +53,71 @@
 			}
 		</style>
 		<script>
+	var html = document.documentElement;
+	var objText, objType, objStyle, objWait, spinner
+	var alpha = document.getElementById('alpha')
+	var toast = document.createElement('span');
+	var jToastWn = document.createElement('div');
+	var jModalWn = document.createElement('div');
+	var jBoxCont = document.createElement('div');
+	var spinner = document.createElement('div');
+	var objWait = document.createElement('img');
+	var objW = document.createElement('img');
+	var objT = document.createElement('span');
+	var x_gender='Sugar Baby'
+	var x_age=50
+	var x_miles=50
+	var x_photos='No'
+	var zip = ''
+	var miles = ''
+	var age = ''
+	var gender = ''
+	var photos=''
+	var pclip = 'assets/images/pclip.png'
+	var pclip_o = 'assets/images/pclip_o.png'
+	var err_img = 'assets/images/a000.png';
+	var dot2 = 'https://lushmatch.com/assets/images/dot4.png'
+	var dot1='https://lushmatch.com/assets/images/dot1.png'
+	var user_offline = 'User is Offline!'
+	var x_validate=true
+
+	jModalWn.id='jModalWn'
+	objW.id='objW'
+	objT.id='objT'
+	spinner.style.cssText = "display:none;position:fixed;width:100%;height:100%;top:0px;bottom:0px;left:0px;right:0px;margin:auto;z-index:99999999999;background:;opacity:1"
+	jModalWn.style.cssText = "display:none;position:fixed;width:100%;height:100%;top:0px;bottom:0px;left:0px;right:0px;margin:auto;z-index:999999999999999999999;background:;opacity:1"
+	jToastWn.style.cssText = "text-align:center;padding:10px;display:none;position:fixed;z-index:99999999999999999999999;right:10px;top:10px;font-size:18px;color:white"
+	toast.style.cssText = "text-align:center;padding:10px;display:none;position:fixed;z-index:999999999999999999990;right:10px; top: 10px; font-size:18px; color: white"
+	objWait.style.cssText = "margin:auto;position:fixed;z-index:9999999999999999999991;left:0;right:0;top:0;bottom:0;width:100px;padding:20px;background:#fff;border-radius:8px;opacity:0.8;box-shadow:0px 0px 5px #333"
+	objW.style.cssText = "margin:auto;position:fixed;z-index:9999999999999999999991;left:0;right:0;top:0;bottom:0;width:125px;padding:20px;padding-top:10px;background:#fff;border-radius:8px;opacity:0.9;box-shadow:0px 0px 5px #333"
+	objT.style.cssText = "margin:auto;position:fixed;z-index:9999999999999999999992;left:0;right:0;top:0;bottom:0;width:125px;height:125px;padding:5px;padding-top:80px;font-size:14px;font-family:Open Sans;text-align:center;word-wrap:break-word;background:none;text-shadow:1px 1px 0px #fff;border-radius:8px;opacity:1.0;"
+	objWait.src='https://lushmatch.com/assets/img/wait.gif'
+	objW.src='https://lushmatch.com/assets/img/wait.gif'
+	
+	toast.id='toast'
+	spinner.id='spinner'
+	html.appendChild(jModalWn)
+	html.appendChild(jBoxCont)
+	html.appendChild(jToastWn)
+	html.appendChild(toast)
+	html.appendChild(spinner)
+	spinner.appendChild(objWait)
+
+	function jwait(objTxt) {
+		if (!objTxt) objTxt='Please Wait'
+		objT.innerHTML=objTxt
+		jModalWn.appendChild(objWait)
+		jModalWn.appendChild(objT)
+		jModalWn.style.display='block'
+	}
+
+	function jhide() {
+		document.getElementById('jModalWn').style.display=='none'
+		jModalWn.style.display='none'
+		objW.style.display='none'
+		objT.style.display='none'
+	}
+
 			var wl = window.location.href;
 			var mob = (window.location.href.indexOf('file://')>=0);
 
@@ -132,6 +197,7 @@
 			setCookie('looking_for',looking_for)
 		}
 		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>	
 	</head> 
 		<body onload="zinit()">
 
@@ -158,8 +224,8 @@
 						</tr>
 					</table>
 				</div>
-				<div id="loader" style="display:none;z-index:99999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.3;margin:auto;background:#ccc;font-family:Open Sans;"><img style="z-index:999999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:1;margin:auto" src="assets/img/loader.gif"></div>			
-				<div class="col-md-12" style="position:absolute;margin:auto;left:0;right:0;margin-bottom:5px">
+				<div id="loader" style="display:none;z-index:99999999999999999;height:150%;position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.9;margin:auto;background:#ccc;font-family:Open Sans;"><img style="z-index:999999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:1;margin:auto" src="assets/img/loader.gif"></div>			
+				<div id='info' class="col-md-12" style="position:absolute;margin:auto;left:0;right:0;margin-bottom:5px">
 					<div class="white-row"  style="box-shadow:0 0 20px #333;background:#f0f0f0">		
 						<span style='font-family:Open Sans;color:#0093D9;font-size:22px'>Found your Facebook Profile;</span><br><span style='font-family:Open Sans;color:black;font-size:18px'>Just enter your <b>mobile number</b> and thats it!</span>
 						<div id="form_errors" class="alert alert-info" style="display:none"></div>
@@ -243,16 +309,12 @@
 		</script>	
 	
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="assets/js/jquery-ui.js"></script>
-<script src="assets/js/common.js"></script>
-<script src="assets/js/events.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/scripts.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-pdjniiApMjAV7j92Nfn5zgd3k2s3ze4&libraries=places" type="text/javascript"></script>
 <script src="https://gaysugardaddyfinder.com/assets/js/jquery.geocomplete.js"></script>	
 <link href="https://lushmatch.com/assets/css/jquery-confirm.css" rel="stylesheet" />
-<script src="assets/js/jquery-confirm.min.js"></script>
-
+<script src="https://lushmatch.com/assets/js/jquery-confirm.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 		<script type="text/javascript">
 		function go_fb_user() {
 			document.getElementById('phone').value=document.getElementById('mobile').value
@@ -335,6 +397,9 @@
 }
 
 	function create_fb_user() {
+			$('#loader').show()
+			$('#info').hide()
+			
 			var url='https://lushmatch.com/x_location.php'
 			var request = $.ajax({
 				url: url,
@@ -390,47 +455,78 @@
 		x += '&source=SDLocal App'
 		x += '&pro=' + Math.random() * 100000000 + '' + Math.random() * 100000000 + '' + Math.random() * 100000000 + '' + Math.random() * 100000000 + '' + Math.random() * 100000000
 
-		wait('Creating Account')
 		var url = 'https://lushmatch.com/create.php?' + x
 		console.log(url)
-		var request = $.ajax({
-		url: url,
-		type: "GET",
-		dataType: "html",
-		cache: false,
-		success: function(msg) {
-				hide()
-				msg=msg.split('|')
-				var res=msg[0]
-				setCookie('login',msg[1])
-				setCookie('mid',msg[2])
-				setCookie('mobile',msg[4])
-				if (res=='OK') {
-					window.location.href='home.html?page=my_account&first=true'
-				} else {
-					$.alert({theme: 'black', content: 'Registration Failed!',title:false})
+			var request = $.ajax({
+			url: url,
+			type: "GET",
+			dataType: "html",
+			cache: false,
+			success: function(msg) {
+					$('#loader').hide()
+					console.log(msg)
+					if (msg.trim() == 'Registration failed!') {
+							$.confirm({
+								columnClass:'col-md-3',
+								title:'Registration Failed!',
+								content:'Failed to Register!<br><br>Your account was not created.<br><br>',
+								buttons: {
+									b2: {
+										text: 'Exit',
+										btnClass: 'btn-red',
+										action: function(){
+											location.href='index.html'
+										}
+									}
+								}
+							});
+					} else {
+							var mmx=msg.split('|')
+							setCookie('mobile', mmx[4])
+							setCookie('mid', mmx[2])
+							setCookie('login', mmx[1])
+							setCookie('long_code', mmx[3])
+							setCookie('filename_1', mmx[5])
+							$.confirm({
+								columnClass:'col-md-3',
+								title:'Success!',
+								content:'Congratulations!<br><br>Your account was created successfully.<br><br>',
+								buttons: {
+									b1: {
+										text: 'Browse',
+										btnClass: 'btn-blue',
+										action: function(){
+											location.href='home.html?page=my_account&first=true&member_id=' + mmx[2]
+										}
+									},
+									b2: {
+										text: 'Upload Photo',
+										btnClass: 'btn-red',
+										action: function(){
+											location.href='uploadPhoto.html'
+										}
+									}
+								}
+							});
+							
+							
+					}
 				}
-			
-			}
-		})		
+			})
 	}
 		function wait(txt, op) {
 			if (!op) var op = 0.8
 			if (!txt) var txt = 'Please wait...'
 			tx = document.createElement('div')
 			var text = document.createElement('span')
-			md = document.createElement('div')
 			im = document.createElement("img")
 			tx.id = 'tx'
-			md.id = 'md'
 			im.id = 'im'
-			im.src = "images/gw.gif"
+			im.src = "img/load.gif"
 			im.style.cssText = 'width:60px;position:absolute;left:10px;bottom:-5px'
-			md.style.cssText = 'width:100%;height:100%;position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;z-index:999999999999999999999;background:#000;opacity:' + op * 1
 			tx.style.cssText = 'border-radius:4px;color:#000;background:#f0f0f0;opacity:0.8;height:50px;text-align:center;position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;z-index:99999999999999999999999;padding-top:20px;font-family:Open Sans;font-size:0.8em'
 			text.style.cssText = 'position:absolute;left:80px;bottom:15px;color:#000;font-family:Open Sans;font-size:1em;text-shadow:1px 1px 1px #fff'
 			text.textContent = txt
-			document.documentElement.appendChild(md)
 			tx.appendChild(im)
 			tx.appendChild(text)
 			document.documentElement.appendChild(tx)

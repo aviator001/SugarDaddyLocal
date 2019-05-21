@@ -200,7 +200,7 @@
 							<br>
 							<div class="row">			
 							</div>
-							<div style="text-align:center;margin:10px;color:silver">Issues with site? Click here or email cs@sugardaddylocal.com</div>
+							<div style="text-align:center;margin:10px;color:silver">Issues with site? Click here or email help@sugardaddylocal.com</div>
 						</div>
 					</div>
 				</div>
@@ -488,18 +488,27 @@
 	}
 	function create_user() {
 		if (!getCookie('location')) {
-			var url='https://lushmatch.com/x_get_city_state_zip.php?lat='+getCookie('lat')+'&lng='+getCookie('lng')
+			var url='https://lushmatch.com/x_location.php'
 			var request = $.ajax({
 				url: url,
 				type: "GET",
 				dataType: "html",
 				cache: false,
 				success: function(msg) {
-					var lxc=msg.trim()
-					lx=lxc.split(',')
-					var cc_city = lx[0]
-					var cc_state=lx[1]
-					var cc_location = cc_city + ', ' + cc_state + ' ' + getCookie('zip')
+					var lx=(JSON.parse(msg))
+					lx=lx[0]
+					var cc_city = lx.city
+					var cc_state=lx.state
+					var cc_zip=lx.zip
+					var cc_location = cc_city + ', ' + cc_state + ' ' + cc_zip
+					setCookie('city',cc_city)
+					setCookie('state',cc_state)
+					setCookie('zip',cc_zip)
+					setCookie('location',cc_location)
+					if (!getCookie('lat')) {
+						setCookie('lat',lx.lat)
+						setCookie('lng',lx.lng)
+					}
 				}
 			})
 		} else {

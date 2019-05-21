@@ -1,9 +1,34 @@
+			var version=3
 			var json,admin,bg,status,cl
 			document.body.onload = function(){
 				$.ajax({
 					url:'https://lushmatch.com/x_check_status.php?member_id='+getCookie('mid'),
-					success:function(data){
-						var json=JSON.parse(data)
+					success:function(json){
+						var data=JSON.parse(json)
+						var ver=data.version
+						if (ver*1 > version*1) {
+							$.confirm({
+								columnClass:'col-md-3',
+								title:'Update Available!',
+								content:'An updated version of this app is now available at the app store. You will want these updates (we highly reccommend it)',
+								buttons: {
+									b1: {
+										text: 'Update App',
+										btnClass: 'btn-green',
+										action: function(){
+											location.href='https://play.google.com/store/apps/details?id=dating.sugardaddy.free'
+										}
+									},
+									b2: {
+										text: 'Exit',
+										btnClass: 'btn-red',
+										action: function(){
+											
+										}
+									}
+								}
+							});
+							}
 						if (data.admin=='1') admin=true
 						if (data.status=='9')  {
 							status='Profile Pending Approval'
@@ -46,7 +71,10 @@
 				}
 
 			setTimeout(function(){
-				// document.getElementById('tbar3').style.zIndex='99999999999999999'
+				var hbar=document.createElement('img')
+				hbar.src='https://lushmatch.com/tab_rt_help.png'
+				document.documentElement.appendChild(hbar)
+				hbar.style.cssText='zIndex:99999999999999999999999;position:absolute;right:0;top:150px'
 				// document.getElementById('tbar2').style.zIndex='1'
 				if (!getCookie('mid')) {
 					$.confirm({

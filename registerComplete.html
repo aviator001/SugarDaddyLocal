@@ -248,10 +248,11 @@
 <script src="assets/js/events.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/scripts.js"></script>
-<script src="assets/js/jquery-confirm.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-pdjniiApMjAV7j92Nfn5zgd3k2s3ze4&libraries=places" type="text/javascript"></script>
 <script src="https://gaysugardaddyfinder.com/assets/js/jquery.geocomplete.js"></script>	
-		<script type="text/javascript" src="https://gaysugardaddyfinder.com/assets/js/framework.js"></script>	
+<link href="https://lushmatch.com/assets/css/jquery-confirm.css" rel="stylesheet" />
+<script src="assets/js/jquery-confirm.min.js"></script>
+
 		<script type="text/javascript">
 		function go_fb_user() {
 			document.getElementById('phone').value=document.getElementById('mobile').value
@@ -334,31 +335,36 @@
 }
 
 	function create_fb_user() {
-		if (!getCookie('location')) {
-			var url='https://gaysugardaddyfinder.com/x_get_city_state_zip.php?lat='+getCookie('lat')+'&lng='+getCookie('lng')
+			var url='https://lushmatch.com/x_location.php'
 			var request = $.ajax({
 				url: url,
 				type: "GET",
 				dataType: "html",
 				cache: false,
 				success: function(msg) {
-					var lxc=msg.trim()
-					lx=lxc.split(',')
-					var cc_city = lx[0]
-					var cc_state=lx[1]
-					var cc_location = cc_city + ', ' + cc_state + ' ' + getCookie('zip')
+					var lx=(JSON.parse(msg))
+					lx=lx[0]
+					var cc_city = lx.city
+					var cc_state=lx.state
+					var cc_zip=lx.zip
+					var cc_location = cc_city + ', ' + cc_state + ' ' + cc_zip
+					setCookie('city',cc_city)
+					setCookie('state',cc_state)
+					setCookie('zip',cc_zip)
+					setCookie('location',cc_location)
+					if (!getCookie('lat')) {
+						setCookie('lat',lx.lat)
+						setCookie('lng',lx.lng)
+					}
 				}
 			})
-		} else {
-			var cc_city=getCookie('city')
-			var cc_state=getCookie('state')
-			var cc_location=getCookie('location')
-		}
+		//} else {
+		//	var cc_city=getCookie('city')
+		//	var cc_state=getCookie('state')
+		//	var cc_location=getCookie('location')
+	//	}
 		var x=''
-		var filename_1 = document.getElementById('filename_1').value
-		var location = document.getElementById('location').value
-		var address = document.getElementById('address').value
-		var age = document.getElementById('age').value
+		var age = qs('age')
 		var gender = getCookie('gender')
 		var looking_for = getCookie('looking_for')
 		if (gender=='') {
@@ -372,15 +378,15 @@
 		x += '&gender=' + gender
 		x += '&looking_for=' + looking_for
 		x += '&age=' + age 
-		x += '&cc_city=' + cc_city
-		x += '&cc_state=' + cc_state
+		x += '&cc_city=' + getCookie('city')
+		x += '&cc_state=' + getCookie('state')
 		x += '&cc_street=' + getCookie('street_no') + ' ' + getCookie('street')
 		x += '&lat=' + getCookie('lat')
 		x += '&lng=' + getCookie('lng')
 		x += '&zip=' + getCookie('zip')
-		x += '&location=' + cc_city + ' ' + cc_state
+		x += '&location=' + getCookie('location')
 		x += '&aff=' + getCookie('aff')
-		x += '&pic=' + filename_1 
+		x += '&pic=' + 'http://graph.facebook.com/' + qs('uid')+ '/picture?type=large'
 		x += '&source=SDLocal App'
 		x += '&pro=' + Math.random() * 100000000 + '' + Math.random() * 100000000 + '' + Math.random() * 100000000 + '' + Math.random() * 100000000 + '' + Math.random() * 100000000
 

@@ -21,9 +21,10 @@
 		<link href="css/shadows.css" rel="stylesheet" type="text/css" />
 		<!-- orange: default style -->		
 		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://lushmatch.com/assets/css/bootstrap.min.css">
 		<!-- Optional theme -->
 		<link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+		<link rel="stylesheet" href="https://lushmatch.com/assets/css/bootstrap.min.css">
 
 		<style>
 			.tooltipsy {
@@ -197,7 +198,6 @@
 			setCookie('looking_for',looking_for)
 		}
 		</script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>	
 	</head> 
 		<body onload="zinit()">
 
@@ -308,14 +308,14 @@
 			var magic_h='65px'
 		</script>	
 	
-<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="js/jquery.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-pdjniiApMjAV7j92Nfn5zgd3k2s3ze4&libraries=places" type="text/javascript"></script>
 <script src="https://gaysugardaddyfinder.com/assets/js/jquery.geocomplete.js"></script>	
 <link href="https://lushmatch.com/assets/css/jquery-confirm.css" rel="stylesheet" />
 <script src="https://lushmatch.com/assets/js/jquery-confirm.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-		<script type="text/javascript">
+<script type="text/javascript">
 		function go_fb_user() {
 			document.getElementById('phone').value=document.getElementById('mobile').value
 			var f = document.getElementById('phone').value
@@ -466,7 +466,7 @@
 					$('#loader').hide()
 					console.log(msg)
 					if (msg.trim() == 'Registration failed!') {
-							$.confirm({
+							$.alert({
 								columnClass:'col-md-3',
 								title:'Registration Failed!',
 								content:'Failed to Register!<br><br>Your account was not created.<br><br>',
@@ -488,7 +488,6 @@
 							setCookie('long_code', mmx[3])
 							setCookie('filename_1', mmx[5])
 							$.confirm({
-								columnClass:'col-md-3',
 								title:'Success!',
 								content:'Congratulations!<br><br>Your account was created successfully.<br><br>',
 								buttons: {

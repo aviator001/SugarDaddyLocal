@@ -290,3 +290,18 @@
 		}
 
 	})
+		function help() {
+			$.confirm({
+				title: 'Help',
+				content: 'url:https://lushmatch.com/help.html',
+				onContentReady: function () {
+					var self = this;
+					//this.setContentPrepend('<div>Prepended text</div>');
+					<!-- setTimeout(function () { -->
+						<!-- self.setContentAppend('<div>Appended text after 2 seconds</div>'); -->
+					<!-- }, 2000); -->
+				},
+				columnClass: 'medium',
+			});
+		
+		}

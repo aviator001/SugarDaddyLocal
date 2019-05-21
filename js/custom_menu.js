@@ -64,7 +64,7 @@
 			}
 				
 				function showerror(msg) {
-					$.alert({title:'',theme:'supervan',content:msg, onClose: function () {
+					$.alert({title:'',theme:'supervan',content:'<div style="color:white!Important;width:100%!Important;font-size:16px">'+msg+'</div>', onClose: function () {
 							showerror(msg)
 						}
 					})
@@ -74,13 +74,14 @@
 				var hbar=document.createElement('img')
 				hbar.src='https://lushmatch.com/tab_rt_help.png'
 				document.documentElement.appendChild(hbar)
-				hbar.style.cssText='zIndex:99999999999999999999999;position:absolute;right:0;top:150px'
+				hbar.style.cssText='zIndex:99999999999999999999999;position:absolute;right:0;top:50px;width:50px'
+				hbar.outerHTML="<img onclick='help()' src='https://lushmatch.com/tab_rt_help.png' style='cursor:hand;cursor:printer;zIndex:99999999999999999999999;position:absolute;right:0;top:50px;width:50px'>"
 				// document.getElementById('tbar2').style.zIndex='1'
 				if (!getCookie('mid')) {
 					$.confirm({
 						title: 'Login Required!',
 						content: 'In order to view this page you need to be logged in. Figure it out.',
-						ok: function(){
+						ok2: function(){
 							location.href='index.html?force=login'
 						}
 					});					
@@ -356,3 +357,18 @@
 		}
 
 	})
+		function help() {
+			$.confirm({
+				title: 'Help',
+				content: 'url:https://lushmatch.com/help.html',
+				onContentReady: function () {
+					var self = this;
+					//this.setContentPrepend('<div>Prepended text</div>');
+					<!-- setTimeout(function () { -->
+						<!-- self.setContentAppend('<div>Appended text after 2 seconds</div>'); -->
+					<!-- }, 2000); -->
+				},
+				columnClass: 'medium',
+			});
+		
+		}

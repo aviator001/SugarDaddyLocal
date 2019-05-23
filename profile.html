@@ -296,14 +296,15 @@
 					fromLongCode		: 	getCookie('long_code')
 		}
 		socket.send(JSON.stringify({type:'NEW_VIDEO', data: objData}))
-		location.href='https://terrawire.com:9001/demos/?login='+getCookie('login')+'&action=1'
 	}
 	
 
 	function video_invite_sms(to_login, from_login) {
-		$.dialog({url:'https://lushmatch.com/sendSMS.php?to_login='+to_login+'&from_login='+from_login+'&from_long_code='+getCookie('long_code'),success:function(data){console.log(data);location.href='https://lushmatch.com/channel.html?login='+getCookie('login')+'&action=1'}})
+	
+		$.ajax({url:'https://lushmatch.com/sendSMS.php?to_login='+to_login+'&from_login='+from_login+'&from_long_code='+getCookie('long_code'),success:function(data){console.log(data);location.href='https://terrawire.com:9001/demos/?login='+getCookie('login')+'&action=1'}})
 	}
-		
+	
+	
 	function toggle_favs() {
 		var url = 'x_add_fav.php?to=' + currMID + '&from=' + getCookie('mid')
 		console.log(url)

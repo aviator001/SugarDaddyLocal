@@ -111,8 +111,9 @@
 		}	
 	}		
 	function cinit() {
+		console.log('https://lushmatch.com/x_get_user_data.php?member_id='+qs('to_member_id'))
 		var request = $.ajax({
-			url: 'https://lushmatch.com/x_get_user.php?member_id='+qs('to_member_id'), 
+			url: 'https://lushmatch.com/x_get_user_data.php?member_id='+qs('to_member_id'), 
 			type: "GET",
 			dataType: "html",
 			cache: false,

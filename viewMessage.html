@@ -135,13 +135,15 @@
 		var ar=[]
 		var mr=[]
 		var scd=false, tmr
-	
-		window.onclick=chk
+
+		if (window.location.href.indexOf('file://')>=0) {
+			setInterval('getMail()',5000)
+		}
 		
 		function chk(e) {
 			console.log(e.target.id)
 			if (e.target.id=='') stopAllTimeouts()
-				else tmr=setTimeout('getMail()',15000)
+				else tmr=setTimeout('getMail()',5000)
 		}
 		function jwait() {
 			$$('img_loader').style.display='block'
@@ -273,7 +275,7 @@
 			dataType: "html",
 			cache: false,
 			success: function(msg) {
-				$$('inbox').innerHTML=msg
+				$$('inbox').innerHTML=msg.replace('|','')
 				$('html, body').animate({scrollTop:$(document).height()}, 'slow');
 			}
 		})
@@ -307,7 +309,7 @@
 	
 	function reply() {
 		if(!getCookie('chatting_with')) setCookie('chatting_with', qs('xid'))
-		location.href='sendMail?to_member_id='+qs('xid')
+		location.href='sendMail.html?to_member_id='+qs('xid')
 	}
 
 	function fs(el) {
@@ -503,7 +505,7 @@
 				jhide()
 				$$('mail_pad').value=''
 				$$('attachments').style.display='none'
-				socket.send(JSON.stringify({'type':'NEW_MAIL', 'data': {'fromUser':getCookie('login'),'toUser':getCookie('chatting_with_login'),'msg':'<span id="toaster"><img style="height:25px;position:fixed;left:5px;padding-bottom:5px" src="https://lushmatch.com/assets/images/new_mail_msg.png"><span style="margin-left:40px;font-family:Open Sans; font-weight:300">NEW MAIL FROM '+ getCookie('login').toUpperCase() + '</span><img onclick="viewMessageDetail('+getCookie('mid')+',\'' + getCookie('login') + '\')" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:35px;padding-bottom:5px" src="https://lushmatch.com/assets/images/open_email.png"><img onclick="closeToaster()" src="https://lushmatch.com/assets/images/close_email.png" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:5px;padding-bottom:5px"><span>'}}))
+			//	socket.send(JSON.stringify({'type':'NEW_MAIL', 'data': {'fromUser':getCookie('login'),'toUser':getCookie('chatting_with_login'),'msg':'<span id="toaster"><img style="height:25px;position:fixed;left:5px;padding-bottom:5px" src="https://lushmatch.com/assets/images/new_mail_msg.png"><span style="margin-left:40px;font-family:Open Sans; font-weight:300">NEW MAIL FROM '+ getCookie('login').toUpperCase() + '</span><img onclick="viewMessageDetail('+getCookie('mid')+',\'' + getCookie('login') + '\')" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:35px;padding-bottom:5px" src="https://lushmatch.com/assets/images/open_email.png"><img onclick="closeToaster()" src="https://lushmatch.com/assets/images/close_email.png" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:5px;padding-bottom:5px"><span>'}}))
 			}
 			
 		})

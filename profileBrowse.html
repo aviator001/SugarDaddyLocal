@@ -6,14 +6,18 @@
 		<meta name="description" content="A sugar daddy dating site that connects handsome wealthy and caring men to hot young women. Worlds first sugar daddy site to use disruptive SMS messaging. Find a Sugar Daddy today!" />		
 		<meta name="Author" content="Gautam Sharma" />		
 		<meta name="format-detection" content="telephone=no"/>
-		<title>Sugar Daddy & Sugar Baby Dating | lushmatch.com</title>
-		<link rel="canonical" href="https://lushmatch.com">
+		<title>Sugar Daddy & Sugar Baby Dating | sugardaddylocal.com</title>
+		<link rel="canonical" href="https://sugardaddylocal.com"
 		<link rel="icon" href="favicon.png">
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
 		<link href="https://lushmatch.com/assets/css/font-awesome.css" rel="stylesheet" >
+		<link href="https://lushmatch.com/assets/css/jquery-ui.css" rel="stylesheet" />
 		<link href="https://lushmatch.com/assets/css/jquery-confirm.css" rel="stylesheet" />
 		<link href="https://lushmatch.com/assets/css/shadows.css" rel="stylesheet" />
 		<link href="https://lushmatch.com/assets/css/bootstrap.css" rel="stylesheet">
 		<link href="https://lushmatch.com/assets/css/animate.css" rel="stylesheet">
+		<link href="https://lushmatch.com/assets/css/magic.css" rel="stylesheet">
 		<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic|Open+Sans:300' rel='stylesheet' type='text/css'>
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -34,46 +38,69 @@
 				width:30px;
 				height:30px;
 			}
-			.loginP {
-				font-family:Open Sans!Important;
-				font-weight:300;
-				color:maroon;
-				font-size:32px!Important;
-				text-align:center
-			}
-			.genderP {
-				font-family:Open Sans!Important;
-				font-weight:bold;
-				color:#333;
-				font-size:16px!Important;
-				width:100%;
-				text-align:center;
-			}
-			.locationP {
-				font-family:Open Sans;
-				font-weight:300;
-				color:#333;
-				font-size:21px;
-				width:100%;
-				text-align:center;
-			}
-			.general_infoP {
-				font-family:Open Sans;
-				font-weight:300;
-				color:#000;
-				font-size:16px;
-				width:100%;
-				text-align:left;
-				border-radius:4px;
-				background:#fcfcfc;
-				padding:10px;
-			}			
-	</style>
-	<script src="js/custom_menu.js"></script>
-	
+.loginP {
+	font-family:Open Sans!Important;
+	font-weight:300;
+	color:maroon;
+	font-size:32px!Important;
+	text-align:center
+}
+.genderP {
+	font-family:Open Sans!Important;
+	font-weight:bold;
+	color:#333;
+	font-size:16px!Important;
+	width:100%;
+	text-align:center;
+}
+.locationP {
+	font-family:Open Sans;
+	font-weight:300;
+	color:#333;
+	font-size:21px;
+	width:100%;
+	text-align:center;
+}
+.general_infoP {
+	font-family:Open Sans;
+	font-weight:300;
+	color:#000;
+	font-size:16px;
+	width:100%;
+	text-align:left;
+	border-radius:4px;
+	background:#fcfcfc;
+	padding:10px;
+}			
+		</style>
 	</head>
-	<body>
+	<body><script src="js/custom_menu.js"></script>
+	<section class="page-wrapper gray wow zoomIn" style="width:100%;text-align:center;margin-top:5px">
+	<div id="con" class="container" style="overflow:auto;background:url(assets/images/bgs.jpg) center no-repeat;background-size:cover;height:100%">
+		<div style="display:none">
+			<input type="checkbox"id="photos" style="margin:10px" checked /><span style="font-size:18px;font-family:Open Sans;margin-top:10px;position:absolute"> Show Profiles with Photos Only</span>
+		</div>
+		<div id="profiles" class="" style="text-align:center;margin-top:25px;background:url(assets/images/bgs.jpg) center no-repeat;background-size:cover;">
+			<img src='assets/images/load.gif' style='width:100px'><br><br><div>FETCHING PROFILES<br>PLEASE WAIT</div>
+		</div>
+		<!-- <div style="position:fixed;top:418px;width:25%;left:10px"> -->
+			<!-- <a href="javascript:no()"><img id="no" src="https://gaysugardaddyfinder.com/assets/images/in_no.png" style="width:65px"></a> -->
+		<!-- </div> -->
+		<!-- <div style="position:fixed;top:418px;width:25%;right:10px"> -->
+			<!-- <a href="javascript:yes()"><img id="yes" src="https://gaysugardaddyfinder.com/assets/images/in_yes.png" style="width:65px"></a> -->
+		<!-- </div> -->
+	</div>
+	<div><input type="button" value="Go Back" onclick="javascript:history.go(-1)" style="margin-top:500px"></div>
+	</section>
 
+
+	<script src="https://lushmatch.com/assets/js/jquery.js"></script>
+	<script src="https://lushmatch.com/assets/js/jquery-ui.js"></script>
+	<script src="https://lushmatch.com/assets/js/jquery-confirm.min.js"></script>
+	<script src="https://lushmatch.com/assets/js/common.js"></script>
+	<script src="https://lushmatch.com/assets/js/events.js"></script>
+	<script src="https://lushmatch.com/assets/js/bootstrap.js"></script>
+	<script src="https://lushmatch.com/jsSocketNode.js"></script>
 	<script>
 		function $$(obj) {
 			return document.getElementById(obj)
@@ -128,9 +155,6 @@
 	if (!nextMID) nextMID=qs('id')
 	if (qs('type')=='search') nextMID=qs('id')
 	function getIP() {
-		$.getJSON("https://jsonip.com/?callback=?", function (data) {
-			setCookie('ip',data.ip);
-		});
 		$$('con').style.height=window.innerHeight+'px'
 	}
 	
@@ -185,14 +209,14 @@
 	function showSearchHeader() {
 		$$('ttl').style.background='aliceblue'
 		$$('ttl').style.opacity='1'
-		$$('tt3').style.opacity='1'
+		$$('tt3').style.opacity='1' 
 		$$('ttl').style.color='#000'
 		$$('ttl').style.fontSize='15px'
 		$$('tt2').innerHTML='<b>Showing Search Results. Click here to return</b>'
 		$$('tt3').innerHTML='<span style="font-size:24px"><b>1</b> of ' + smids.length+'</span>'
 	}
 	var profileBatchCount,ur,currUR,urs=[],prevEl
-	var wh=window_height()*1
+	var wh=window_height()*1 
 	function loadProfiles(no) {
 		ctr=0
 		var type=qs('type')
@@ -200,9 +224,9 @@
 		if (type=='search') {
 			var url='https://lushmatch.com/x_get_browse_profiles.php?member_id='+nextMID+'&type=search&count='+no+'&search='+qs('search')+'&x_start='+x_start+'&miles='+miles
 		} else {
-			var url='https://lushmatch.com/x_get_browse_profiles.php?member_id='+currMID+'&type='+qs('browse')+'&count='+no
+			var url='https://lushmatch.com/x_get_browse_profiles.php?member_id='+currMID+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')
 			if (qs('browse')=='popular') {
-				url='https://lushmatch.com/x_get_browse_profiles.php?user_rights='+currUR+'&type='+qs('browse')+'&count='+no+'&member_id='+currMID
+				url='https://lushmatch.com/x_get_browse_profiles.php?user_rights='+currUR+'&type='+qs('browse')+'&count='+no+'&member_id='+currMID+'&gender='+getCookie('gender')
 			}
 		}
 		console.log(url)
@@ -227,7 +251,7 @@
 				for (var i=0;i<profileBatchCount;i++) {
 					str=''
 						if (data[i]) {
-							setCookie('chatting_with_login',data[i].login)
+							setCookie('chatting_with_login',data[i].login)   
 							setCookie('chatting_with',data[i].id)
 							var currEl=$$('p'+data[i].id)
 							var general_info='No Profile Text'
@@ -235,7 +259,7 @@
 							str+=	'<div class="col-md-4 col-sm-4 col-xs-12" style="width:100%;max-width:100%;position:fixed;left:0;right:0;margin:auto;padding:0;margin-top:25px">'
 							str+=	'	<div class="thumbbox1" style="padding:0;background:#f0f0f0;;max-width:500px;margin:auto">'
 							str+=	'		<div class="team-thumb overlay-image view-overlay" style="background:white;border:none">'
-							str+=	'			<img onerror="this.src=\'assets/images/no_photo.png\'" id="imgProfile'+i+'" onclick="view_img(this)" alt="" style="min-height:'+(window_height()-300)+'px'+';max-height:'+(window_height()-300)+'px'+';max-width:500px;min-width:500px">'
+							str+=	'			<img onerror="this.src=\'assets/images/no_photo.png\'" id="imgProfile'+i+'" onclick="view_img(this)" alt="" style="min-height:'+';max-width:300px;min-width:100%">'
 							str+=	'		</div>'
 							str+=	'		<div style="left:0;right:0;position:;background:#f0f0f0;min-height:180px;width:100%;max-width:500px;margin:auto;padding-top:25px">'
 							str+=	'			<div id="profileText'+i+'" class="team-info">'
@@ -252,7 +276,7 @@
 							str+=	'					<i class="fa fa-star-o" style="font-size:1.5em;padding-right:5px"></i>'
 							str+=	'				</div>'
 							str+=	'				<div class="team-social" style="">'
-							str+=	'					<a href="javascript:initMsg(\''+data[i].login+'\')"><i class="fa fa-comment-o" style="width:60px;height:60px;padding:20px;border-radius:40px;background:;background-size:60px 60px;font-size:1.8em;color:silver;margin-left:10px;text-shadow:inset 0 0 10px #000"></i></a>'
+							<!-- str+=	'					<a href="javascript:initMsg(\''+data[i].login+'\')"><i class="fa fa-comment-o" style="width:60px;height:60px;padding:20px;border-radius:40px;background:;background-size:60px 60px;font-size:1.8em;color:silver;margin-left:10px;text-shadow:inset 0 0 10px #000"></i></a>' -->
 							str+=	'					<a href="javascript:send_mail('+data[i].id+')"><i class="fa fa-envelope-o" style="width:60px;height:60px;padding:20px;border-radius:40px;background:;background-size:60px 60px;font-size:1.8em;color:silver;margin-left:10px;text-shadow:inset 0 0 10px #000"></i></a>'
 							str+=	'					<a href="javascript:toggle_favs()" style="text-decoration:none"><i id="fav'+data[i].id+'" class="fa fa-heart-o"  style="width:60px;height:60px;padding:20px;border-radius:40px;background:;background-size:60px 60px;font-size:1.8em;color:silver;margin-left:10px;text-shadow:inset 0 0 10px #000"></i></a>'
 							str+=	'					<a href="javascript:video_call(\''+data[i].login+'\')"><i class="fa fa-video-camera" style="width:60px;height:60px;padding:20px;border-radius:40px;background:;background-size:60px 60px;font-size:1.8em;color:silver;margin-left:10px;text-shadow:inset 0 0 10px #000"></i></a>'
@@ -300,8 +324,8 @@
 					} else {
 						console.log('err')
 					}
-					$$("imgProfile"+i).style.maxHeight=(wh-300)+'px'
-					$$("imgProfile"+i).style.minHeight=(wh-300)+'px'
+					<!-- $$("imgProfile"+i).style.maxHeight=(wh-300)+'px' -->
+					<!-- $$("imgProfile"+i).style.minHeight=(wh-300)+'px' -->
 				}
 				nextMID = Math.min.apply(Math, mids)
 				setCookie('nextMID',nextMID)
@@ -324,12 +348,12 @@
 					fromLongCode		: 	getCookie('long_code')
 		}
 		socket.send(JSON.stringify({type:'NEW_VIDEO', data: objData}))
-		location.href='https://terrawire.com:9001/demos/?login='+getCookie('login')+'&action=1'
 	}
 	
 
 	function video_invite_sms(to_login, from_login) {
-		$.dialog({url:'https://lushmatch.com/sendSMS.php?to_login='+to_login+'&from_login='+from_login+'&from_long_code='+getCookie('long_code'),success:function(data){console.log(data);location.href='https://lushmatch.com/channel.html?login='+getCookie('login')+'&action=1'}})
+	
+		$.ajax({url:'https://lushmatch.com/sendSMS.php?to_login='+to_login+'&from_login='+from_login+'&from_long_code='+getCookie('long_code'),success:function(data){console.log(data);location.href='https://terrawire.com:9001/demos/?login='+getCookie('login')+'&action=1'}})
 	}
 	
 	function toggle_favs() {
@@ -365,7 +389,19 @@
 			}
 		})		
 	}
-			
+	function msg_send() {
+		objData={
+					msg					: 	document.getElementById('txt'+to_login).textContent,
+					toUser				: 	to_login,
+					type				: 	'NEW_IM',
+					fromUser			: 	getCookie('login'),
+					fromLongCode		: 	getCookie('long_code')
+		}
+		socket.send(JSON.stringify({type:'NEW_IM', data: objData}))
+		console.log(objData)
+
+	}
+	
 	function add_hot_list(member_id,htype) {
 		var member_id=currMID
 		var request = $.ajax({

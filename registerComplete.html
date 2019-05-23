@@ -227,14 +227,14 @@
 				<div id="loader" style="display:none;z-index:99999999999999999;height:150%;position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.9;margin:auto;background:#ccc;font-family:Open Sans;"><img style="z-index:999999999999999999;position:absolute;top:0;left:0;right:0;bottom:0;opacity:1;margin:auto" src="assets/img/loader.gif"></div>			
 				<div id='info' class="col-md-12" style="position:absolute;margin:auto;left:0;right:0;margin-bottom:5px">
 					<div class="white-row"  style="box-shadow:0 0 20px #333;background:#f0f0f0">		
-						<span style='font-family:Open Sans;color:#0093D9;font-size:22px'>Found your Facebook Profile;</span><br><span style='font-family:Open Sans;color:black;font-size:18px'>Just enter your <b>mobile number</b> and thats it!</span>
+						<span style='font-family:Open Sans;color:#0093D9;font-size:22px'>Found your Facebook Profile;</span><br><span style='font-family:Open Sans;color:black;font-size:18px'>Just enter your <b>mobile number</b>, fill out the 'Ideal Arrangement' section and thats it!</span>
 						<div id="form_errors" class="alert alert-info" style="display:none"></div>
 
 						<div class="row">			
-							<div class="form-group"> 
-								<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
-									<label class="block">MOBILE</label>					
-									<input  class="form-control input-box"  type="text" id="mobile">
+							<div class="col-md-12"> 
+								<div class="col-md-12" style="text-align:left;font-weight:100;font-style:normal;color:#333;text-shadow:none">					
+									<label class="block"><strong>MOBILE</strong></label>					
+									<input  class="form-control input-box" onclick="clear_err(this)" type="text" id="mobile">
 									<input type="hidden" name="source" id="phonegap">
 									<input type="hidden" name="photo" id="phone">
 									<input type="hidden" name="photo" id="photo">
@@ -247,12 +247,17 @@
 									<div id="mobile_err_txt" style="color:skyblue;text-align:left"></div>									
 								</div>
 								<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
+									<label class="block">YOUR IDEAL ARRANGEMENT</label>					
+									<textarea onclick="clear_err(this)" style="height:150px" class="form-control input-box"  type="text" id="general_info"></textarea>
+									<div id="general_info_err_txt" style="color:skyblue;text-align:left"></div>									
+								</div>		
+								<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
 									<label class="block">NAME</label>					
 									<input  class="form-control input-box"  disabled type="text" id="uname">
 								</div>								
 								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
 									<label class="block">LOGIN</label>					
-									<input  class="form-control input-box"  type="text" id="login">
+									<input  class="form-control input-box" disabled type="text" id="login">
 								</div>								
 								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
 									<label class="block">EMAIL</label>						
@@ -260,7 +265,7 @@
 								</div>
 								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
 									<label class="block">GENDER</label>					
-									<input disabled class="form-control input-box"  type="text" id="gender">
+									<input disabled class="form-control input-box" type="text" id="gender">
 								</div>								
 								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
 									<label class="block">SEEKING</label>						
@@ -316,17 +321,29 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 <script type="text/javascript">
+		var validate=true
 		function go_fb_user() {
 			document.getElementById('phone').value=document.getElementById('mobile').value
 			var f = document.getElementById('phone').value
 			if ((f.substring(0,1)=='1') && (f.length==10) || (!f)) {
-				document.getElementById('mobile_err_txt').innerHTML="<font color='red'><i>ERROR: Please enter your mobile number!</i></font>"
-				return false;
-			} else {
-				create_fb_user()
+				document.getElementById('mobile_err_txt').innerHTML="<div style='color:red;font-size:0.7em'>ERROR: Please enter your mobile number!</div>"
+				document.getElementById('mobile').style.background='lightyellow'
+				$('#mobile_err_txt').show()
+				validate=false
 			}
+			if (document.getElementById('general_info').value=='') {
+				document.getElementById('general_info').style.background='lightyellow'
+				document.getElementById('general_info_err_txt').innerHTML="<div style='color:red;font-size:0.7em'>ERROR: Please tell us what you are looking for</div>"
+				$('#general_info_err_txt').show()
+				validate=false
+			}
+			if (validate===true) create_fb_user()
 		}
-
+		
+		function clear_err(obj) {
+			obj.style.background='white'
+			$('#'+obj.id+'_err_txt').hide()
+		}
 
 		  navigator.geolocation.watchPosition(
 			displayPosition, error,
@@ -440,6 +457,7 @@
 		x += '&password=' + document.getElementById('pswd').value 
 		x += '&email=' + document.getElementById('email').value 
 		x += '&login=' + document.getElementById('login').value 
+		x += '&general_info=' + document.getElementById('general_info').value 
 		x += '&gender=' + gender
 		x += '&looking_for=' + looking_for
 		x += '&age=' + age 

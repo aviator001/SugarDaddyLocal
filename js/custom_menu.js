@@ -78,13 +78,20 @@
 				hbar.outerHTML="<img onclick='help()' src='https://lushmatch.com/tab_rt_help.png' style='cursor:hand;cursor:printer;zIndex:99999999999999999999999;position:absolute;right:0;top:50px;width:50px'>"
 				// document.getElementById('tbar2').style.zIndex='1'
 				if (!getCookie('mid')) {
-					$.confirm({
-						title: 'Login Required!',
-						content: 'In order to view this page you need to be logged in. Figure it out.',
-						ok2: function(){
-							location.href='index.html?force=login'
-						}
-					});					
+							$.confirm({
+								columnClass:'col-md-3',
+								title:'',
+								content:'Login Required',
+								buttons: {
+									b1: {
+										text: 'Go to Login',
+										btnClass: 'btn-green',
+										action: function(){
+											location.href='index.html'
+										}
+									}
+								}
+							});				
 				}
 			},10)
 	var str=''
@@ -211,13 +218,14 @@
 	
 	
 	function show_search() {
-		if ($$('qsearch').style.display=='none') {
-			$$('qsearch').style.display=''
-			$$('xresults').style.display=''
-		} else {
-			$$('qsearch').style.display='none'
-			$$('xresults').style.display='none'
-		}
+		// if ($$('qsearch').style.display=='none') {
+			// $$('qsearch').style.display=''
+			// $$('xresults').style.display=''
+		// } else {
+			// $$('qsearch').style.display='none'
+			// $$('xresults').style.display='none'
+		// }
+		location.href='search.html'
 	}
 		
 	function searchNow() {
@@ -358,9 +366,10 @@
 
 	})
 		function help() {
-			$.confirm({
+			$.dialog({
 				title: 'Help',
-				content: 'url:https://lushmatch.com/help.html',
+				theme: 'supervan',
+				content: 'url:https://dentistbydemand.com/qa.php',
 				onContentReady: function () {
 					var self = this;
 					//this.setContentPrepend('<div>Prepended text</div>');

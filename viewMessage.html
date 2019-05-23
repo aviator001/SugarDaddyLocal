@@ -71,7 +71,7 @@
 			}			
 	</style>
 
-		<body style="background:url(assets/images/b1e2.jpg)center;background-size:cover;"><script src="assets/js/custom_menu_no_footer.js"></script>
+		<body style="background:url(assets/images/b1e2.jpg)center;background-size:cover;"><script src="js/custom_menu_no_footer.js"></script>
 
 	<div class="page-loader">
 		<img src="https://lushmatch.com/assets/img/loader.gif" alt="">
@@ -122,7 +122,7 @@
 <script src="https://lushmatch.com/jsSocketNode.js"></script>
 <script src="https://lushmatch.com/assets/js/jquery-confirm.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-pdjniiApMjAV7j92Nfn5zgd3k2s3ze4&libraries=places" type="text/javascript"></script>
-<script src="dz/dropzone.min.js"></script>
+<script src="https://lushmatch.com/dz/dropzone.min.js"></script>
 <script>
 
 	//TO DO:
@@ -492,7 +492,7 @@
 		message=message.replace(/\//g,'\/')
 
 		var from_u=getCookie('mid')
-		var url = encodeURI('https://lushmatch.com/x_send_mail.php?to=' + getCookie('chatting_with') + '&from=' + from_u + '&message=' + message + '&attach_id=' + getCookie('attach_id'))
+		var url = encodeURI('https://lushmatch.com/x_send_mail.php?to=' + getCookie('chatting_with') + '&from=' + from_u + '&message=' + message + '&attach_id=' + getCookie('attach_id')+'&long_code='+getCookie('long_code'))
 		console.log(url)
 		jwait('sending')
 		var request = $.ajax({

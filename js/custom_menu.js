@@ -366,18 +366,19 @@
 
 	})
 		function help() {
-			$.dialog({
-				title: 'Help',
-				theme: 'supervan',
-				content: 'url:https://dentistbydemand.com/qa.php',
-				onContentReady: function () {
-					var self = this;
-					//this.setContentPrepend('<div>Prepended text</div>');
-					<!-- setTimeout(function () { -->
-						<!-- self.setContentAppend('<div>Appended text after 2 seconds</div>'); -->
-					<!-- }, 2000); -->
-				},
-				columnClass: 'medium',
-			});
+			location.href='help.html'
+			// $.dialog({
+				// title: 'Help',
+				// theme: 'supervan',
+				// content: 'url:help.html',
+				// onContentReady: function () {
+					// var self = this;
+					// //this.setContentPrepend('<div>Prepended text</div>');
+					// <!-- setTimeout(function () { -->
+						// <!-- self.setContentAppend('<div>Appended text after 2 seconds</div>'); -->
+					// <!-- }, 2000); -->
+				// },
+				// columnClass: 'medium',
+			// });
 		
 		}

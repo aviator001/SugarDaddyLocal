@@ -91,6 +91,18 @@
 	<script>
 		setTimeout('init()',10)
 	
+		if (!getCookie('mid')) {
+			$.confirm({
+				title: 'Error',
+				content:'Login is required for access to this page.',
+				theme: 'supervan',
+				buttons: {
+					ok: function () {
+						location.href='index.html?force=login'						
+					}
+				}
+			});
+		}
 	permissions.requestPermission(permissions.CAMERA, success, error);
  
 	function error() {
@@ -127,12 +139,21 @@
 	function take_photo() {
 		navigator.camera.getPicture(onSuccess, onFail, { 
 			destinationType: Camera.DestinationType.DATA_URL,
-				sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-					quality: 50,
+			quality: 50,
 			correctOrientation: true,
 			allowEdit: true
 		});
 	}
+	function take_photo_album() {
+		navigator.camera.getPicture(onSuccess, onFail, { 
+			destinationType: Camera.DestinationType.DATA_URL,
+			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+			quality: 50,
+			correctOrientation: true,
+			allowEdit: true
+		});
+	}
+
 
 /* don't need, it should automatically get saved*/
 	var src_name=Math.round(Math.random()*10000000000)
@@ -147,8 +168,8 @@
 		image.style.border="15px solid white"
 		image.className="www_box"
 		image.src = "data:image/jpeg;base64," + imageData;
-		image.id=src_name
 		sp.appendChild(image)
+		sp.id=src_name
 		document.getElementById('album').appendChild(sp)
 		uploadPhoto(image.src)		
 		imx++
@@ -168,7 +189,7 @@
 	          type: 'POST',
 	          data: {filename: fname, image: imageData, login: getCookie('login'), mid: getCookie('mid')},
 	          success: function(data, status, xhr) {
-					document.getElementById(src_name).src='https://lushmatch.com/sb/'+fname
+					document.getElementById(image.id).src='https://lushmatch.com/sb/'+fname
 				}
 	    });      
 	}
@@ -436,6 +457,7 @@ function setCookie(cname,cvalue)	{
 </div>
 <div class="col-md-4" style="text-align:center;margin-top:100px">
 	<img src="https://gaysugardaddyfinder.com/assets/images/add_photo.png" style="width:120px;cursor:hand;cursor:pointer" onclick="take_photo()">
+	<img src="https://gaysugardaddyfinder.com/assets/images/add_photo.png" style="width:120px;cursor:hand;cursor:pointer" onclick="take_photo_album()">
 </div>
 <div class="col-md-4" style="text-align:center;margin-top:0px">
 	<img src="https://lushmatch.com/assets/images/text.png" style="width:300px;cursor:hand;cursor:pointer" onclick="take_photo()">

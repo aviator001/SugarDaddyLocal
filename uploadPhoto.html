@@ -91,18 +91,6 @@
 	<script>
 		setTimeout('init()',10)
 	
-		if (!getCookie('mid')) {
-			$.confirm({
-				title: 'Error',
-				content:'Login is required for access to this page.',
-				theme: 'supervan',
-				buttons: {
-					ok: function () {
-						location.href='index.html?force=login'						
-					}
-				}
-			});
-		}
 	permissions.requestPermission(permissions.CAMERA, success, error);
  
 	function error() {
@@ -139,17 +127,19 @@
 	function take_photo() {
 		navigator.camera.getPicture(onSuccess, onFail, { 
 			destinationType: Camera.DestinationType.DATA_URL,
-			quality: 50,
+				sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+					quality: 50,
 			correctOrientation: true,
 			allowEdit: true
 		});
 	}
 
 /* don't need, it should automatically get saved*/
-	
+	var src_name=Math.round(Math.random()*10000000000)
+	var image = document.createElement('img');
+	var sp = document.createElement('span');
+
 	function onSuccess(imageData) {
-		var image = document.createElement('img');
-		var sp = document.createElement('span');
 		image.id="img"+imx
 		image.style.width="150px"
 		image.style.height="150px"
@@ -157,6 +147,7 @@
 		image.style.border="15px solid white"
 		image.className="www_box"
 		image.src = "data:image/jpeg;base64," + imageData;
+		image.id=src_name
 		sp.appendChild(image)
 		document.getElementById('album').appendChild(sp)
 		uploadPhoto(image.src)		
@@ -176,7 +167,9 @@
 	    $.ajax({url: "https://lushmatch.com/iupload.php",
 	          type: 'POST',
 	          data: {filename: fname, image: imageData, login: getCookie('login'), mid: getCookie('mid')},
-	          success: function(data, status, xhr) {alert()}
+	          success: function(data, status, xhr) {
+					document.getElementById(src_name).src='https://lushmatch.com/sb/'+fname
+				}
 	    });      
 	}
 

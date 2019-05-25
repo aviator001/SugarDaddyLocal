@@ -281,14 +281,13 @@
 			<!-- Username & Password Login form -->
 			<div class="forgot_password" style="display:none;color:#333">
 				<form>
-					ENTER either your email or your mobile number and click on the "Send Password' button to retrieve your password securely.
+					Enter your login name or mobile number. Your password will be sent to your mobile phone via sms
 					<br /><br />
-					<input type="text" placeholder="Enter your Email" style="height:50px!Important;border-radius:7px!Important;border:1px solid aliceblue!Important;padding:4px;width:90%"/>
+					<input id="loginF" type="text" placeholder="Enter your Login Name" style="height:50px!Important;border-radius:7px!Important;border:1px solid aliceblue!Important;padding:4px;width:90%"/>
+					<br /><br />
+					<input id="mobileF" type="text" placeholder="Enter your Mobile Number" style="height:50px!Important;border-radius:7px!Important;border:1px solid aliceblue!Important;padding:4px;width:90%"/>
 					<br />
-					OR
-					<br />
-					<input type="text" placeholder="Enter your mobile number" style="height:50px!Important;border-radius:7px!Important;border:1px solid aliceblue!Important;padding:4px;width:90%"/>
-					<br />
+
 					<div class="action_btns">
 						<div class="one_half" style="padding:3px;margin:0"><a id="back_btn_forgot" style="background:white!Important;color:#333!Important;box-shadow:0 0 10px rgba(0,0,0,0.1)" href="javascript:backForgot()" class="btn btn_back"><i class="fa fa-angle-double-left"></i> Back</a></div>
 						<div class="one_half last" style="padding:3px;margin:0"><a style="background:white!Important;color:#333!Important;box-shadow:0 0 10px rgba(255,0,0,0.1)" href="javascript:sendForgot()" class="btn">Send</a></div>
@@ -401,7 +400,17 @@
 <script>
 	var watchID = null;
 	setTimeout('onDeviceReady()',1000)
+	
+	function sendForgot() {
+		var url='https://lushmatch.com/x_send_password.php?login='+$$('loginF').value+'&mobile='+$$('mobileF').value
+		console.log(url)
+		$.ajax({url:url,success:function(data){
+			$.alert({title:'',content:data})
+		}})
+	}
+	
 	function onDeviceReady() {
+
 		var	options = {
 		  enableHighAccuracy: true,
 		  timeout: 1000,
@@ -792,10 +801,10 @@
 	//TO DO:
 	// Get Gender
 	// Get Geo Location
-	setTimeout('getIP()',1)
+//	setTimeout('getIP()',1)
 	setTimeout('getLocation()',1)
 	setTimeout('getBlog()',1)
-	setTimeout('getPhotoGallery("popular")',1000)
+//	setTimeout('getPhotoGallery("popular")',1000)
 	var imgG, div, data=[], looking_for, watchID, tmr
 	
 	function mobile_render() {
@@ -833,7 +842,7 @@
 		if (!getCookie('gender')) setCookie('gender','Sugar Daddy')
 		if (getCookie('gender')=='Sugar Baby') looking_for='Sugar Daddies'
 			else looking_for='Sugar Babies'
-		$$('photoGallery').style.opacity='0.2'
+		<!-- $$('photoGallery').style.opacity='0.2' -->
 		if (ox)	ox.className='active hand'
 		$$('imgWait').style.display=''
 		console.log('https://lushmatch.com/x_browse.php?w_w=' + window_width()+'&x_start='+getCookie('x_start')+'&gender='+getCookie('gender')+'&type='+type+'&ip='+getCookie('ip')+'&location='+getCookie('location'))
@@ -927,15 +936,15 @@
 	
 
 	function getBlog() {
-		var request = $.ajax({
-			url: 'https://lushmatch.com/x_blog.php?x_start_blog='+getCookie('x_start_blog'),
-			type: "GET",
-			dataType: "html",
-			cache: false,
-			success: function(msg) {
-				$$('blog').innerHTML=msg
-			}
-		})
+		<!-- var request = $.ajax({ -->
+			<!-- url: 'https://lushmatch.com/x_blog.php?x_start_blog='+getCookie('x_start_blog'), -->
+			<!-- type: "GET", -->
+			<!-- dataType: "html", -->
+			<!-- cache: false, -->
+			<!-- success: function(msg) { -->
+				<!-- $$('blog').innerHTML=msg -->
+			<!-- } -->
+		<!-- }) -->
 	}
 	
 	var ctr=0
@@ -951,11 +960,11 @@
 	
 	function setBrowse(type) {
 		setCookie('browse',type)
-		$$('photos').className='hand'
-		$$('popular').className='hand'
-		$$('latest').className='hand'
-		$$('local').className='hand'
-		$$(type).className='active hand'
+		<!-- $$('photos').className='hand' -->
+		<!-- $$('popular').className='hand' -->
+		<!-- $$('latest').className='hand' -->
+		<!-- $$('local').className='hand' -->
+		<!-- $$(type).className='active hand' -->
 		if (getCookie('gender')=='Sugar Baby') $('#sp0').html('SHOW SUGAR BABIES')
 			else $('#sp0').html('SHOW SUGAR DADDIES')
 	}
@@ -968,18 +977,22 @@
 			setCookie('gender','Sugar Daddy')
 			$('#sp0').html('SHOW SUGAR DADDIES')
 		}
-		getPhotoGallery()
+	//	getPhotoGallery()
 	}
 	
-	$("#searchLocation").autocomplete({
-		source: "https://lushmatch.com/x_ac_location.php",
-		minLength: 1,
-		select: function( event, ui ) {
-			$('#search').val( ui.item.value);
-		}
-	});
+	<!-- $("#searchLocation").autocomplete({ -->
+		<!-- source: "https://lushmatch.com/x_ac_location.php", -->
+		<!-- minLength: 1, -->
+		<!-- select: function( event, ui ) { -->
+			<!-- $('#search').val( ui.item.value); -->
+		<!-- } -->
+	<!-- }); -->
 
-
+	setTimeout(function(){
+		$$('loginF').value=getCookie('login')
+		$$('mobileF').value=getCookie('mobile')
+		$$('email').value=getCookie('login')
+	},3000)
 </script>
 </body>
 </html>

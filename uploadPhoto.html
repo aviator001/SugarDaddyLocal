@@ -145,13 +145,10 @@
 		});
 	}
 	function take_photo_album() {
-		navigator.camera.getPicture(onSuccess, onFail, { 
+		navigator.camera.getPicture(onSuccess2, onFail, { 
 			destinationType: Camera.DestinationType.DATA_URL,
-			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-			quality: 50,
-			correctOrientation: true,
-			allowEdit: true
-		});
+			sourceType: Camera.PictureSourceType.PHOTOLIBRARY
+	});
 	}
 
 
@@ -168,6 +165,20 @@
 		image.style.border="15px solid white"
 		image.className="www_box"
 		image.src = "data:image/jpeg;base64," + imageData;
+		sp.appendChild(image)
+		sp.id=src_name
+		document.getElementById('album').appendChild(sp)
+		uploadPhoto(image.src)		
+		imx++
+	}
+	function onSuccess2(imageData) {
+		image.id="img"+imx
+		image.style.width="150px"
+		image.style.height="150px"
+		image.style.margin="10px"
+		image.style.border="15px solid white"
+		image.className="www_box"
+		image.src = imageData;
 		sp.appendChild(image)
 		sp.id=src_name
 		document.getElementById('album').appendChild(sp)

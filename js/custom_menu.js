@@ -34,7 +34,7 @@
 							status='Profile Pending Approval'
 							bg='red'
 							cl='white'
-							showerror(status)
+							if (location.href.indexOf('uploadPhoto') < 0) showerror(status)
 						} else if (data.status=='1') {
 							status='Profile Declined.'
 							bg='lightyellow'

@@ -254,13 +254,14 @@
 							setCookie('chatting_with_login',data[i].login)   
 							setCookie('chatting_with',data[i].id)
 							var currEl=$$('p'+data[i].id)
-							var general_info='No Profile Text'
-							if (data[i].general_info) general_info=data[i].general_info.substr(0,50)
+							var general_info='No Profile Text No Profile Text No Profile Text No Profile Text No Profile Text No Profile Text No Profile Text '
+
 							str+=	'<div class="col-md-4 col-sm-4 col-xs-12" style="width:100%;max-width:100%;position:fixed;left:0;right:0;margin:auto;padding:0;margin-top:25px">'
 							str+=	'	<div class="thumbbox1" style="padding:0;background:#f0f0f0;;max-width:500px;margin:auto">'
 							str+=	'		<div class="team-thumb overlay-image view-overlay" style="background:white;border:none">'
-							str+=	'			<img onerror="this.src=\'assets/images/no_photo.png\'" id="imgProfile'+i+'" onclick="view_img(this)" alt="" style="min-height:'+';max-width:300px;min-width:100%">'
+							str+=	'			<img onerror="this.src=\'assets/img/no_photo.png\'" id="imgProfile'+i+'" onclick="view_img(this)" alt="" style="min-height:'+';max-width:300px;min-width:100%">'
 							str+=	'		</div>'
+							str +=  '       <div onclick="showText(\''+data[i].general_info+'\')" onmouseover="showText(\''+data[i].general_info+'\')"  onmouseout="" id="aboutM" style="cursor:hand;cursor:pointer;display:none;width:100%;position:absolute;z-index:99999999999999999999;top:0;background:#fff;margin-top:5px;opacity:0.7;padding:2px"> + SHOW FULL PROFILE TEXT</div>'
 							str+=	'		<div style="left:0;right:0;position:;background:#f0f0f0;min-height:180px;width:100%;max-width:500px;margin:auto;padding-top:25px">'
 							str+=	'			<div id="profileText'+i+'" class="team-info">'
 							str+=	'				<div id="login'+i+'" class="loginP">'+data[i].login.toUpperCase().substr(0,10)+'</div>'
@@ -311,7 +312,7 @@
 								urs[i]=ur
 								currMID=id
 								currUR=ur
-								if (data[i].filename_1=='') fn = 'https://lushmatch.com/assets/images/no_photo.png'
+								if (data[i].filename_1=='') fn = 'https://lushmatch.com/assets/img/no_photo.png'
 									else fn='https://lushmatch.com/sb/'+data[i].filename_1
 								$$('imgProfile'+i).src=fn
 								if (qs('type')) {
@@ -321,6 +322,11 @@
 								}
 								prevEl=data[i].id+''
 							}
+							
+							if (data[i].general_info) {
+								general_info=data[i].general_info
+								$$('aboutM').style.display='block'
+							}		
 					} else {
 						console.log('err')
 					}
@@ -333,10 +339,22 @@
 				console.log('ratings:')
 				console.log(urs)
 				console.log('mids:')
-				console.log(mids)				
+				console.log(mids)			
+				
 			}
 		})
+
+
 	}
+	function showText(txt) {
+		$('#aboutM').animate({height: 200}, "slow")
+		$$('aboutM').innerHTML=txt
+		setTimeout(function(){
+			$('#aboutM').animate({height: 25}, "slow")
+			$$('aboutM').innerHTML='+ SHOW FULL PROFILE TEXT'
+		},10000)
+	}
+	
 	var objData=[]
 	function video_call(to_login) {
 		video_invite_sms(to_login,getCookie('login'))

@@ -30,11 +30,11 @@
 							});
 							}
 						if (data.admin=='1') admin=true
-						if (data.status=='9')  {
-							status='Profile Pending Approval'
-							bg='red'
-							cl='white'
-							if ((location.href.indexOf('help') < 0) && (location.href.indexOf('settings') < 0) && (location.href.indexOf('uploadPhoto') < 0) && (location.href.indexOf('home') < 0) && (location.href.indexOf('profile') < 0)) showerror(status)
+						// if (data.status=='9')  {
+							// status='Profile Pending Approval'
+							// bg='red'
+							// cl='white'
+							// if ((location.href.indexOf('help') < 0) && (location.href.indexOf('settings') < 0) && (location.href.indexOf('uploadPhoto') < 0) && (location.href.indexOf('home') < 0) && (location.href.indexOf('profile') < 0)) showerror(status)
 						} else if (data.status=='1') {
 							status='Profile Declined.'
 							bg='lightyellow'

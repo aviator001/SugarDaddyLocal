@@ -145,9 +145,9 @@
 		});
 	}
 	function take_photo2() {
-		navigator.camera.getPicture(onSuccess2, onFail, { 
+		navigator.camera.getPicture(onSuccess, onFail, { 
             quality: 100,
-            destinationType: navigator.camera.DestinationType.FILE_URI,
+            destinationType: navigator.camera.DestinationType.DATA_URL,
             sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
 		});
 	}
@@ -170,20 +170,6 @@
 		imx++
 	}
 
-	function onSuccess2(imageURI) {
-		var options = new FileUploadOptions();
-		options.fileKey = "file";
-		options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-		options.mimeType = "image/jpeg";
-		var ft = new FileTransfer();
-		ft.upload(imageURI, "https://lushmatch.com/ft.php",
-		function (r) {
-            alert(JSON.stringify(r));
-		},
-		function (error) {
-			console.log(JSON.stringify(error));
-		}, options);
-	}
 
 	function onFail(message) {
 		alert('Failed because: ' + message);

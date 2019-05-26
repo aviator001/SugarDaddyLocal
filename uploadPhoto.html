@@ -176,10 +176,11 @@
 		options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
 		options.mimeType = "image/jpeg";
 		var ft = new FileTransfer();
-		ft.upload(imageURI, "https://lushmatch.com/ft.php?fname=123456",
-		function (result) {
-			console.log(JSON.stringify(result));
-			alert(result)
+		ft.upload(imageURI, "https://lushmatch.com/ft.php",
+		function (r) {
+            alert("Code = " + r.responseCode);
+            alert("Response = " + r.response);
+            alert("Sent = " + r.bytesSent);
 		},
 		function (error) {
 			console.log(JSON.stringify(error));

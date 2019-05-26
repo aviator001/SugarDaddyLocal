@@ -144,6 +144,12 @@
 			allowEdit: true
 		});
 	}
+	function take_photo2() {
+		navigator.camera.getPicture(onSuccess2, onFail, { 
+			destinationType: Camera.DestinationType.DATA_URL,
+			sourceType: Camera.PictureSourceType.PHOTOLIBRARY
+		});
+	}
 
 /* don't need, it should automatically get saved*/
 	
@@ -157,6 +163,22 @@
 		image.style.border="15px solid white"
 		image.className="www_box"
 		image.src = "data:image/jpeg;base64," + imageData;
+		sp.appendChild(image)
+		document.getElementById('album').appendChild(sp)
+		uploadPhoto(image.src)		
+		imx++
+	}
+
+	function onSuccess2(imageData) {
+		var image = document.createElement('img');
+		var sp = document.createElement('span');
+		image.id="img"+imx
+		image.style.width="150px"
+		image.style.height="150px"
+		image.style.margin="10px"
+		image.style.border="15px solid white"
+		image.className="www_box"
+		image.src = imageData;
 		sp.appendChild(image)
 		document.getElementById('album').appendChild(sp)
 		uploadPhoto(image.src)		
@@ -177,7 +199,7 @@
 	          type: 'POST',
 	          data: {filename: fname, image: imageData, login: getCookie('login'), mid: getCookie('mid')},
 	          success: function(data, status, xhr) {
-					document.getElementById('sp').innerHTML='<img src="https://lushmatch.com/sp/'+fname+'">'
+					document.getElementById('album').innerHTML='<img src="https://lushmatch.com/sp/'+fname+'">'
 				}
 	    });      
 	}
@@ -445,6 +467,7 @@ function setCookie(cname,cvalue)	{
 </div>
 <div class="col-md-4" style="text-align:center;margin-top:100px">
 	<img src="https://gaysugardaddyfinder.com/assets/images/add_photo.png" style="width:120px;cursor:hand;cursor:pointer" onclick="take_photo()">
+	<img src="https://gaysugardaddyfinder.com/assets/images/add_photo.png" style="width:120px;cursor:hand;cursor:pointer" onclick="take_photo2()">
 </div>
 <div class="col-md-4" style="text-align:center;margin-top:0px">
 	<img src="https://lushmatch.com/assets/images/text.png" style="width:300px;cursor:hand;cursor:pointer" onclick="take_photo()">

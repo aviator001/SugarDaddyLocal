@@ -146,8 +146,9 @@
 	}
 	function take_photo2() {
 		navigator.camera.getPicture(onSuccess2, onFail, { 
-			destinationType: Camera.DestinationType.DATA_URL,
-			sourceType: Camera.PictureSourceType.PHOTOLIBRARY
+            quality: 100,
+            destinationType: navigator.camera.DestinationType.FILE_URI,
+            sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
 		});
 	}
 
@@ -169,20 +170,19 @@
 		imx++
 	}
 
-	function onSuccess2(imageData) {
-		var image = document.createElement('img');
-		var sp = document.createElement('span');
-		image.id="img"+imx
-		image.style.width="150px"
-		image.style.height="150px"
-		image.style.margin="10px"
-		image.style.border="15px solid white"
-		image.className="www_box"
-		image.src = imageData;
-		sp.appendChild(image)
-		document.getElementById('album').appendChild(sp)
-		uploadPhoto(image.src)		
-		imx++
+	function onSuccess2(imageURI) {
+		var options = new FileUploadOptions();
+		options.fileKey = "file";
+		options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+		options.mimeType = "image/jpeg";
+		var ft = new FileTransfer();
+		ft.upload(imageURI, "http://192.168.1.4/phonegap/upload/upload.php",
+		function (result) {
+			console.log(JSON.stringify(result));
+		},
+		function (error) {
+			console.log(JSON.stringify(error));
+		}, options);
 	}
 
 	function onFail(message) {
@@ -199,7 +199,7 @@
 	          type: 'POST',
 	          data: {filename: fname, image: imageData, login: getCookie('login'), mid: getCookie('mid')},
 	          success: function(data, status, xhr) {
-					document.getElementById('album').innerHTML='<img src="https://lushmatch.com/sp/'+fname+'">'
+					document.getElementById('album').innerHTML='<img src="https://lushmatch.com/sb/'+fname+'">'
 				}
 	    });      
 	}

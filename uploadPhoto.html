@@ -84,7 +84,8 @@
 <script src="https://lushmatch.com/jsSocketNode.js"></script>
 	</head>
 <script>var padding=15</script>
-	<body style="font-size:0"><script src="js/custom_menu.js"></script>
+	<body style="font-size:0">		<script src="https://lushmatch.com/custom_menu.js"></script>
+
 	
 	</head>
 <body style="background:url(assets/img/bg7.jpg) center;background-size:cover;">
@@ -185,7 +186,6 @@
 	          data: {filename: fname, image: imageData, login: getCookie('login'), mid: getCookie('mid')},
 	          success: function(data, status, xhr) {
 					document.getElementById('img'+imx).outerHTML='<img style="width100px;height:100px;border:10px solid #a3d900" src="https://lushmatch.com/sb/'+fname+'">'
-
 				}
 	    });      
 	}

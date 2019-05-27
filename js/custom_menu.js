@@ -29,7 +29,8 @@
 								}
 							});
 							}
-						if (data.admin=='1') admin=true
+						if (data.admin=='1') {
+							admin=true 
 						// if (data.status=='9')  {
 							// status='Profile Pending Approval'
 							// bg='red'

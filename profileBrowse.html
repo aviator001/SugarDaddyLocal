@@ -247,7 +247,6 @@
 				data=JSON.parse(data1)
 				console.log(data)
 				profileBatchCount=data.length
-				console.log(profileBatchCount)
 				var www=''
 				for (var i=0;i<profileBatchCount;i++) {
 					str=''
@@ -265,7 +264,7 @@
 							str+=	'		<div class="team-thumb overlay-image view-overlay" style="background:white;border:none">'
 							str+=	'			<img onerror="this.src=\'assets/img/no_photo.png\'" id="imgProfile'+i+'" onclick="view_img(this)" alt="" style="min-width:100%;max-width:100%;max-height:360px">'
 							str+=	'		</div>'
-							str +=  '       <div onclick="showText(\''+data[i].general_info+'\')" onmouseover="showText(\''+data[i].general_info+'\')"  onmouseout="" id="aboutM" style="cursor:hand;cursor:pointer;display:'+disp+';width:100%;position:absolute;z-index:99999999999999999999;top:0;background:#fff;margin-top:5px;opacity:0.7;padding:2px"> + SHOW FULL PROFILE TEXT</div>'
+							str +=  '       <div onclick="showText(\''+data[i].general_info+'\')" onmouseover="showText(\''+data[i].general_info+'\')"  onmouseout="" id="aboutM" class="general_infoP" style="max-height:460px;cursor:hand;cursor:pointer;display:'+disp+';width:100%;z-index:99999999999999999999;background:red;position:absolute;;opacity:0.8;padding:2px;color:white;bottom: 175px!Important;"><b>'+data[i]['general_info']+'</div>'
 							str+=	'		<div style="left:0;right:0;position:;background:#f0f0f0;min-height:180px;width:100%;max-width:500px;margin:auto;padding-top:25px">'
 							str+=	'			<div id="profileText'+i+'" class="team-info">'
 							str+=	'				<div id="login'+i+'" class="loginP">'+data[i].login.toUpperCase().substr(0,10)+'</div>'
@@ -347,9 +346,38 @@
 				
 			}
 		})
-
-
 	}
+	if (general_info) {
+		$('#aboutM').show()
+	}				
+
+	if (general_info) {
+		$('#aboutM').show()
+	}	
+	function showText(txt) {
+		$('#aboutM').animate({height: 150}, "fast")
+        $('#aboutM').css("opacity", 0.5);
+        $('#aboutM').css("background", "#000");
+		$('#aboutM').animate({opacity: 0.8}, "fast")
+
+		$$('aboutM').innerHTML=txt
+		setTimeout(function(){
+			$('#aboutM').css("opacity", 0.8);
+			$('#aboutM').animate({height: 25}, "slow")
+			$$('aboutM').innerHTML='+ SHOW FULL PROFILE TEXT'
+			$('#aboutM').css("background", "red");
+		},10000)
+	}
+		setTimeout(function(){
+			$('#aboutM').css("opacity", 1);
+			$('#aboutM').css("background", "red");
+			$('#aboutM').animate({height: 25}, "slow")
+			$$('aboutM').innerHTML='<span><img src="https://lushmatch.com/a2.gif" style="height:25px;transform:rotate(-90deg);margin-right:10px"></span><span style="font-size:0.8em"><b><strong> SHOW FULL PROFILE TEXT</b></span><span><img src="https://lushmatch.com/a2.gif" style="height:25px;transform:rotate(90deg);margin-left:10px"></span>'
+		},100)
+	function aboutMe() {
+		
+	}
+
 	function showText(txt) {
 		$('#aboutM').animate({height: 200}, "slow")
 		$$('aboutM').innerHTML=txt

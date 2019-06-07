@@ -176,7 +176,7 @@
 						<div id="lc" style="font-size:18px;background:#fff;padding:3px;border-radius:0px"></div>							
 						</span><span><button id="sms_button" onclick="change_sms()" class="btn btn-xs btn-danger" style="position:absolute;right:10px;margin-top:-25px">Disable SMS</button></span>
 						<div style="font-family:Open Sans Condensed;font-size:18px" id="info">Anytime you message someone on this site, the user instantly receives your message because all messages are delivered via SMS using anonymous callerIds.</div>						
-							<table style="position:;width:100%;margin:auto;left:0;right:0;margin-top:10px;font-family:Open Sans Condensed;display:">
+							<table style="position:;width:100%;margin:auto;left:0;right:0;margin-top:10px;font-family:Open Sans Condensed;font-size:0.8em">
 								<tbody>
 									<tr>
 										<td style="text-align:right">
@@ -191,13 +191,13 @@
 									</tr>
 									<tr>
 										<td style="text-align:right">
-											The Black List
+											<strong>THE BLACK LIST</strong>
 										</td>
 										<td style="text-align:center">
-											Live  Chatroom
+											<strong>LIVE CHAT</strong>
 										</td>
 										<td style="text-align:left">
-											The Buzz
+											<strong>ACCOUNT ACTIVITY</strong>
 										</td>
 									</tr>
 									<tr>
@@ -213,34 +213,38 @@
 									</tr>
 									<tr>
 										<td style="text-align:right">
-											Upload Photos
+											<strong>UPLOAD PHOTOS</strong>
 										</td>
 										<td style="text-align:center">
-											Browse Members
+											<strong>BROWSE MEMBERS</strong>
 										</td>
 										<td style="text-align:left">
-											Find Members
+											<strong>FIND MEMBERS</strong>
 										</td>
 									</tr>
 									<tr>
-										<td colspan=3 style="padding:15px;font-size:0.8em">
-											<b>I AM LOOKING FOR A</b>
+										<td style="text-align:right">
+											<a href="settings.html"><img src="https://lushmatch.com/assets/css/c10.png" style="width:75px;height:75px;margin:5px"></a>
+										</td>
+										<td style="text-align:center">
+											<a href="mail.html"><img src="https://lushmatch.com/assets/c11.png" style="width:75px;margin:5px"></a>
+										</td>
+										<td style="text-align:left">
+											<a href="javascript:preview_profile()"><img src="https://lushmatch.com/assets/c12.png" style="width:75px;margin:5px"></a>
 										</td>
 									</tr>
 									<tr>
-										<td colspan=3 style="width:100%;background:;text-align:center;margin-top:-10px">
-											<table style="width:100%;font-family:Open Sans Condensed;font-size:0.8em;background:;text-align:center">
-												<tr>
-													<td style="text-align:right;width:50%;background:">
-														<span  class="genActive " onclick="switchGender('selSD','selSB', 'Sugar Daddy', 'Sugar Baby')" id="selSD">SUGAR DADDY</span>
-													</td>
-													<td style="text-align:left;width:50%">
-														<span class="genPassive " onclick="switchGender('selSB','selSD', 'Sugar Baby', 'Sugar Daddy')" id="selSB">SUGAR BABY</span>
-													</td>
-												</tr>
-											</table>
+										<td style="text-align:right">
+											<strong>ACCOUNT SETTINGS</strong>
+										</td>
+										<td style="text-align:center">
+											<strong>MY MAIL</strong>
+										</td>
+										<td style="text-align:left">
+											<strong>PREVIEW PROFILE</strong>
 										</td>
 									</tr>
+
 									<tr>
 										<td colspan=3>
 
@@ -377,23 +381,23 @@
 				//setTimeout('cbg()',1000)
 
 			function switchGender(obj, objALT, gen, looking) {
-				$$(obj).className='genActive'
-				$$(objALT).className='genPassive'
-				setCookie('gender',looking)
-				setCookie('looking_for',gen)
+				<!-- $$(obj).className='genActive' -->
+				<!-- $$(objALT).className='genPassive' -->
+				<!-- setCookie('gender',looking) -->
+				<!-- setCookie('looking_for',gen) -->
 			}
 			
 			function init() {
 
-				if ((getCookie('gender')=='Sugar Daddy')||(getCookie('gender')=='Sugar+Daddy')) {
-					console.log('looking for baby')
-					$$('selSB').className='genActive'
-					$$('selSD').className='genPassive'
-				} else {
-					console.log('looking for daddy')
-					$$('selSD').className='genActive'
-					$$('selSB').className='genPassive'
-				}
+				<!-- if ((getCookie('gender')=='Sugar Daddy')||(getCookie('gender')=='Sugar+Daddy')) { -->
+					<!-- console.log('looking for baby') -->
+					<!-- $$('selSB').className='genActive' -->
+					<!-- $$('selSD').className='genPassive' -->
+				<!-- } else { -->
+					<!-- console.log('looking for daddy') -->
+					<!-- $$('selSD').className='genActive' -->
+					<!-- $$('selSB').className='genPassive' -->
+				<!-- } -->
 				//print(getCookie('long_code','lc'))
 				var lco=getCookie('long_code')
 				lco=1+'('+lco.substr(1,3)+') ' + lco.substr(4,3)+'-'+lco.substr(7,4)

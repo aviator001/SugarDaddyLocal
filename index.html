@@ -26,7 +26,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'UA-61204113-1');
 </script>
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -39,9 +38,9 @@
 		<div class="page-loader">
 			<img src="assets/img/loader.gif" alt="">
 		</div>
-		<header id="header" style="z-index:99999999999999999999999!Important;background:#771037">
-			<div id="mega-menu" class="header header-sticky primary-menu icons-no default-skin zoomIn align-right">
-				<div class="container" style="background:#771037">
+		<header id="header" style="z-index:99999999999999999999999!Important;background:#000;margin:0;padding:0">
+			<div id="mega-menu" class="header header-sticky primary-menu icons-no default-skin zoomIn align-right" style="margin:0;padding:0">
+				<div class="container" style="background:#000;margin:0;padding:0">
 					<div class="row">
 						<nav class="navbar navbar-default redq" role="navigation">
 						<div class="container">
@@ -74,7 +73,7 @@
 			<div class="smallh wow zoomIn"> 100% FREE TO JOIN AND MESSAGE  </div><br/>
 			<button onclick="joinFree()" type="button" class="btn wow fadeInLeft" style="background:white!Important;color:#333!Important;opacity:0.8!Important"><span style="color:#333;box-shadow:0 0 50px rgba(255,255,255,1)!Important">JOIN NOW</span></button>
 			<button onclick="login()" type="button" class="btn wow fadeInRight" style="background:white!Important;color:#333!Important;opacity:0.8!Important"><span style="color:#333;box-shadow:0 0 50px rgba(255,255,255,1)!Important">LOGIN</span></button>
-			<button onclick="loadExtURL();load();" type="button" class="btn wow fadeInRight" style="background:white!Important;color:#333!Important"><span style="color:#333;box-shadow:0 0 50px rgba(255,255,255,1)!Important">LOGIN WITH FACEBOOK</span></button>
+			<!-- <button onclick="loadExtURL();load();" type="button" class="btn wow fadeInRight" style="background:white!Important;color:#333!Important"><span style="color:#333;box-shadow:0 0 50px rgba(255,255,255,1)!Important">LOGIN WITH FACEBOOK</span></button> -->
 			</h1>
 		</div>
 
@@ -176,7 +175,6 @@
 </script>
 <script src='cordova.js'></script>
 <script src="js/jquery.js"></script>
-<script src="js/jquery-ui.js"></script>
 <script src="https://lushmatch.com/assets/js/common.js"></script>
 <script src="https://lushmatch.com/assets/js/events.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -617,7 +615,7 @@
 			dataType: "html",
 			cache: false,
 			success: function(msg) {
-				setTimeout('mobile_render()',1)
+			//	setTimeout('mobile_render()',1)
 			}
 		})
 	}

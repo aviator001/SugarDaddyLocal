@@ -176,7 +176,9 @@
 		location.href='sendSMS.php?to_member_id='+qs('id')
 	}
 	function view_img(io){
-		location.href='viewAlbum.html?member_id='+currMID
+		var pid=io.id.replace('imgProfile','')
+		currMID=pid
+		location.href='viewAlbum.html?member_id='+pid
 	}
 
 	
@@ -262,7 +264,7 @@
 							str+=	'<div class="col-md-4 col-sm-4 col-xs-12" style="width:100%;max-width:100%;position:fixed;left:0;right:0;margin:auto;padding:0;margin-top:25px">'
 							str+=	'	<div class="thumbbox1" style="padding:0;background:#f0f0f0;;max-width:500px;margin:auto">'
 							str+=	'		<div class="team-thumb overlay-image view-overlay" style="background:white;border:none">'
-							str+=	'			<img onerror="this.src=\'assets/img/no_photo.png\'" id="imgProfile'+i+'" onclick="view_img(this)" alt="" style="min-width:100%;max-width:100%;max-height:360px">'
+							str+=	'			<img onerror="this.src=\'assets/img/no_photo.png\'" id="imgProfile'+data[i].id+'" onclick="view_img(this)" alt="" style="min-width:100%;max-width:100%;max-height:360px">'
 							str+=	'		</div>'
 							str +=  '       <div onclick="showText(\''+data[i].general_info+'\')" onmouseover="showText(\''+data[i].general_info+'\')"  onmouseout="" id="aboutM" class="general_infoP" style="max-height:460px;cursor:hand;cursor:pointer;display:'+disp+';width:100%;z-index:99999999999999999999;background:red;position:absolute;;opacity:0.8;padding:2px;color:white;bottom: 175px!Important;"><b>'+data[i]['general_info']+'</div>'
 							str+=	'		<div style="left:0;right:0;position:;background:#f0f0f0;min-height:180px;width:100%;max-width:500px;margin:auto;padding-top:25px">'
@@ -317,7 +319,7 @@
 								currUR=ur
 								if (data[i].filename_1=='') fn = 'https://lushmatch.com/assets/img/no_photo.png'
 									else fn='https://lushmatch.com/sb/'+data[i].filename_1
-								$$('imgProfile'+i).src=fn
+								$$('imgProfile'+data[i].id).src=fn
 								if (qs('type')) {
 									if (data.length>1) {
 										detectswipe('p'+id, myfunction);	
@@ -609,6 +611,7 @@ function detectswipe(el,func) {
     }
 
     function myfunction(el,d) {
+	console.log(el)
 		if(xtt=='touchmove') {
 			if (d=='l') setTimeout('dislike('+el+')',10)
 			if (d=='r') setTimeout('like('+el+')',10)

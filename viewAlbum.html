@@ -325,6 +325,10 @@
 			}
 		}
 		
+		function goback(currMID) {
+			location.href='profileBrowse.html?id='+currMID+'&type=browse&browse=latest'
+		}
+		
 		function goF() {
 			ctr++
 			if (ctr>src.length-1) ctr=0

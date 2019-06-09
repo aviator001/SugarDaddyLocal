@@ -243,6 +243,7 @@
 	var age = ''
 	var gender = ''
 	var photos=''
+	var general_info=''
 	var pclip = 'assets/images/pclip.png'
 	var pclip_o = 'assets/images/pclip_o.png'
 	var err_img = 'assets/images/a000.png';
@@ -355,6 +356,7 @@
 		email = document.getElementById('email')
 		login = document.getElementById('login')
 		age = document.getElementById('age')
+		general_info = document.getElementById('general_info')
 		if ( document.getElementById('form_errors')) form_errors = document.getElementById('form_errors')
 		if (!mobile.value) {
 			show_error_reg(mobile)
@@ -378,6 +380,11 @@
 
 		if (!age.value) {
 			show_error_reg(age)
+			validate = false
+		}
+	
+		if (!general_info.value) {
+			show_error_reg(general_info)
 			validate = false
 		}
 /*		if (form_errors) {

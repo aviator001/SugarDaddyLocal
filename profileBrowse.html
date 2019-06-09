@@ -38,40 +38,40 @@
 				width:30px;
 				height:30px;
 			}
-.loginP {
-	font-family:Open Sans!Important;
-	font-weight:300;
-	color:maroon;
-	font-size:32px!Important;
-	text-align:center
-}
-.genderP {
-	font-family:Open Sans!Important;
-	font-weight:bold;
-	color:#333;
-	font-size:16px!Important;
-	width:100%;
-	text-align:center;
-}
-.locationP {
-	font-family:Open Sans;
-	font-weight:300;
-	color:#333;
-	font-size:21px;
-	width:100%;
-	text-align:center;
-}
-.general_infoP {
-	font-family:Open Sans;
-	font-weight:300;
-	color:#000;
-	font-size:16px;
-	width:100%;
-	text-align:left;
-	border-radius:4px;
-	background:#fcfcfc;
-	padding:10px;
-}			
+			.loginP {
+				font-family:Open Sans!Important;
+				font-weight:300;
+				color:maroon;
+				font-size:32px!Important;
+				text-align:center
+			}
+			.genderP {
+				font-family:Open Sans!Important;
+				font-weight:bold;
+				color:#333;
+				font-size:16px!Important;
+				width:100%;
+				text-align:center;
+			}
+			.locationP {
+				font-family:Open Sans;
+				font-weight:300;
+				color:#333;
+				font-size:21px;
+				width:100%;
+				text-align:center;
+			}
+			.general_infoP {
+				font-family:Open Sans;
+				font-weight:300;
+				color:#000;
+				font-size:16px;
+				width:100%;
+				text-align:left;
+				border-radius:4px;
+				background:#fcfcfc;
+				padding:10px;
+			}			
 		</style>
 	</head>
 	<body>		<script src="https://lushmatch.com/custom_menu.js"></script>
@@ -233,7 +233,13 @@
 			}
 		}
 		console.log(url)
-		
+		if (window.screen.height<=500) {
+			var mh='200px!Important'
+			var mw='200px'
+		} else {
+			var mh='360px'
+			var mw='100%'
+		}
 		var request = $.ajax({
 			url: url,
 			type: "GET",
@@ -264,7 +270,7 @@
 							str+=	'<div class="col-md-4 col-sm-4 col-xs-12" style="width:100%;max-width:100%;position:fixed;left:0;right:0;margin:auto;padding:0;margin-top:25px">'
 							str+=	'	<div class="thumbbox1" style="padding:0;background:#f0f0f0;;max-width:500px;margin:auto">'
 							str+=	'		<div class="team-thumb overlay-image view-overlay" style="background:white;border:none">'
-							str+=	'			<img onerror="this.src=\'assets/img/no_photo.png\'" id="imgProfile'+data[i].id+'" onclick="view_img(this)" alt="" style="min-width:100%;max-width:100%;max-height:360px">'
+							str+=	'			<img onerror="this.src=\'assets/img/no_photo.png\'" id="imgProfile'+data[i].id+'" onclick="view_img(this)" alt="" style="min-width:'+mw+';max-height:'+mh+'">'
 							str+=	'		</div>'
 							str +=  '       <div id="aboutM" class="general_infoP" style="max-height:460px;cursor:hand;cursor:pointer;display:'+disp+';width:100%;z-index:99999999999999999999;background:red;position:absolute;;opacity:0.8;padding:2px;color:white;bottom: 175px!Important;"><b>'+data[i]['general_info']+'</div>'
 							str+=	'		<div style="left:0;right:0;position:;background:#f0f0f0;min-height:180px;width:100%;max-width:500px;margin:auto;padding-top:25px">'
@@ -282,9 +288,11 @@
 							str+=	'					<i class="fa fa-star-o" style="font-size:1.5em;padding-right:5px"></i>'
 							str+=	'				</div>'
 							str+=	'				<div class="team-social" style="">'
-							str+=	'					<a href="javascript:send_mail('+data[i].id+')"><i class="fa fa-envelope-o" style="width:60px;height:60px;padding:20px;border-radius:40px;background:;background-size:60px 60px;font-size:1.8em;color:silver;margin-left:10px;text-shadow:inset 0 0 10px #000"></i></a>'
-							str+=	'					<a href="javascript:toggle_favs()" style="text-decoration:none"><i id="fav'+data[i].id+'" class="fa fa-heart-o"  style="width:60px;height:60px;padding:20px;border-radius:40px;background:;background-size:60px 60px;font-size:1.8em;color:silver;margin-left:10px;text-shadow:inset 0 0 10px #000"></i></a>'
-							str+=	'					<a href="javascript:video_call(\''+data[i].login+'\')"><i class="fa fa-video-camera" style="width:60px;height:60px;padding:20px;border-radius:40px;background:;background-size:60px 60px;font-size:1.8em;color:silver;margin-left:10px;text-shadow:inset 0 0 10px #000"></i></a>'
+							str+=	'					<a href="javascript:send_mail('+data[i].id+')"><img src="https://lushmatch.com/bubble01.png" style="position:absolute;width:80px;opacity:0.8;margin-left:-70px;margin-top:-15px"></a>'
+							str+=	'					<a href="javascript:send_mail('+data[i].id+')"><img src="https://lushmatch.com/yyy_mail.png"></a>'
+							str+=	'					<a href="javascript:toggle_favs()" style="text-decoration:none"><img id="fav' + data[i].id + '" src="https://lushmatch.com/yyy_fav_off.png"></a>'
+							str+=	'					<a href="javascript:video_call(\''+data[i].login+'\')"><img src="https://lushmatch.com/yyy_video.png"></a>'
+							str+=	'					<a href="javascript:video_call(\''+data[i].login+'\')"><img src="https://lushmatch.com/bubble02.png" style="position:absolute;width:70px;opacity:0.8;right:10px;margin-top:-15px"></a>'
 							str+=	'				</div>'
 							str+=	'				<div style="width:100%;position:absolute;height:100px;background:;bottom:50px;max-width:500px;margin:auto">'
 							str+=	'					<table style="width:100%;max-width:500px">'
@@ -418,9 +426,9 @@
 			success: function(msg) {
 				$.dialog(msg.trim())
 				if (msg.trim()=='User added to favorites!') {
-					$$('fav'+currMID).style.color='red'
+					$$('fav'+currMID).src='https://lushmatch.com/yyy_fav.png'
 				} else {
-					$$('fav'+currMID).style.color='silver'
+					$$('fav'+currMID).src='https://lushmatch.com/yyy_fav_off.png'
 				}
 			}
 		})
@@ -435,8 +443,11 @@
 			dataType: "html",
 			cache: false,
 			success: function(msg) {
-				if (msg=="true")  $$('fav'+currMID).style.color='red'
-					else $$('fav'+currMID).style.color='silver'
+				if (msg.trim()=='true') {
+					$$('fav'+currMID).src='https://lushmatch.com/yyy_fav.png'
+				} else {
+					$$('fav'+currMID).src='https://lushmatch.com/yyy_fav_off.png'
+				}
 			}
 		})		
 	}

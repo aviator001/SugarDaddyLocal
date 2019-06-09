@@ -215,6 +215,13 @@
 		var str=''
 		var url = 'https://lushmatch.com/x_get_profile_data.php?member_id='+qs('id')+'&type=search&search='+qs('q')
 		console.log(url)
+		if (window.screen.height<=500) {
+			var mh='200px!Important'
+			var mw='200px'
+		} else {
+			var mh='360px'
+			var mw='100%'
+		}
 		var request = $.ajax({
 			url: url,
 			type: "GET",
@@ -246,11 +253,13 @@
 							str+=	'			</div>'
 							str+=	'			<div id="location'+i+'" class="locationP">'+data[i].location.toUpperCase().substr(0,15)+'</div>'
 							str+=	'		</div>'
-							str+=	'		<div class="team-social" style="position:absolute;margin-top:-20px;background:none;height:95px;width:100%;padding-top:px;color:#333!Important;cursor:hand;cursor:pointer">'
-							str+=	'			<a href="javascript:initMsg(\''+data[i].login+'\')"><i class="fa fa-comment-o" style="width:70px;height:70px;padding:20px;border-radius:40px;background:url(assets/white_button.png);background-size:70px 70px;font-size:2em;color:#333;margin-left:10px;text-shadow:inset 0 0 10px #000"></i></a>'
-							str+=	'			<a href="javascript:send_mail('+data[i].id+')"><i class="fa fa-envelope-o" style="width:70px;height:70px;padding:20px;border-radius:40px;background:url(assets/white_button.png);background-size:70px 70px;font-size:2em;color:#333;margin-left:10px;text-shadow:inset 0 0 10px #000"></i></a>'
-							str+=	'			<a href="javascript:toggle_favs()" style="text-decoration:none"><i id="fav'+data[i].id+'" class="fa fa-heart-o"  style="width:70px;height:70px;padding:20px;border-radius:40px;background:url(assets/white_button.png);background-size:70px 70px;font-size:2em;color:#333;margin-left:10px;text-shadow:inset 0 0 10px #000"></i></a>'
-							str+=	'		</div>'
+							str+=	'				<div class="team-social" style="">'
+							str+=	'					<a href="javascript:send_mail('+data[i].id+')"><img src="https://lushmatch.com/bubble01.png" style="position:absolute;width:80px;opacity:0.8;margin-left:-70px;margin-top:-15px"></a>'
+							str+=	'					<a href="javascript:send_mail('+data[i].id+')"><img src="https://lushmatch.com/yyy_mail.png"></a>'
+							str+=	'					<a href="javascript:toggle_favs()" style="text-decoration:none"><img id="fav' + data[i].id + '" src="https://lushmatch.com/yyy_fav_off.png"></a>'
+							str+=	'					<a href="javascript:video_call(\''+data[i].login+'\')"><img src="https://lushmatch.com/yyy_video.png"></a>'
+							str+=	'					<a href="javascript:video_call(\''+data[i].login+'\')"><img src="https://lushmatch.com/bubble02.png" style="position:absolute;width:70px;opacity:0.8;right:10px;margin-top:-15px"></a>'
+							str+=	'				</div>'
 							str+=	'		</div>'
 							str+=	'	</div>'
 							str+=	'	</div>'

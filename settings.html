@@ -293,7 +293,127 @@
 								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
 									<a href="home.html"><input class="form-control" type="button" style=";height:40px;font-size:1em!Important;color:#000;background:lavenderblush" id="" onclick="" value="RETURN"></a>
 								</div>								
-							</div>		
+								<br>
+								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
+										<script type="text/javascript" src="https://checkout.stripe.com/checkout.js"></script>
+										<span><button id="btnPay1" class="form-control" type="button"  style="height:40px;font-size:1em!Important;color:#000">Buy Monthly Subscription</button></span><br>
+								</div>								
+								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
+										<script type="text/javascript" src="https://checkout.stripe.com/checkout.js"></script>
+										<span><button id="btnPay2" class="form-control" type="button"  style="height:40px;font-size:1em!Important;color:#000">Buy Anonymous Phone Number</button></span><br>
+								</div>								
+								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
+										<script type="text/javascript" src="https://checkout.stripe.com/checkout.js"></script>
+										<span><button id="btnPay3" class="form-control" type="button"  style="height:40px;font-size:1em!Important;color:#000">Buy 100 SMS Credits</button></span><br>
+								</div>								
+					<script>
+					function setDate() {
+						$$('booking_date').style.background='#A3D900'
+					}
+					
+					function setTime() {
+						
+					}
+					
+					var final_amt1=65
+					function setPrice(x) {
+						$.confirm({
+						  title: '',
+						  columnClass:'col-md-6',
+						content:'Congratulations,<br><br>Based on your stated needs, condition, urgency and geographic factors, the system has found a dentist that is available to help you right away.<br><br>Would you like to proceed?',
+						buttons: {
+								b1: {
+									text: 'Request Instant Session $85',
+									btnClass: 'btn-blue',
+									action: function(){
+										final_amt1=85
+									}
+								},
+								b2: {
+									text: 'Schedule Request $65',
+									btnClass: 'btn-red',
+									action: function(){
+										final_amt1=65
+									}
+								}
+							}
+						});
+
+					}
+					var freeze1, freeze2, freeze3
+					var oQ1, oQ1, cText1
+					var credits = 190, x_amt = 19, str='', x_str='', v1=0, v2=0, v3=0, a11, a12, c11, c12, tc1, td1, tc2, td2, tc3, td3, final_credits1, verified='0', oA1, oQ1, oD1
+					var final_amt1=5
+					var final_amt2=1
+					var final_amt3=10
+					var final_credits1=5
+					var final_credits2=1
+					var final_credits3=100
+					var handler1 = StripeCheckout.configure({
+						key: 'pk_live_cckKvQ2FLl8EEJuHQnInW8Ho',
+						image: 'https://lushmatch.com/icon.png',
+						token: function(token) {
+							var token_id = token.id
+							var token_email = token.email
+							charge_card(token_id, token_email, '1', '' + final_amt1*1*100 + '', 'One Time Buy - $' + final_amt1 + ' | ' + final_credits1*1 + ' Credits', final_credits1, coupon_id)
+						}
+					  });
+					  document.getElementById('btnPay1').addEventListener('click', function(e) {
+						handler1.open({
+						  id: '10',
+						  name: 'SugarDaddyLocal.com',
+						  description: 'SDLocal Monthly Subscription',
+						  amount: '' + final_amt1*1*100 + ''
+						});
+						e.preventDefault();
+					  });
+					  
+					var handler2 = StripeCheckout.configure({
+						key: 'pk_live_cckKvQ2FLl8EEJuHQnInW8Ho',
+						image: 'https://lushmatch.com/icon.png',
+						token: function(token) {
+							var token_id = token.id
+							var token_email = token.email
+							charge_card(token_id, token_email, '1', '' + final_amt1*1*100 + '', 'One Time Buy - $' + final_amt2 + ' | 1 Phone Number', final_credits2, coupon_id)
+						}
+					  });
+					  document.getElementById('btnPay2').addEventListener('click', function(e) {
+						handler2.open({
+						  id: '11',
+						  name: 'SugarDaddyLocal.com',
+						  description: '1 Phone Number',
+						  amount: '' + final_amt3*1*100 + ''
+						});
+						e.preventDefault();
+					  });
+					  
+					var handler3 = StripeCheckout.configure({
+						key: 'pk_live_cckKvQ2FLl8EEJuHQnInW8Ho',
+						image: 'https://lushmatch.com/icon.png',
+						token: function(token) {
+							var token_id = token.id
+							var token_email = token.email
+							charge_card(token_id, token_email, '1', '' + final_amt3*1*100 + '', 'One Time Buy - $' + final_amt3 + ' | ' + final_credits3*1 + ' SMS Messages', final_credits3, coupon_id)
+						}
+					  });
+					  document.getElementById('btnPay3').addEventListener('click', function(e) {
+						handler3.open({
+						  id: '12',
+						  name: 'SugarDaddyLocal.com',
+						  description: '100 SMS Messages',
+						  amount: '' + final_amt3*1*100 + ''
+						});
+						e.preventDefault();
+					  });
+					  </script>
+								</div>
+							</div>
+						</div>
+						<!-- /card -->
+					</div>
+					<!-- /accordion payment -->
+					
+					</div>		
 						</div>		
 					</div>
 				</div>

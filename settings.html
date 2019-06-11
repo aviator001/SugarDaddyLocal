@@ -45,6 +45,37 @@
 			text {
 				disbled:true
 			}
+/**
+ * The CSS shown here will not be introduced in the Quickstart guide, but shows
+ * how you can use CSS to style your Element's container.
+ */
+.StripeElement {
+  box-sizing: border-box;
+
+  height: 40px;
+
+  padding: 10px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}			
 		</style>
 		<script>
 			var wl = window.location.href;
@@ -222,7 +253,8 @@
 							</div>
 						</div>
 						<div class="row" style="font-size:0.8em">			
-							<div class="form-group" style="font-size:1.0em!Important"> 
+							<div class="form-group" style="font-size:1.0em!Important;margin:10px;background:whitesmoke;border:10px solid white"> 
+								<br/>
 								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
 									<label class="block">MOBILE NUMBER</label>					
 									<input class="form-control" type="text" style="width:100%;height:40px;font-size:1em!Important;font-size:1em!Important" id="mobile"  onchange="update(this)">
@@ -279,134 +311,28 @@
 								</div>								
 								<br>
 								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
-									<input class="form-control" type="button" style=";height:40px;font-size:1em!Important;color:#000;background:aliceblue" id="go_fb" onclick="" value="UPDATE ACCOUNT">						
-								</div>								
-								<br>
-								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
-									<a href="uploadPhoto.html"><input class="form-control" type="button" style=";height:40px;font-size:1em!Important;color:#000;background:linen" id="" onclick="" value="UPLOAD PHOTOS"></a>
-								</div>								
-								<br>
-								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
-									<a href="sms.html"><input class="form-control" type="button" style=";height:40px;font-size:1em!Important;color:#000;background:thistle" id="" onclick="" value="SMS SETTINGS"></a>				
-								</div>								
-								<br>
-								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
-									<a href="home.html"><input class="form-control" type="button" style=";height:40px;font-size:1em!Important;color:#000;background:lavenderblush" id="" onclick="" value="RETURN"></a>
-								</div>								
-								<br>
-								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
-										<script type="text/javascript" src="https://checkout.stripe.com/checkout.js"></script>
-										<span><button id="btnPay1" class="form-control" type="button"  style="height:40px;font-size:1em!Important;color:#000">Buy Monthly Subscription</button></span><br>
-								</div>								
-								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
-										<script type="text/javascript" src="https://checkout.stripe.com/checkout.js"></script>
-										<span><button id="btnPay2" class="form-control" type="button"  style="height:40px;font-size:1em!Important;color:#000">Buy Anonymous Phone Number</button></span><br>
-								</div>								
-								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
-										<script type="text/javascript" src="https://checkout.stripe.com/checkout.js"></script>
-										<span><button id="btnPay3" class="form-control" type="button"  style="height:40px;font-size:1em!Important;color:#000">Buy 100 SMS Credits</button></span><br>
-								</div>								
-					<script>
-					function setDate() {
-						$$('booking_date').style.background='#A3D900'
-					}
-					
-					function setTime() {
-						
-					}
-					
-					var final_amt1=65
-					function setPrice(x) {
-						$.confirm({
-						  title: '',
-						  columnClass:'col-md-6',
-						content:'Congratulations,<br><br>Based on your stated needs, condition, urgency and geographic factors, the system has found a dentist that is available to help you right away.<br><br>Would you like to proceed?',
-						buttons: {
-								b1: {
-									text: 'Request Instant Session $85',
-									btnClass: 'btn-blue',
-									action: function(){
-										final_amt1=85
-									}
-								},
-								b2: {
-									text: 'Schedule Request $65',
-									btnClass: 'btn-red',
-									action: function(){
-										final_amt1=65
-									}
-								}
-							}
-						});
-
-					}
-					var freeze1, freeze2, freeze3
-					var oQ1, oQ1, cText1
-					var credits = 190, x_amt = 19, str='', x_str='', v1=0, v2=0, v3=0, a11, a12, c11, c12, tc1, td1, tc2, td2, tc3, td3, final_credits1, verified='0', oA1, oQ1, oD1
-					var final_amt1=5
-					var final_amt2=1
-					var final_amt3=10
-					var final_credits1=5
-					var final_credits2=1
-					var final_credits3=100
-					var handler1 = StripeCheckout.configure({
-						key: 'pk_live_cckKvQ2FLl8EEJuHQnInW8Ho',
-						image: 'https://lushmatch.com/icon.png',
-						token: function(token) {
-							var token_id = token.id
-							var token_email = token.email
-							charge_card(token_id, token_email, '1', '' + final_amt1*1*100 + '', 'One Time Buy - $' + final_amt1 + ' | ' + final_credits1*1 + ' Credits', final_credits1, coupon_id)
-						}
-					  });
-					  document.getElementById('btnPay1').addEventListener('click', function(e) {
-						handler1.open({
-						  id: '10',
-						  name: 'SugarDaddyLocal.com',
-						  description: 'SDLocal Monthly Subscription',
-						  amount: '' + final_amt1*1*100 + ''
-						});
-						e.preventDefault();
-					  });
-					  
-					var handler2 = StripeCheckout.configure({
-						key: 'pk_live_cckKvQ2FLl8EEJuHQnInW8Ho',
-						image: 'https://lushmatch.com/icon.png',
-						token: function(token) {
-							var token_id = token.id
-							var token_email = token.email
-							charge_card(token_id, token_email, '1', '' + final_amt1*1*100 + '', 'One Time Buy - $' + final_amt2 + ' | 1 Phone Number', final_credits2, coupon_id)
-						}
-					  });
-					  document.getElementById('btnPay2').addEventListener('click', function(e) {
-						handler2.open({
-						  id: '11',
-						  name: 'SugarDaddyLocal.com',
-						  description: '1 Phone Number',
-						  amount: '' + final_amt3*1*100 + ''
-						});
-						e.preventDefault();
-					  });
-					  
-					var handler3 = StripeCheckout.configure({
-						key: 'pk_live_cckKvQ2FLl8EEJuHQnInW8Ho',
-						image: 'https://lushmatch.com/icon.png',
-						token: function(token) {
-							var token_id = token.id
-							var token_email = token.email
-							charge_card(token_id, token_email, '1', '' + final_amt3*1*100 + '', 'One Time Buy - $' + final_amt3 + ' | ' + final_credits3*1 + ' SMS Messages', final_credits3, coupon_id)
-						}
-					  });
-					  document.getElementById('btnPay3').addEventListener('click', function(e) {
-						handler3.open({
-						  id: '12',
-						  name: 'SugarDaddyLocal.com',
-						  description: '100 SMS Messages',
-						  amount: '' + final_amt3*1*100 + ''
-						});
-						e.preventDefault();
-					  });
-					  </script>
+									<input class="form-control btn btn-info" type="button" style=";height:40px;font-size:1em!Important;color:#fff;background:" id="go_fb" onclick="" value="UPDATE ACCOUNT">						
+								</div>	
+								<br/>
 								</div>
+								
+								<script src="https://js.stripe.com/v3/"></script>
+								  <div class="www_box2 form-row" style="background:aliceblue;padding:10px;text-align:center;margin:10px;border:10px solid white">
+									<label for="card-element">
+									  Pay Using Stripe
+									</label>
+									<div id="card-element">
+									  <!-- A Stripe Element will be inserted here. -->
+									</div>
+
+									<!-- Used to display form errors. -->
+									<div id="card-errors" role="alert"></div>
+
+								  <br><button onclick="pay(500,10,'Monthly Subscription')" class="btn btn-default" style="width:100%;border-radius:0 0 0 0;">Buy Monthly Subscription - $5</button><br>
+								  <button onclick="pay(100,11,'Single Phone Number')"  class="btn btn-default" style="width:100%;;border-radius:0 0 0 0">Buy Anonymous Phone Number - $1</button><br>
+								  <button onclick="pay(1000,12,'100 SMS Credits')"  class="btn btn-default" style="width:100%;border-radius:0 0 0 0">Buy 100 SMS Credits - $10</button>
+															  </div>
+
 							</div>
 						</div>
 						<!-- /card -->
@@ -425,7 +351,74 @@
 		</script>	
 
 		<script type="text/javascript">
+var test_mode=false
+// Create a Stripe client.
+if (test_mode===true) {
+	var stripe = Stripe('pk_test_qtprDcPj4ouEvG9O2CaP7EJV');
+} else {
+	var stripe = Stripe('pk_live_usFpglAicQ086PYo5g0n4Jiz');
+}
 
+// Create an instance of Elements.
+var elements = stripe.elements();
+
+// Custom styling can be passed to options when creating an Element.
+// (Note that this demo uses a wider set of styles than the guide below.)
+var style = {
+  base: {
+    color: '#32325d',
+    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+    fontSmoothing: 'antialiased',
+    fontSize: '16px',
+    '::placeholder': {
+      color: '#aab7c4'
+    }
+  },
+  invalid: {
+    color: '#fa755a',
+    iconColor: '#fa755a'
+  }
+};
+
+// Create an instance of the card Element.
+var card = elements.create('card', {style: style});
+
+// Add an instance of the card Element into the `card-element` <div>.
+card.mount('#card-element');
+
+// Handle real-time validation errors from the card Element.
+card.addEventListener('change', function(event) {
+  var displayError = document.getElementById('card-errors');
+  if (event.error) {
+    displayError.textContent = event.error.message;
+  } else {
+    displayError.textContent = '';
+  }
+});
+var amt,plan,desc
+
+function pay(a,p,d) {
+	amt=a
+	plan=p
+	desc=d
+  stripe.createToken(card).then(function(result) {
+    if (result.error) {
+      // Inform the user if there was an error.
+      var errorElement = document.getElementById('card-errors');
+      errorElement.textContent = result.error.message;
+    } else {
+      // Send the token to your server.
+      stripeTokenHandler(result.token);
+    }
+  });
+}
+	// Submit the form with the token ID.
+	function stripeTokenHandler(token) {
+		
+		var url='https://lushmatch.com/x_charge.php?stripe_test_mode=' + test_mode + '&token='+token.id+'&login='+getCookie('login')+'&mid='+getCookie('mid')+'&mobile='+getCookie('mobile')+'&email='+getCookie('email')+'&amt='+amt+'&plan='+plan+'&desc='+desc
+		$.ajax({url:url,success:function(data){$.alert(data)}})
+	  }
+		
 		function go_fb_user() {
 			document.getElementById('mobile').value=document.getElementById('mobile').value
 			var f = document.getElementById('mobile').value

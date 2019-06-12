@@ -201,7 +201,8 @@
 	}
 	
 	function onDeviceReady() {
-
+		$$('email').value=getCookie('saveUser')
+		$$('password').value=getCookie('savePass')
 		var	options = {
 		  enableHighAccuracy: true,
 		  timeout: 1000,
@@ -241,6 +242,7 @@
 					setCookie('state', data.state)
 					setCookie('zip', data.zip)
 					setCookie('location', data.city + ' ' + data.state + ' ' + data.zip)
+
 				}
 			}
 		})
@@ -415,6 +417,8 @@
 					setCookie("long_code", o.long_code)
 					setCookie("location", o.location)
 					setCookie("email", o.email)
+					setCookie('saveUser',$$('email').value)
+					setCookie('savePass',$$('password').value)					
 					window.top.location.href = "home.html"
 				}
 			}

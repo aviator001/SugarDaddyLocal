@@ -126,7 +126,7 @@
 					var qimg=data[0].filename_1
 					document.getElementById('mail_login').textContent=data[0].login.toUpperCase()
 					document.getElementById('mail_age').textContent=data[0].age
-					document.getElementById('mail_img').innerHTML="<img src='https://lushmatch.com/sb/"+qimg+"' style='margin:0px;width:125px;height:125px' onerror='this.src=\"assets/images/no_photo.png\"'>"
+					document.getElementById('mail_img').innerHTML="<img src='https://lushmatch.com/sb/"+qimg+"' style='margin:0px;width:125px;height:125px' onerror=\"this.src='assets/images/no_photo.png'\">"
 					document.getElementById('mail_location').textContent=data[0].location
 					document.getElementById('mail_gender').textContent=data[0].gender
 				}
@@ -630,30 +630,34 @@
 </tr>
 </table>
 </div>
-<div style="margin:auto;text-align:left;width:100%;font-size:16px;font-family:Open Sans;">
-<b>MESSAGE:</b>
+<div style="margin:auto;text-align:left;width:100%;font-size:16px;font-family:Open Sans;POSITION:ABSOLUTE;margin-left:10px;margin-top:10px">
+<b>TYPE MESSAGE TO USER:</b>
 </div>
 <div>
-<textarea id="mail_pad" style="height:125px;max-height:124px;width:100%;border:1px solid lightblue;margin:auto;border-radius:4px;"></textarea>
+<table style="margin-top:20px"><tr><td style="width:90%;padding:10px;padding-top:10px">
+<textarea id="mail_pad" style="height:50px;width:100%;border:2px solid lightblue;border-radius:4px 0 0 4px;"></textarea>
+</td><td>
+<button onclick="send_message()" style="height:50px;padding-left:10px;padding-right:10px;margin-bottom:20px" class="btn btn-warning" style=""> SEND </button>
+</td></tr></table>
 </div>
 <div id="user_images"></div>
 <div class="row" style="margin-top:10px;width:100%;text-align:center">
-	<span>
-		<button onclick="send_message()" style="padding-left:10px;padding-right:10px;" class="btn btn-warning" style=""> SEND </button>
-	</span>
-	<span>
-		<button class="btn btn-danger" onclick="history.go(-1)" style="padding-left:10px;padding-right:10px;margin-left:2px;"> CANCEL </button>
-	</span>
-	<span>
-		<button class="btn btn-info" onclick="show_attach()" style="padding-left:10px;padding-right:10px;margin-left:2px;"> ATTACH PHOTO </button>
-	</span>
-				<table style="vertical-align:center;margin:auto">
+	<!-- <span> -->
+		<!-- <button onclick="send_message()" style="padding-left:10px;padding-right:10px;" class="btn btn-warning" style=""> SEND </button> -->
+	<!-- </span> -->
+	<!-- <span> -->
+		<!-- <button class="btn btn-danger" onclick="history.go(-1)" style="padding-left:10px;padding-right:10px;margin-left:2px;"> CANCEL </button> -->
+	<!-- </span> -->
+	<!-- <span> -->
+		<!-- <button class="btn btn-info" onclick="show_attach()" style="padding-left:10px;padding-right:10px;margin-left:2px;"> ATTACH PHOTO </button> -->
+	<!-- </span> -->
+				<table style="vertical-align:center;margin:auto;margin-top:-25px">
 					<tr>
 
 						<td style="padding-top:10px">
 							<a href="javascript:history.go(-1)">
-								<div style="margin-right:5px;border-radius:4px;padding:10px;margin-top:5px;background:#f0f0f0;color:#fff;height:50px!Important;width:50px!Important">
-									<i style="font-size:2em" class="fa fa-arrow-left"></i>
+								<div style="font-family:Tahoma;margin-right:5px;border-radius:4px;padding:10px;margin-top:5px;background:red;color:#fff;height:50px!Important;width:100px!Important">
+									<b>CANCEL</b>
 								</div>
 							</a>
 						</td>

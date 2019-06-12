@@ -208,22 +208,26 @@
 		return document.getElementById(oo)
 	}
 	
+
+	function loadProfiles(no) {
 			var general_info
 	var profileBatchCount,ur,currUR,urs=[]
 		if (window.screen.height<=500) {
 			var mh='200px!Important'
 			var mw='200px'
-			var mtp='-20px'
+			var mtp='0'
 			var pt='0px'
-			var th='400px'
 		} else {
 			var mh='360px'
 			var mw='100%'
 			var mtp='-55px'
 			var pt='5px'
-			var th='450px'
-		}	
-	function loadProfiles(no) {
+		}
+		var tt='400px'
+		if (window.screen.height<window.screen.width) {
+			var showw=''
+			var tt='300px'
+		}
 		ctr=0
 		var str=''
 		var url = 'https://lushmatch.com/x_get_profile_data.php?member_id='+qs('id')+'&type=search&search='+qs('q')
@@ -247,17 +251,17 @@
 				}
 							str+=	'<div class="col-md-4 col-sm-4 col-xs-12" style="width:100%;max-width:100%;position:fixed;left:0;right:0;margin:auto;padding:0;margin-top:25px">'
 							str+=	'	<div class="thumbbox1" style="padding:0;background:#f0f0f0;;max-width:500px;margin:auto">'
-							str+=	'		<div class="team-thumb overlay-image view-overlay" style="background:white;border:none">'
+							str+=	'		<div id="swm" class="team-thumb overlay-image view-overlay" style="position:absolute;background:white;border:none;">'
 							str+=	'			<img onerror="this.src=\'assets/img/no_photo.png\'" id="imgProfile'+data[i].id+'" onclick="view_img(this)" alt="" style="min-width:'+mw+';max-height:'+mh+'">'
 							str+=	'		</div>'
-							str+=	'		<div style="left:0;right:0;position:absolute;background:#f0f0f0;min-height:180px;width:100%;max-width:500px;margin:auto;padding-top:5px;bottom:0!Important;top:'+th+'">'
+							str+=	'		<div style="left:0;right:0;position:absolute;background:#f0f0f0;min-height:180px;width:100%;max-width:500px;margin:auto;padding-top:5px;bottom:0!Important;top:'+tt+'">'
 							str +=  '       <div id="aboutM" class="general_infoP" style="max-height:460px;cursor:hand;cursor:pointer;display:'+disp+';width:100%;z-index:99999999999999999999;background:#111;border-radius:0;position:absolute;opacity:0.7;padding:'+pt+';color:white;bottom: 175px!Important;"><b>'+data[i]['general_info']+'</div>'
 							str+=	'			<div id="profileText'+i+'" class="team-info">'
 							str+=	'				<div id="login'+i+'" class="loginP">'+data[i].login.toUpperCase().substr(0,10)+'</div>'
 							str+=	'				<div class="genderP">'
 							str+=	'					<span id="gender'+i+'">'+data[i].gender.toUpperCase()+'</span><span id="age1">'+' AGE: '+data[i].age+'</span>'
 							str+=	'				</div>'
-							str+=	'				<div id="location'+i+'" class="locationP" style="font-size:14px!Important">'+data[i].location.toUpperCase().substr(0,15)+'</div>'
+							str+=	'				<div id="location'+i+'" class="locationP">'+data[i].location.toUpperCase().substr(0,15)+'</div>'
 							str+=	'				<div id="rating'+i+'" style="display:none;margin-top:10px;margin-bottom:10px;">'
 							str+=	'					<i class="fa fa-star" style="color:gold;font-size:1.5em;padding-right:5px"></i>'
 							str+=	'					<i class="fa fa-star-o" style="font-size:1.5em;padding-right:5px"></i>'

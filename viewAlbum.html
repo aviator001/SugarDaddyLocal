@@ -193,6 +193,7 @@
 				dataType: "html",
 				cache: false,
 				success: function(msg) {
+					console.log(msg)
 					var xmg=msg.split('||')
 					document.getElementById('sr1').innerHTML=xmg[0]
 					src=xmg[1].split(',')
@@ -220,6 +221,7 @@
 	
 		function setPID(pid) {
 			currPID=pid
+			if(getCookie('login')=='gauts') $$('pa').style.display='block'
 		}
 		var curSRC
 		function setSRC(src) {
@@ -287,7 +289,7 @@
 				cache: false,
 				success: function(msg) {
 					if (msg=='') {
-					//	history.go(0)
+						history.go(0)
 					}
 				}
 			})
@@ -377,6 +379,7 @@
 			if (!results[2]) return '';
 			return decodeURIComponent(results[2].replace(/\+/g, " "));
 		}
+
 </script>
 	
 <div id='chief' align=center style=''>
@@ -385,3 +388,5 @@
 	<span id="notify_txt"  style="padding:5px;color:#f0f0f0"></span>
 </div>
 <div style="position:absolute;z-index:1;left:0;right:0;margin:auto;text-align:center;margin:auto;width:100%;top:-50px;height:100%;background:#f0f0f0;background-size:cover" id="sr1" class="www_box2"></div>
+<button style="position:absolute;z-index:9999999999999999999999;left:0;right:0;margin:auto;text-align:center;margin:auto;top:200px;width:100px;display:none" id="pa" class="btn btn-danger" onclick="delPhoto()">Delete</button>
+

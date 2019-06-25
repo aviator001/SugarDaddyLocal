@@ -295,34 +295,42 @@
 
 			
 	function photo_filter(obj,f) {
+		wait_light('Processing Image')
+		var tmr=3000
+		if (obj=='OIL') tmr=6000
+// Using YQL and JSONP
 		var fn=qs('fn')
 		var ii=Math.round(Math.random()*10)
 		var osrc=document.getElementById('cropbox').src
-		document.getElementById('cropbox').src='https://gaysugardaddyfinder.com/assets/images/snow.gif'
+		<!-- document.getElementById('cropbox').src='https://gaysugardaddyfinder.com/assets/images/snow.gif' -->
 		document.getElementById('cropbox').style.opacity='1'
 		document.getElementById('cropbox').style.width='100%'
 		if (obj=='ANNOTATE') {
 			var annotate=prompt('Text to annotate photo with?')
 		}
 		if (annotate==undefined) annotate=''
-		var url = 'class/x_photo_filters.php?filter=' + obj + '&filename=' + fn + '&annotate=' + annotate
+		var url = 'https://lushmatch.com/class/x_photo_filters.php'
 		console.log(url)
-		var request = $.ajax({
-			url: url,
-			type: "GET",
-			dataType: "html",
-			cache: false,
-			success: function(msg) {
+			$.ajax({
+				url: url,
+				jsonp: "callback",
+				dataType: "jsonp",
+				data: {
+					filter:obj,
+					filename: fn,
+					annotate:annotate
+				}
+			});
+			setTimeout(function(){
 				document.getElementById('cropbox').style.opacity='1'
 				document.getElementById('cropbox').src=''
-				setTimeout(function(){
-					document.getElementById('cropbox').src=osrc+'?x=' + Math.random()*1000000000000000000000
-					//fix_controls()
-				})
-			}
-		})		
+				document.getElementById('cropbox').src=osrc+'?x=' + Math.random()*1000000000000000000000
+				hide()
+			},tmr)		
 	}
-	
+	function callback() {
+		alert()
+	}
 	function send_sms(f) {
 		var from=getCookie('long_code')
 		if (!from) from='13234581949'
@@ -350,8 +358,8 @@
 	var err_img1 = 'assets/images/tie.jpg'
 
   function toggle_class(obj) {
-	if (obj.className=='btn btn-warning col-xs-4') obj.className='btn btn-danger col-xs-4'
-		else obj.className='btn btn-warning col-xs-4'
+	if (obj.style.background.indexOf('x_red3')>=0) obj.style.background='url(https://dentistbydemand.com/bar_orange.png)'
+		else obj.style.background='url(https://lushmatch.com/x_bar3.png)'
   }
   function in_out(obj) {
 	if (obj.className=='col-xs-3 wb_o') obj.className='col-xs-3 wb'
@@ -372,31 +380,31 @@
 <div class="margin-top:-30px">
 	<div class="row">
 		<div class="col-md-12">
-								<div style="position:fixed!Important;border-radius:5px;margin:auto;left:0;right:0;padding:0px;background:;font-size:1.5em;text-align:center;max-width:100%;margin-top:-40px" class="row">
+								<div style="position:fixed!Important;border-radius:5px;margin:auto;left:0;right:0;padding:0px;background:;font-size:1.5em;text-align:center;max-width:100%;margin-top:-50px" class="row">
 									<img id="cropbox" style="position:fixed!Important;left:0!Important;right:0!Important;margin:auto!Important;width:100%;max-width:100%;margin-top:0px;border-radius:5px 5px 0 0;box-shadow:0 0 100px #000\" src="">
-									<div id="controls" style="max-width:100%;position:fixed;margin:auto;display:none;margin-top:-60px">
-										<div class="btn btn-info col-xs-4"  style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_blue2.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px" onclick="photo_filter('UNDO');">UNDO</div>
-										<div class="btn btn-danger  col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_blue2.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px" onclick="photo_filter('RESET'); history.go(0)">RESET</div>
-										<div class="btn btn-info  col-xs-4" id="crop" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_blue2.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px"  onclick="checkCoords();go()">CROP</div>
-										<div class="btn btn-success  col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px;display:none"  id="sv" onclick="save()">SAVE</div>
-										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px" onclick="photo_filter('ROTATE1');toggle_class(this)">ROTATE+</div>
-										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px"  onclick="photo_filter('ROTATE2');toggle_class(this)">ROTATE-</div>
-										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px"  onclick="photo_filter('BRIGHT1');toggle_class(this)">BRIGHTNESS+</div>
-										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px"  onclick="photo_filter('BRIGHT2');toggle_class(this)">BRIGHTNESS-</div>
-										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px"  onclick="photo_filter('CONTRAST1');toggle_class(this)">CONTRAST+</div>
-										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px"  onclick="photo_filter('CONTRAST2');toggle_class(this)">CONTRAST-</div>
-										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px"  onclick="photo_filter('NEGATE');toggle_class(this)">NEGATIVE</div>
-										<div class="btn btn-default col-xs-4"  style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px" onclick="photo_filter('AUTOLEVEL');toggle_class(this)">ENHANCE</div>
-										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px"  onclick="photo_filter('SHARPEN');toggle_class(this)">SHARPEN</div>
-										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px"  onclick="photo_filter('EDGE');toggle_class(this)">EDGE</div>
-										<div class="btn btn-default col-xs-4"  style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px" onclick="photo_filter('OIL');toggle_class(this)">OIL</div>
-										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px"  onclick="photo_filter('CHARCOAL');toggle_class(this)">CHARCOAL</div>
-										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px"  onclick="photo_filter('SHADE');toggle_class(this)">SHADE</div>
-										<div class="btn btn-default col-xs-4"  style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px" onclick="photo_filter('SEPIA');toggle_class(this)">SEPIA</div>
-										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px"  onclick="photo_filter('ANNOTATE','HELLO');toggle_class(this)">ANNOTATE</div>
-										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px"  onclick="photo_filter('MODULATE');toggle_class(this)">MODULATE</div>
-										<div class="btn btn-default col-xs-4"  style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px" onclick="photo_filter('PIXELATE3');toggle_class(this)">PIXELATE</div>
-										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:50px;opacity:1;;color:white;padding-top:17px;font-size:12px"  onclick="photo_filter('SOLARIZE','HELLO');toggle_class(this)">SOLARIZE</div>
+									<div id="controls" style="max-width:100%;position:fixed;margin:auto;display:none;margin-top:0px;bottom:0!Important">
+										<div class="btn btn-info col-xs-4"  style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_blue2.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px" onclick="photo_filter('UNDO');">UNDO</div>
+										<div class="btn btn-danger  col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_blue2.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px" onclick="photo_filter('RESET'); history.go(0)">RESET</div>
+										<div class="btn btn-info  col-xs-4" id="crop" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_blue2.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px"  onclick="checkCoords();go()">CROP</div>
+										<div class="btn btn-success  col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px;display:none"  id="sv" onclick="save()">SAVE</div>
+										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px" onclick="photo_filter('ROTATE1');toggle_class(this)">ROTATE+</div>
+										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px"  onclick="photo_filter('ROTATE2');toggle_class(this)">ROTATE-</div>
+										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px"  onclick="photo_filter('BRIGHT1');toggle_class(this)">BRIGHTNESS+</div>
+										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px"  onclick="photo_filter('BRIGHT2');toggle_class(this)">BRIGHTNESS-</div>
+										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px"  onclick="photo_filter('CONTRAST1');toggle_class(this)">CONTRAST+</div>
+										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px"  onclick="photo_filter('CONTRAST2');toggle_class(this)">CONTRAST-</div>
+										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px"  onclick="photo_filter('NEGATE');toggle_class(this)">NEGATIVE</div>
+										<div class="btn btn-default col-xs-4"  style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px" onclick="photo_filter('AUTOLEVEL');toggle_class(this)">ENHANCE</div>
+										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px"  onclick="photo_filter('SHARPEN');toggle_class(this)">SHARPEN</div>
+										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px"  onclick="photo_filter('EDGE');toggle_class(this)">EDGE</div>
+										<div class="btn btn-default col-xs-4"  style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px" onclick="photo_filter('OIL');toggle_class(this)">OIL</div>
+										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px"  onclick="photo_filter('CHARCOAL');toggle_class(this)">CHARCOAL</div>
+										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px"  onclick="photo_filter('SHADE');toggle_class(this)">SHADE</div>
+										<div class="btn btn-default col-xs-4"  style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px" onclick="photo_filter('SEPIA');toggle_class(this)">SEPIA</div>
+										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px"  onclick="photo_filter('ANNOTATE','HELLO');toggle_class(this)">ANNOTATE</div>
+										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px"  onclick="photo_filter('MODULATE');toggle_class(this)">MODULATE</div>
+										<div class="btn btn-default col-xs-4"  style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px" onclick="photo_filter('PIXELATE3');toggle_class(this)">PIXELATE</div>
+										<div class="btn btn-default col-xs-4" style="opacity:0.9;margin:0!Important;background:url(https://lushmatch.com/x_red3.png) center; background-size:cover;border-radius:0;height:40px;opacity:1;;color:white;padding-top:10px;font-size:12px"  onclick="photo_filter('SOLARIZE','HELLO');toggle_class(this)">SOLARIZE</div>
 									</div>
 								</div>
 								<div class="row">
@@ -726,16 +734,15 @@
 
 	setTimeout(function(){
 		document.getElementById('controls').style.display=''
-		document.getElementById('controls').style.top=$('#cropbox').height()+'px'
 	},1000)
 
 	setTimeout(function(){
 		document.getElementById('controls').style.display=''
-		document.getElementById('controls').style.top=$('#cropbox').height()+'px'
 	},1000)
 	
 	</script>
 			<script src="https://lushmatch.com/custom_menu_no_footer.js"></script>
+			<script src="https://lushmatch.com/custom_js/wait.js"></script>
 
 		</body>
 </html>

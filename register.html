@@ -193,9 +193,17 @@
 								</div>
 							</div>
 							<div class="row">			
+								<div style="width:100%" class="form-group">				
+									<div class="col-md-12" style="text-align:left;font-weight:300">					
+										<label class="block">My Location</label>						
+										<textarea style="width:100%;background:aliceblue;height:50px;border:1px solid silver;;border-radius:6px;padding:5px" id="location"></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="row">			
 								<div class="col-md-6">				
 									<input type="submit" value="FINISH SIGNUP" STYLE="font-size:18px;width:150px;height:50px;text-shadow:none;font-family:Open Sans" class="btn btn-danger push-bottom" data-loading-text="Loading..."  onclick="validate_form()"><br>
-									<span id="autolocation"></span>
+									<span id="location"></span>
 								</div>
 							</div>
 							<br>
@@ -213,14 +221,13 @@
 			var magic_w='65px'
 			var magic_h='65px'
 		</script>	
+		<script type="text/javascript" src="https://lushmatch.com/custom_js/cookie.js"></script>
+		<script type="text/javascript" src="https://lushmatch.com/custom_js/wait.js"></script>
+		<script type="text/javascript" src="https://lushmatch.com/custom_js/locate.js"></script>
 		<script type="text/javascript" src="js/jquery.js"></script>
-		<script type="text/javascript" src="js/jquery-ui.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>	
-		<script src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>	
-		<script type="text/javascript" src="https://lushmatch.com/locate.js"></script>
 		<script>
 	var login
 	var html = document.documentElement;

@@ -68,10 +68,7 @@
 			width:80px;
 			height:53px!Important;
 		}
-		#profile_img{
-			width:100%;
-			max-width:650px;
-		}
+
 		</style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 <link href='https://fonts.googleapis.com/css?family=Poiret+One|Open+Sans|Economica' rel='stylesheet' type='text/css'>
@@ -188,7 +185,7 @@
 	setTimeout('load_album()',100)
 	function load_album(){
 			var request = $.ajax({
-				url: 'https://lushmatch.com/pg_view_album.php?member_id='+member_id,
+				url: 'https://lushmatch.com/pg_view_album.php?member_id='+member_id+'&mid='+getCookie('mid'),
 				type: "GET",
 				dataType: "html",
 				cache: false,
@@ -199,6 +196,8 @@
 					src=xmg[1].split(',')
 					pid=xmg[2].split(',')
 					currSRC=src[0]
+					var wx=window.screen.width
+					$$('profile_img').style.cssText='min-width:'+wx+';max-width:'+wx+';width:'+wx+'px;margin-top:120px'
 					if ((qs('member_id')==getCookie('mid')) && (!currSRC)) {
 						location.href='uploadPhoto.html'
 					}
@@ -206,6 +205,7 @@
 				}
 			})
 		}
+		
 		function switch_image(xObj) {
 			document.getElementById('profile_img').src=xObj.src
 		}
@@ -328,7 +328,7 @@
 		}
 		
 		function goback(currMID) {
-			location.href='profileBrowse.html?id='+currMID+'&type=browse&browse=latest'
+			location.href='profileBrowse.html?id='+currMID+'&type=browse&browse='+getCookie('browse')
 		}
 		
 		function goF() {

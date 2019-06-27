@@ -114,27 +114,9 @@
 						<div class="white-row"  style="box-shadow:0 0 20px #333;height:100%;font-family:Open Sans">		
 							<div id="form_errors" class="alert alert-info" style="display:none"></div>
 							<div class="row">			
-								<div style="width:100%" class="form-group">				
-									<div class="col-md-12" style="text-align:left;font-weight:300;font-family:Open Sans">					
-										<label>Mobile Number</label>					
-										<input type="text" name="mobile" id="mobile" value="" placeholder="Your Mobile #" class="form-control input-box" onclick="clear_error(this)" onblur="validate_field_register(this);check_mobile(this)" style="color:grey;font-size:18px;font-family:Open Sans">					
-										<input type="hidden" name="mobile_original" id="mobile_original" value="">
-										<input type="hidden" name="email_original" id="email_original" value="">
-										<input type="hidden" name="login_original" id="login_original" value="">
-										<input type="hidden" name="pswd_original" id="pswd_original" value="">
-										<input type="hidden" name="age_original" id="age_original" value="">
-										<input type="hidden" name="gender" id="gender" value="">
-										<input type="hidden" name="looking_for" id="looking_for" value="">
-										<div id="mobile_err_txt" style="color:skyblue;text-align:left"></div>
-										We will never share or disclose your mobile number; It is simply used for notifications, which too, you can turn off by replying 'STOP' to the very first message you receive. To re-enable, reply 'START'
-									</div>
-								</div>
-							</div>
-
-							<div class="row">			
 								<div style="width:100%" class="form-group">
 									<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
-															<label class="block">E-mail Address</label>						
+										<label class="block">E-mail Address</label>						
 										<input type="text" name="email" id="email" value="" placeholder="Your Email Address" class="form-control input-box" onclick="clear_error(this)" onblur="validate_field_register(this)" style="color:grey;font-size:18px">						
 										<div id="email_err_txt" style="color:skyblue;text-align:left"></div>				
 									</div>
@@ -201,6 +183,18 @@
 								</div>
 							</div>
 							<div class="row">			
+								<div style="width:100%" class="form-group">				
+									<div class="col-md-12" style="text-align:left;font-weight:300;font-family:Open Sans">					
+										<label>Mobile Number</label>					
+										<input type="text" name="mobile" id="mobile" value="" placeholder="Your Mobile # [Optional]" class="form-control input-box" style="color:grey;font-size:18px;font-family:Open Sans">					
+
+										<div id="mobile_err_txt" style="color:skyblue;text-align:left"></div>
+										<span style="font-size:14px!Important;color:silver">100% OPTIONAL, However we strongly recommend to be the 1st to cmeet new members and sms instantly and anonymously</span>
+									</div>
+								</div>
+							</div>
+														
+							<div class="row">			
 								<div class="col-md-6">				
 									<input type="submit" value="FINISH SIGNUP" STYLE="font-size:18px;width:150px;height:50px;text-shadow:none;font-family:Open Sans" class="btn btn-danger push-bottom" data-loading-text="Loading..."  onclick="validate_form()"><br>
 									<span id="location"></span>
@@ -215,7 +209,13 @@
 				</div>
 			</section>
 		</div>
-		<!-- /REGISTER -->	
+		<input type="hidden" name="mobile_original" id="mobile_original" value="">
+		<input type="hidden" name="email_original" id="email_original" value="">
+		<input type="hidden" name="login_original" id="login_original" value="">
+		<input type="hidden" name="pswd_original" id="pswd_original" value="">
+		<input type="hidden" name="age_original" id="age_original" value="">
+		<input type="hidden" name="gender" id="gender" value="">
+		<input type="hidden" name="looking_for" id="looking_for" value="">		<!-- /REGISTER -->	
 		<script>
 			var start_magic=false
 			var magic_w='65px'
@@ -427,22 +427,26 @@
 				return true
 			}
 		}
-		if (f.id=='mobile') is_valid_mobile(f)
+		if (mobile_mandatory) {
+			if (f.id=='mobile') is_valid_mobile(f)
+		}
 		if (f.id=='email') is_valid_email(f)
 		var e = '<span style="color:orange">' + f.value + '</span> Already Exists.<br><a href="login.php">Login</a> with this ' + f.id + ' instead?'
 		if (f.value.length > 0) {
-			if (f.id == 'mobile') {
-				var number = '1' + f.value
-				number = number.replace('-','')
-				number = number.replace(' ','')
-				number = number.replace('(','')
-				number = number.replace(')','')
-				number = number.replace('.','')
-				number = number.replace('-','')
-				number = number.replace(' ','')
-				number = number.replace('(','')
-				number = number.replace(')','')
-				number = number.replace('.','')
+			if (mobile_mandatory) {
+				if (f.id == 'mobile') {
+					var number = '1' + f.value
+					number = number.replace('-','')
+					number = number.replace(' ','')
+					number = number.replace('(','')
+					number = number.replace(')','')
+					number = number.replace('.','')
+					number = number.replace('-','')
+					number = number.replace(' ','')
+					number = number.replace('(','')
+					number = number.replace(')','')
+					number = number.replace('.','')
+				}
 			}
 			var x = ''
 			var r = f.id + '_err'
@@ -476,33 +480,34 @@
 		}
 	}	
 	function check_mobile(f)	{
-		var ph=f.value
-		if (ph.length==11) {
-			if (ph.substring(0,1) != '1') {
-				var e = '<span style="color:orange">Invalid Mobile Number<br>You must enter a valid 10 digit mobile number'
-				show_error(f,e)
-				validate = false
-				return false				
-			} else {
-				ph=ph.substring(1,11)
-			}
-		}
-		f.value=ph
-		var url = 'https://lushmatch.com/x_check_mobile.php?mob=' + ph
-		var request = $.ajax({
-		url: url,
-		type: "GET",
-		dataType: "html",
-		cache: false,
-		success: function(msg) {
-				if (msg.trim() == "false") {
-					var e = '<span style="color:orange">Invalid Mobile Number<br>You must enter a valid 10 digit mobile number'
-					show_error(f,e)
-					validate = false
-					return false
-				}
-			}
-		})		
+		<!-- var ph=f.value -->
+		<!-- if (ph.length==11) { -->
+			<!-- if (ph.substring(0,1) != '1') { -->
+				<!-- var e = '<span style="color:orange">Invalid Mobile Number<br>You must enter a valid 10 digit mobile number' -->
+				<!-- show_error(f,e) -->
+				<!-- validate = false -->
+				<!-- return false				 -->
+			<!-- } else { -->
+				<!-- ph=ph.substring(1,11) -->
+			<!-- } -->
+		<!-- } -->
+		<!-- f.value=ph -->
+		<!-- var url = 'https://lushmatch.com/x_check_mobile.php?mob=' + ph -->
+		<!-- var request = $.ajax({ -->
+		<!-- url: url, -->
+		<!-- type: "GET", -->
+		<!-- dataType: "html", -->
+		<!-- cache: false, -->
+		<!-- success: function(msg) { -->
+				<!-- if (msg.trim() == "false") { -->
+					<!-- var e = '<span style="color:orange">Invalid Mobile Number<br>You must enter a valid 10 digit mobile number' -->
+					<!-- show_error(f,e) -->
+					<!-- validate = false -->
+					<!-- return false -->
+				<!-- } -->
+			<!-- } -->
+		<!-- })		 -->
+		return true
 	}
 	function create_user() {
 		if (!getCookie('location')) {
@@ -543,7 +548,12 @@
 			looking_for = 'Sugar Daddy'
 		}
 		setCookie('gender',gender)
-		x += 'mob=' + document.getElementById('mobile').value 
+		if (!document.getElementById('mobile').value) {
+			mobile="11234567890"
+		} else {
+			mobile=document.getElementById('mobile').value
+		}
+		x += 'mob=' + mobile
 		x += '&password=' + document.getElementById('pswd').value 
 		x += '&email=' + document.getElementById('email').value 
 		x += '&login=' + document.getElementById('login').value 

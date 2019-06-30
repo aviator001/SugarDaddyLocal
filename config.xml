@@ -54,8 +54,11 @@ Sugar Daddy Local LLC
         <false />
     </gap:config-file>
     <gap:config-file overwrite="true" parent="UIStatusBarHidden" platform="ios">
-        <true />
+        <true sd
     </gap:config-file>
+	<gap:plugin name="cordova-plugin-customurlscheme" source="npm">
+	  <param name="URL_SCHEME" value="sd" />
+	</gap:plugin>
     <platform name="ios">
         <feature name="StreamingMedia">
             <param name="ios-package" value="StreamingMedia" />

@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="dating.sugardaddy.free" version="12.2" versionCode="10" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="free.sugardaddy.app" version="1.0" versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>SugarDaddyLocal</name>
     <description>
 A new experience from the pioneeers of sugar daddy dating - the first site based on disruptive technologies
 </description>
     <author email="lushdates001@gmail.com" href="http://sugardaddylocal.com">
-Sugar Daddy Local LLC
+Free Sugar Daddy App Team
 </author>
     <content src="index.html" />
     <access origin="*" />

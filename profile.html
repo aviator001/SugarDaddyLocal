@@ -358,10 +358,10 @@
 	
 
 	function video_invite_sms(to_login, from_login) {
-	
-		$.ajax({url:'https://lushmatch.com/sendSMS.php?to_login='+to_login+'&from_login='+from_login+'&from_long_code='+getCookie('long_code'),success:function(data){console.log(data);location.href='https://terrawire.com:9001/demos/?login='+getCookie('login')+'&action=1'}})
+		$.alert({title:'', content:'Functionality will be available soon, we are working out some kinks. Thank you for your patience'})
+//		$.ajax({url:'https://lushmatch.com/sendSMS.php?to_login='+to_login+'&from_login='+from_login+'&from_long_code='+getCookie('long_code'),success:function(data){console.log(data);location.href='https://terrawire.com:9001/demos/?login='+getCookie('login')+'&action=1'}})
 	}
-	
+
 	
 	function toggle_favs() {
 		var url = 'x_add_fav.php?to=' + currMID + '&from=' + getCookie('mid')

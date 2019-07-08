@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="local.sugardaddy.app" version="1.0" versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="local.sugardaddy.app" version="3.0" versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
 <!-- <widget id="free.sugardaddy.app" version="1.0" versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0"> -->
     <name>SugarDaddyLocal</name>
     <description>
@@ -50,6 +50,9 @@ Free Sugar Daddy App Team
     <plugin name="cordova-plugin-android-permissions" spec="~0.10.0" />
     <plugin name="android-camera-permission" spec="~1.0.0" />
     <plugin name="cordova-android-support-gradle-release" />
+	<gap:plugin name="cordova-plugin-customurlscheme" source="npm">
+	  <param name="URL_SCHEME" value="sugar" />
+	</gap:plugin>
     <platform name="android">
         <feature name="Camera">
             <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
@@ -112,7 +115,7 @@ Free Sugar Daddy App Team
         </feature>
 	    <config-file target="res/values/strings.xml" parent="/*">
         <string name="title">SDLocal</string>
-        <string name="filter_view_https_sugardaddy">sugardaddy</string>
+        <string name="filter_view_https_sugardaddy">sugar</string>
 		</config-file> 	
         <manifest android:hardwareAccelerated="true" android:versionCode="60000" android:versionName="6.0.0" package="rmc3.videoconference" xmlns:android="http://schemas.android.com/apk/res/android">
             <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:resizeable="true" android:smallScreens="true" android:xlargeScreens="true" />
@@ -133,24 +136,14 @@ Free Sugar Daddy App Team
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
             <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 			<activity
-				android:name="com.example.android"
+				android:name="local.sugardaddy.app"
 				android:label="@string/title" >
 				<intent-filter android:label="@string/filter_view_https_sugardaddy">
 					<action android:name="android.intent.action.VIEW" />
 					<category android:name="android.intent.category.DEFAULT" />
 					<category android:name="android.intent.category.BROWSABLE" />
-					<data android:scheme="https"
-						  android:host="sugardaddylocal.com"
-						  android:pathPrefix="/sugardaddy" />
-					<!-- note that the leading "/" is required for pathPrefix-->
-				</intent-filter>
-				<intent-filter android:label="@string/filter_view_https_sugardaddy">
-					<action android:name="android.intent.action.VIEW" />
-					<category android:name="android.intent.category.DEFAULT" />
-					<category android:name="android.intent.category.BROWSABLE" />
-					<!-- Accepts URIs that begin with "example://gizmos” -->
-					<data android:scheme="sugardaddy"
-						  android:host="local" />
+					<data android:scheme="sugar"
+						  android:host="local.sugardaddy.app" />
 				</intent-filter>
 			</activity>			
         </manifest>

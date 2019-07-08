@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!-- <widget id="local.sugardaddy.app" version="3.0" versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0"> -->
-<widget id="free.sugardaddy.app" version="3.0" versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="free.sugardaddy.dating" version="3.0" versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>SugarDaddyLocal</name>
     <description>
 A new experience from the pioneeers of sugar daddy dating - the first site based on disruptive technologies
 </description>
-    <author email="lushdates001@gmail.com" href="http://sugardaddylocal.com">
-Free Sugar Daddy App Team
-</author>
+    <author email="cs@sugardaddylocal.com" href="http://sugardaddylocal.com">
+		Free Sugar Daddy App Team
+	</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

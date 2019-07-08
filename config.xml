@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="local.sugardaddy.app" version="3.0" versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-<!-- <widget id="free.sugardaddy.app" version="1.0" versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0"> -->
+<!-- <widget id="local.sugardaddy.app" version="3.0" versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0"> -->
+<widget id="free.sugardaddy.app" version="3.0" versionCode="1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>SugarDaddyLocal</name>
     <description>
 A new experience from the pioneeers of sugar daddy dating - the first site based on disruptive technologies
@@ -115,10 +115,10 @@ Free Sugar Daddy App Team
         </feature>
 	    <config-file target="res/values/strings.xml" parent="/*">
         <string name="title">SDLocal</string>
-        <string name="filter_view_https_sugardaddy">sugar</string>
+        <string name="filter_view_https_sugardaddy">daddy</string>
 		</config-file> 	
-        <manifest android:hardwareAccelerated="true" android:versionCode="60000" android:versionName="6.0.0" package="rmc3.videoconference" xmlns:android="http://schemas.android.com/apk/res/android">
-            <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:resizeable="true" android:smallScreens="true" android:xlargeScreens="true" />
+		<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+			<supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:resizeable="true" android:smallScreens="true" android:xlargeScreens="true" />
             <uses-permission android:name="android.permission.INTERNET" />
             <application android:hardwareAccelerated="true" android:icon="@mipmap/icon" android:label="@string/app_name" android:supportsRtl="true">
                 <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale" android:label="@string/activity_name" android:launchMode="singleTop" android:name="MainActivity" android:theme="@android:style/Theme.DeviceDefault.NoActionBar" android:windowSoftInputMode="adjustResize">
@@ -136,14 +136,14 @@ Free Sugar Daddy App Team
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
             <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 			<activity
-				android:name="local.sugardaddy.app"
+				android:name="free.sugardaddy.app"
 				android:label="@string/title" >
 				<intent-filter android:label="@string/filter_view_https_sugardaddy">
 					<action android:name="android.intent.action.VIEW" />
 					<category android:name="android.intent.category.DEFAULT" />
 					<category android:name="android.intent.category.BROWSABLE" />
-					<data android:scheme="sugar"
-						  android:host="local.sugardaddy.app" />
+					<data android:scheme="daddy"
+						  android:host="free.sugardaddy.app" />
 				</intent-filter>
 			</activity>			
         </manifest>

@@ -89,13 +89,13 @@
 
 	</head>
 	<script>var padding=15</script>
-	<body style="overflow:auto!Important;">		
+	<body style="overflow:auto!Important;background:url(https://lushmatch.com/paper_pad.png); background-size:cover">		
 
 			<div id="notify" style="display:none;opacity:0.8;right:10px;top:100px;z-index:99999999999999;background:#333;box-shadow:0 0 20px #000;width:250px;height:40px;position:fixed;border-radius:4px">
 				<span id="notify_txt"  style="padding:5px;color:#f0f0f0"></span>
 			</div>
 	<div onclick="jmodalhide()" id="j_modal" style="display:none;position:fixed;width:100%;height:100%;left:0;right:0;top:0;bottom:0;background:#000;opacity:0.8;z-index:999999999999999999"></div>	
-	<div onclick="jmodalhide()" id="j_modal_text" style="display:none;position:fixed;width:250px;height:100px;left:0;right:0;top:0;bottom:0;background:#fcfcfc;opacity:1;z-index:999999999999999999;margin:auto;padding:10px;border-radius:5px;font-family:Ubuntu Condensed;font-size:18px" class="2"></div>	
+	<div onclick="jmodalhide()" id="j_modal_text" style="display:none;position:fixed;width:250px;height:100px;left:0;right:0;top:0;bottom:0;background:#fcfcfc;opacity:1;z-index:999999999999999999;margin:auto;padding:10px;border-radius:5px;font-family:Ubuntu Condensed;font-size:18px" class="www_box2"></div>	
 	
 
 	<div id="modal_text" onkeyup="deduct()" class="modal_window" style="padding:20px;border-radius:6px;position:absolute;z-index:9999999999999;display:none;background:#f0f0f0;top:100px;left:0;right:0;margin:auto;width:320px;max-width:320px;height:500px;font-family:Ubuntu Condensed;font-size:24px;"><span id="tip" style='color:brown;font-family:Ubuntu Condensed'>SEND ANONYMOUS SMS<br><br><span style="font-size:18px;color:#333;font-family:Ubuntu Condensed">1. Your number will not be revealed<br>2. Message will show as coming from </span></span><br><br><div contentEditable onblur='fill_txt()' onclick='erase_txt()' id='message_text' style='word-wrap:break-word;font-family:Ubuntu Condensed;font-size:24px;contentEditable:true;color:#0093D9;cursor:hand;cursor:pointer;border-radius:4px;border:3px solid lightblue;height:170px;max-height:170px;color:#333;overflow-y:scroll;overflow-x:hidden;color:grey;background:#fff;padding:20px;background:#fff'>Type Message Here</div><div><span style="left:20px;position:absolute">CHARACTERS REMAINING: <b><span id="cr">160</span></b></span></div><br><br><div style='margin-top:10px'><span style="font-size:22px"  class="btn btn-info" onclick='send_sms()' id="send_mail">SEND</span>&nbsp;<span style="font-size:22px"  class="btn btn-danger" onclick="document.all.modal_text.style.display='none'" id="">GO BACK</span></div></div>
@@ -197,8 +197,8 @@
 	  }
   }
 </script>
-<a href="userHotLists_alt.html"><div style="position:absolute;z-index:9;top:70px;left:0;right:0;margin:auto;width:300px;height:30px;text-align:center;background:url('https://lushmatch.com/assets/images/bar_blue.png');border-radius:8px;font-size:21px;text-shadow:1px 1px solid #fff;color:#000" class="www_box2">CLICK HERE TO SEE PEOPLE THAT LIKE ME</div>		
-<div align=center style='background:;overflow:hidden'>  <!-- Modal -->
+<a href="userHotLists.html"><div style="position:absolute;z-index:9;top:70px;left:0;right:0;margin:auto;width:300px;height:30px;text-align:center;background:url('https://lushmatch.com/assets/images/bar_red.png');border-radius:8px;font-size:21px;text-shadow:1px 1px solid #fff;color:#000" class="www_box2">CLICK HERE TO SEE PEOPLE THAT I LIKE</div>		
+<div align=center style=';background:url(https://lushmatch.com/paper_pad.png); background-size:cover;overflow:hidden'>  <!-- Modal -->
   <link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Bungee+Hairline|Bungee+Inline|Bungee+Outline|Codystar|Monoton" rel="stylesheet">
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -246,43 +246,43 @@
 <div id="section" style="text-align:center">
 					<br><br><div class="" style="">
 							<div class="row" style="margin-top:25px">
-									<h3 id="hot" style="left:0;right:0;margin:auto;position:absolute;font-family:Ubuntu Condensed;width:100%;text-align:center;font-size:18px;padding:5px;margin-top:-100px"></h3>
+									<h3 id="hot" class="" style="left:0;right:0;margin:auto;position:absolute;font-family:Ubuntu Condensed;width:100%;text-align:center;font-size:18px;padding:5px;margin-top:-50px"></h3>
 																</div>
 									<table cellspacing=0 cellpadding=0 width=100% style="margin-top:-100px;text-align:center">
 										<tr>
 											<td>
-												<div class=" 5" style="left:0;font-family:Ubuntu Condensed;width:100%;text-align:center;font-size:32px;">SUMMARY OF ACTIVITIES</div>
+												<div class="" style="left:0;font-family:Ubuntu Condensed;width:100%;text-align:center;font-size:36px;">SUMMARY OF ACTIVITIES</div>
 												<div id="hot_header" style="text-align:center;margin-left:25px"></div>
 											</td>
 										</tr>
 										<tr>
 											<td>
-												<h3 id="hot1" class=" 5" style="left:0;font-family:Ubuntu Condensed;width:100%;text-align:center;font-size:18px;padding:5px;text-align:center;">PEOPLE YOU HAVE CLICKED 'YES' ON</h3>
-												<div style="background:aliceblue;padding:10px;font-family:Ubuntu Condensed;text-align:center" id="data1">LOADING...</div>
+												<h3 id="hot1" class="" style="left:0;font-family:Ubuntu Condensed;width:100%;text-align:center;font-size:18px;padding:5px;text-align:center;">PEOPLE WHO HAVE CLICKED 'YES' ON <b>YOU</b></h3>
+												<div style="padding:10px;font-family:Ubuntu Condensed;text-align:center" id="data1">LOADING...</div>
 											</td>
 										</tr>
 										<tr>
 											<td>
-												<h3 id="hot2" class=" 5" style="left:0;font-family:Ubuntu Condensed;width:100%;text-align:center;font-size:18px;padding:5px;text-align:center;">PEOPLE YOU HAVE FAVORITE LISTED</h3>
-												<div style="margin-bottom:50px;padding:10px;font-family:Ubuntu Condensed;text-align:center" id="data2">LOADING...</</div>
+												<h3 id="hot2" class="" style="left:0;font-family:Ubuntu Condensed;width:100%;text-align:center;font-size:18px;padding:5px;text-align:center;">PEOPLE WHO HAVE FAVORITE LISTED <b>YOU</b></h3>
+												<div style="padding:10px;font-family:Ubuntu Condensed;text-align:center" id="data2">LOADING...</div>
 											</td>
 										</tr>
 										<tr>
 											<td>
-												<h3 id="hot3" class=" 5" style="left:0;font-family:Ubuntu Condensed;width:100%;text-align:center;font-size:18px;padding:5px;text-align:center;">PEOPLE YOU HAVE MESSAGED</h3>
-												<div style="margin-bottom:50px;padding:10px;font-family:Ubuntu Condensed;text-align:center" id="data3">LOADING...</div>
+												<h3 id="hot3" class="" style="left:0;font-family:Ubuntu Condensed;width:100%;text-align:center;font-size:18px;padding:5px;text-align:center;">PEOPLE WHO HAVE MESSAGED <b>YOU</b></h3>
+												<div style="padding:10px;font-family:Ubuntu Condensed;text-align:center" id="data3">LOADING...</div>
 											</td>
 										</tr>
 										<tr>
 											<td>
-												<h3 id="hot6" class=" 5" style="left:0;font-family:Ubuntu Condensed;width:100%;text-align:center;font-size:18px;padding:5px;text-align:center;">PROFILES VIEWED</h3>
-												<div style="margin-bottom:50px;padding:10px;font-family:Ubuntu Condensed;text-align:center" id="data6">LOADING...</div>
+												<h3 id="hot6" class="" style="left:0;font-family:Ubuntu Condensed;width:100%;text-align:center;font-size:18px;padding:5px;text-align:center;">PEOPLE WHO HAVE VIEWED <b>YOU</b></h3>
+												<div style="padding:10px;font-family:Ubuntu Condensed;text-align:center" id="data6">LOADING...</div>
 											</td>
 										</tr>
 										<tr>
 											<td>
-												<h3 id="hot7" class=" 5" style="left:0;font-family:Ubuntu Condensed;width:100%;text-align:center;font-size:18px;padding:5px;text-align:center;margin-top:-25px">REQUESTED A VIDEO CHAT FROM</h3>
-												<div style="margin-bottom:50px;padding:10px;font-family:Ubuntu Condensed;text-align:center" id="data7">LOADING...</div>
+												<h3 id="hot7" class="" style="left:0;font-family:Ubuntu Condensed;width:100%;text-align:center;font-size:18px;padding:5px;text-align:center;">PEOPLE WHO HAVE REQUESTED A VIDEO CHAT FROM <b>YOU</b></h3>
+												<div style="padding:10px;font-family:Ubuntu Condensed;text-align:center" id="data7">LOADING...</div>
 											</td>
 										</tr>
 									</table>
@@ -353,7 +353,7 @@
 		if (!x_start) x_start=0
 		if (!x_start) start[hid]=0
 			else start[hid]=x_start
-		m_url='https://lushmatch.com/x_hotlist.php?i='+hid+'&start='+start[hid]+'&member_id='+getCookie('mid')
+		m_url='https://lushmatch.com/x_hotlist_alt.php?i='+hid+'&start='+start[hid]+'&member_id='+getCookie('mid')
 		console.log(m_url)
 		document.getElementById('hot').style.display='none'
 		var request = $.ajax({
@@ -391,7 +391,7 @@
 	}
 	
 	function getHotHeader(hid) {
-		m_url='https://lushmatch.com/x_hot_header.php?member_id='+getCookie('mid')
+		m_url='https://lushmatch.com/x_hot_header_alt.php?member_id='+getCookie('mid')
  		var request = $.ajax({
 			url: m_url, 
 			type: "GET",
@@ -404,7 +404,7 @@
 	}
 	
 	var i
-	var ct=11;
+	var ct=6;
 		ct=ct*1-1
 	for (i=1;i<ct;i++) {
 		setTimeout('getHotList('+i+')',10)

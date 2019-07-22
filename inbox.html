@@ -134,14 +134,14 @@ ul.ui-autocomplete li.ui-menu-item {
 						if (getCookie('isMobile')=='mobile') {
 							ms.id='div_'+xid+'_'+from_login
 							ms.className='www_box2 div_mail_row'
-							ms.style.cssText='color:#000!Important;width:100%;	height:50px;	background: #fcfcfc;	padding:5px;	font-family: Open Sans;	margin:0; border-top:1px solid skyblue;font-family:Open Sans;font-size:0.9em;color:#000;'
-							ms.innerHTML='<a onclick=javascript:viewMessageDetail('+xid+',"'+from_login+'")><table class="table_mail_row" style="width:100%;color:#000!Important;"><tbody><tr class="tr_mail_row" id="row_'+xid+'"><td style="width:20px"><input id="'+xid+'" type="checkbox"></td><td style="width:40px"><img src="https://lushmatch.com/assets/images/new_m.png" class="'+mail_icon+'"></td><td style="width:50px"><img onerror="this.src=\'https://lushmatch.com/assets/images/no_photo.png\'" src="'+img_src+'" class="img_mail_row"></td><td style="width:115px;text-align:left">'+from_login+'</td><td style="text-align:left">'+sent+'</td><td><img src="https://lushmatch.com/assets/images/yyy_trash.png" style="width:30px"> </td></tr></tbody></table></a>'
+							ms.style.cssText='color:#000!Important;width:100%; height:50px; background: #fcfcfc; padding:5px; font-family: Open Sans; margin:0; border-top:1px solid skyblue;font-family:Open Sans;font-size:0.9em;color:#000;'
+							ms.innerHTML='<table class="table_mail_row" style="width:100%;color:#000!Important;"><tbody><tr class="tr_mail_row" id="row_'+xid+'"><td onclick=javascript:delMessage('+xid+','+getCookie('mid')+') style="width:40px;padding:5px"><img id="'+xid+'" style="cursor:hand;cursor:pointer;width:35px" src="https://lushmatch.com/assets/images/ed_trash.png"></td><td onclick=javascript:viewProfile('+xid+') style="width:50px"><img onerror="this.src=\'https://lushmatch.com/assets/images/no_photo.png\'" src="'+img_src+'" class="img_mail_row"></td><td onclick=javascript:viewProfile('+xid+') style="width:115px;text-align:left">'+from_login+'</td><td onclick=javascript:viewMessageDetail('+xid+',"'+from_login+'") style="text-align:left">'+sent+'</td><td onclick=javascript:viewMessageDetail('+xid+',"'+from_login+'") style="padding:7px;width:50px"><img id="'+xid+'" style="cursor:hand;cursor:pointer;height:15px" src="https://lushmatch.com/assets/images/closed.png"></td></tr></tbody></table>'
 							$$('mobile_inbox').appendChild(ms)
 						} else {
 							ms.id='div_'+xid+'_'+from_login
 							ms.className='www_box2 div_mail_row'
-							ms.style.cssText='color:#000!Important;width:100%;	height:50px;	background: #fcfcfc;	padding:5px;	font-size:15px;	font-family: Open Sans;	margin:0; border-top:1px solid skyblue'
-							ms.innerHTML='<a onclick=javascript:viewMessageDetail('+xid+',"'+from_login+'")><table class="table_mail_row" style="width:100%;color:#000!Important;"><tbody><tr class="tr_mail_row" id="row_'+xid+'"><td style="width:20px"><input id="'+xid+'" type="checkbox"></td><td style="width:40px"><img src="https://lushmatch.com/assets/images/new_m.png" class="'+mail_icon+'"></td><td style="width:50px"><img onerror="this.src=\'https://lushmatch.com/assets/images/no_photo.png\'" src="'+img_src+'" class="img_mail_row"></td><td style="width:115px;text-align:left">'+from_login+'</td><td style="text-align:left">'+sent+'</td><td><img src="https://lushmatch.com/assets/images/yyy_trash.png" style="width:30px"> </td></tr></tbody></table></a>'
+							ms.style.cssText='color:#000!Important;width:100%; height:50px;	background: #fcfcfc; padding:5px; font-size:15px; font-family: Open Sans; margin:0; border-top:1px solid skyblue'
+							ms.innerHTML='<table class="table_mail_row" style="width:100%;color:#000!Important;"><tbody><tr class="tr_mail_row" id="row_'+xid+'"><td onclick=javascript:delMessage('+xid+','+getCookie('mid')+') style="width:25px;padding:3px"><img id="'+xid+'" style="cursor:hand;cursor:pointer;width:20px" src="https://lushmatch.com/assets/images/col_trash.png"></td><td style="width:50px"><img onerror="this.src=\'https://lushmatch.com/assets/images/no_photo.png\'" src="'+img_src+'" class="img_mail_row"></td><td style="width:115px;text-align:left">'+from_login+'</td><td onclick=javascript:viewMessageDetail('+xid+',"'+from_login+'")style="text-align:left">'+sent+'</td><td onclick=javascript:viewMessageDetail('+xid+',"'+from_login+'") style="padding:7px;width:50px"><img id="'+xid+'" style="cursor:hand;cursor:pointer;height:15px" src="https://lushmatch.com/assets/images/closed.png"></td></tr></tbody></table>'
 							$$('mobile_inbox').appendChild(ms)
 						}
 					}
@@ -150,6 +150,11 @@ ul.ui-autocomplete li.ui-menu-item {
 			//		}
 			}
 		})
+	}
+	
+	function viewProfile(xid) {
+		setCookie('chatting_with',xid)
+		location.href='profile.html?id='+xid
 	}
 	
 	function viewMessageDetail(xid,xlogin) {
@@ -168,29 +173,20 @@ ul.ui-autocomplete li.ui-menu-item {
 		ctr++
 		return img;
 	}
+		
+		function delMessage(xid,mid) {
+			console.log('https://lushmatch.com/x_del_multi.php?mid='+mid+'&xid='+xid)
+			var request = $.ajax({
+				url: 'https://lushmatch.com/x_del_multi.php?mid='+mid+'&xid='+xid, 
+				type: "GET",
+				dataType: "html",
+				cache: false,
+				success: function(msg) {
+					getMail()
+				}
+			})	
+		}
 
-	$("#quickSearchTerm").autocomplete({
-		source: "x_ac_location.php",
-		position: { my : "right bottom", at: "right bottom", of :"#xresults"}, 
-		minLength: 1,
-		select: function( event, ui ) {
-			$('#quickSearchTerm').val( ui.item.value);
-		},
-	});
-	$( "#quickSearchTerm" ).autocomplete( "option", "appendTo", "#xresults" );
-	
-	function init() {
-		var request = $.ajax({
-			url: 'https://lushmatch.com/x_get_user_mail.php?mid='+getCookie('mid'), 
-			type: "GET",
-			dataType: "html",
-			cache: false,
-			success: function(msg) {
-				//var data=JSON.parse(msg)
-				console.log(msg)
-			}
-		})	
-	}
 </script>
 </body>
 </html>

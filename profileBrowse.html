@@ -465,6 +465,7 @@
 	
 	function add_hot_list(member_id,htype) {
 		var member_id=currMID
+		console.log('https://lushmatch.com/x_hot_list.php?htype=id&member_id='+member_id+'&type='+htype+'&mid='+getCookie('mid'))
 		var request = $.ajax({
 			url: 'https://lushmatch.com/x_hot_list.php?htype=id&member_id='+member_id+'&type='+htype+'&mid='+getCookie('mid'), 
 			type: "GET",

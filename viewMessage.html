@@ -145,7 +145,7 @@
 		var scd=false, tmr
 
 		if (window.location.href.indexOf('file://')>=0) {
-			setInterval('getMail()',5000)
+			//setInterval('getMail()',5000)
 		}
 		
 		function chk(e) {
@@ -276,17 +276,17 @@
 	var ct=0, smids=[]
 
 	function getMail() {
-	console.log('https://lushmatch.com/x_view_message.php?xid='+qs('xid')+'&mid='+getCookie('mid'))
-		var request = $.ajax({
-			url: 'https://lushmatch.com/x_view_message.php?xid='+qs('xid')+'&mid='+getCookie('mid'),
-			type: "GET",
-			dataType: "html",
-			cache: false,
-			success: function(msg) {
-				$$('inbox').innerHTML=msg.replace('|','')
-				$('html, body').animate({scrollTop:$(document).height()}, 'slow');
-			}
-		})
+	<!-- console.log('https://lushmatch.com/x_view_message.php?xid='+qs('xid')+'&mid='+getCookie('mid')) -->
+		<!-- var request = $.ajax({ -->
+			<!-- url: 'https://lushmatch.com/x_view_message.php?xid='+qs('xid')+'&mid='+getCookie('mid'), -->
+			<!-- type: "GET", -->
+			<!-- dataType: "html", -->
+			<!-- cache: false, -->
+			<!-- success: function(msg) { -->
+				<!-- $$('inbox').innerHTML=msg.replace('|','') -->
+				<!-- $('html, body').animate({scrollTop:$(document).height()}, 'slow'); -->
+			<!-- } -->
+		<!-- }) -->
 	}
 	function view_img(io){
 		var im=document.createElement('img')

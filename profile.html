@@ -230,7 +230,7 @@
 		}
 		ctr=0
 		var str=''
-		var url = 'https://lushmatch.com/x_get_profile_data.php?member_id='+qs('id')+'&type=search&search='+qs('q')
+		var url = 'https://lushmatch.com/x_get_profile_data.php?member_id='+qs('id')+'&type=search&search='+qs('q')+'&my_mid='+getCookie('mid')
 		console.log(url)
 		var request = $.ajax({
 			url: url,

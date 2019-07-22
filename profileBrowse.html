@@ -71,7 +71,10 @@
 				border-radius:4px;
 				background:#fcfcfc;
 				padding:10px;
-			}			
+			}
+.jconfirm-bg{background:black!Important;}	
+.btn-red{background:red!Important}
+.btn-default{background:#f0f0f0!Important;color:#333!Important}
 		</style>
 	</head>
 	<body>		<script src="https://lushmatch.com/custom_menu.js"></script>
@@ -136,6 +139,7 @@
 	<script src="https://lushmatch.com/assets/js/bootstrap.js"></script>
 	<script src="https://lushmatch.com/jsSocketNode.js"></script>
 <script>
+	var currLogin,currPhoto
 	document.onclick=yesNo
 	function yesNo(e) {
 		var dv=('p'+currMID)
@@ -191,7 +195,7 @@
 	var currUR=100000
 	currMID=qs('id')
 	setCookie('currMID',qs('id'))
-
+	
 	
 	function mobile_render() {
 	}
@@ -280,6 +284,8 @@
 					general_info=data[i].general_info
 					var disp='block'
 				}
+					currLogin=data[i].login
+					currPhoto=
 							str+=	'<div class="col-md-4 col-sm-4 col-xs-12" style="width:100%;max-width:100%;position:fixed;left:0;right:0;margin:auto;padding:0;margin-top:25px">'
 							str+=	'	<div class="thumbbox1" style="padding:0;background:#f0f0f0;;max-width:500px;margin:auto">'
 							str+=	'		<div id="swm" class="team-thumb overlay-image view-overlay" style="position:absolute;background:white;border:none;z-index:0!Important">'
@@ -330,8 +336,10 @@
 								urs[i]=ur
 								currMID=id
 								currUR=ur
+								
 								if (data[i].filename_1=='') fn = 'https://lushmatch.com/assets/img/no_photo.png'
 									else fn='https://lushmatch.com/sb/'+data[i].filename_1
+								currPhoto=fn
 								$$('imgProfile'+data[i].id).src=fn
 								if (qs('type')) {
 									if (data.length>1) {
@@ -410,8 +418,8 @@
 	
 
 	function video_invite_sms(to_login, from_login) {
-		$.alert({title:'', content:'Functionality will be available soon, we are working out some kinks. Thank you for your patience'})
-//		$.ajax({url:'https://lushmatch.com/sendSMS.php?to_login='+to_login+'&from_login='+from_login+'&from_long_code='+getCookie('long_code'),success:function(data){console.log(data);location.href='https://terrawire.com:9001/demos/?login='+getCookie('login')+'&action=1'}})
+//		$.alert({title:'', content:'Functionality will be available soon, we are working out some kinks. Thank you for your patience'})
+		$.ajax({url:'https://lushmatch.com/sendSMS.php?to_login='+to_login+'&from_login='+from_login+'&from_long_code='+getCookie('long_code'),success:function(data){console.log(data);location.href='https://sugardaddylocal.com/video.html?login='+getCookie('login')+'&action=1'}})
 	}
 	
 	function toggle_favs() {
@@ -432,7 +440,23 @@
 			}
 		})
 	}
-
+	var yes_list=[]
+	setTimeout(function(){
+		get_yes_list()
+	},1000)
+	function get_yes_list(){
+		var request = $.ajax({
+			url: 'https://lushmatch.com/x_get_user_yes.php?mid='+getCookie('mid'), 
+			type: "GET",
+			dataType: "html",
+			cache: false,
+			success: function(msg) {
+				if(msg) yes_list=JSON.parse(msg)
+				console.log(yes_list)
+				setCookie('yes_list',yes_list)
+			}
+		})		
+	}
 	function chk_fav(){
 		var member_id=currMID
 		var oi=document.getElementById('fav'+member_id)
@@ -477,26 +501,49 @@
 			}
 		})
 	}
-
+	var scaleb=2
+	var dbm=0
 	var cycle,tmrY,tmrN,scale
 	function like(el) {
+		dbm++
 		if (typeof el !== "object") {
 			el=$$(el)
 		}
 		add_hot_list(currMID,'CLICKED_YES')
+		setCookie('currMID',currMID)
+		if (yes_list.indexOf(getCookie('currMID'))>=0) {
+			var request = $.ajax({
+				url: 'https://lushmatch.com/x_get_user_info.php?id='+getCookie('currMID'), 
+				type: "GET",
+				dataType: "html",
+				cache: false,
+				success: function(msg) {
+					var data=JSON.parse(msg)
+					show_double_match(data.id,data.login,'https://lushmatch.com/sb/'+data.filename_1);
+				}
+			})
+		}
 		scale=2
+		if ($$('yesb')) $$('yesb').style.display=''
+		if ($$('yesb')) $$('yesb').style.opacity=1
+		setTimeout(function(){
+			recoverYesb()
+		},250)
+		
 		if ($$('yes')) $$('yes').style.transform='scale('+scale+')'
 		setTimeout(function(){
 			recoverYes()
 		},250)
+		
 		prevMID=currMID
 		currMID=mids[mids.indexOf(currMID)-1]
 		currUR=urs[urs.indexOf(currUR)-1]
 		if (currMID==undefined) currMID = prevMID
 		setCookie('nextMID',currMID)
+
 		nextMID=currMID
 		if (currUR==undefined) currUR = Math.min.apply(Math, urs)
-		add_hot_list(currMID,'VIEWED_PROFILE')
+		//add_hot_list(currMID,'VIEWED_PROFILE')
 		el.className='animated rollOut'
 		
 		if (ctr==(profileBatchCount-2)) load_next()
@@ -511,6 +558,12 @@
 
 	var animate=true
 	function dislike(el) {
+		if ($$('nob')) $$('nob').style.display=''
+		if ($$('nob')) $$('nob').style.opacity=1
+		setTimeout(function(){
+			recoverNob()
+		},250)
+	
 		scale=2
 		$$('no').style.transform='scale('+scale+')'
 		setTimeout(function(){
@@ -529,7 +582,7 @@
 		if (ctr==(profileBatchCount-2)) load_next()
 			else ctr++
 	}
-	
+	var tmrYb, tmrNb, op=1
 	function recoverYes() {
 		if (scale>=1) {
 			scale=scale-0.1
@@ -538,6 +591,20 @@
 		} else {
 			scale=1
 			clearTimeout(tmrY)
+		}
+	}	
+	function recoverYesb() {
+		if (op>=0) {
+			op=op-0.01
+			if ($$('yesb')) $$('yesb').style.opacity=op
+			tmrYb=setTimeout('recoverYesb()',7)
+		} else {
+			scaleb=1
+			op=1
+			if ($$('yesb')) $$('yesb').style.transform='scale('+scaleb+')'
+			if ($$('yesb')) $$('yesb').style.opacity=op
+			$$('yesb').style.display='none'
+			clearTimeout(tmrYb)
 		}
 	}
 	function recoverNo(obj) {
@@ -550,8 +617,19 @@
 			clearTimeout(tmrN)
 		}
 	}
-	setCookie('chatting_with',qs('id'))
-	//alert(getCookie('chatting_with'))
+	function recoverNob() {
+		if (op>=0) {
+			op=op-0.01
+			if ($$('nob')) $$('nob').style.opacity=op
+			tmrNb=setTimeout('recoverNob()',7)
+		} else {
+			op=1
+			if ($$('nob')) $$('nob').style.opacity=op
+			$$('nob').style.display='none'
+			clearTimeout(tmrNb)
+		}
+	}
+	Cookie('chatting_with',qs('id'))
 
 	var winH, winW
 

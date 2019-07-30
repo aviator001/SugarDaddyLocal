@@ -32,8 +32,8 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
     <preference name="ChildBrowser" value="false" />
     <preference name="ErrorUrl" value="err.html" />
     <preference name="FullScreen" value="true" />
-    <preference name="android-minSdkVersion" value="16" />
-    <preference name="phonegap-version" value="cli-7.1.0" />
+	<preference name="android-targetSdkVersion" value="28" />
+    <preference name="phonegap-version" value="cli-9.0.0" />
     <preference name="xwalkMultipleApk" value="false" />
     <plugin name="cordova-plugin-camera" />
     <plugin name="cordova-plugin-media-capture" />
@@ -127,7 +127,6 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
                     </intent-filter>
                 </activity>
             </application>
-            <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="26" />
             <uses-permission android:name="android.permission.CAMERA" />
             <uses-permission android:name="android.permission.MICROPHONE" />
             <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />

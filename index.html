@@ -22,11 +22,9 @@
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script src="js/jquery.js"></script>
-<script src="https://terrawire.com:7004/socket.io/socket.io.js"></script>
-<script src="https://lushmatch.com/comms.io.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-61204113-1"></script>
 <script>
-	var version=4.0
+	var version=6.0
 	setCookie('version',version)
 	setTimeout('setVersion()',1000)
 	window.dataLayer = window.dataLayer || [];
@@ -544,13 +542,7 @@
 					setCookie("email", o.email)
 					setCookie('saveUser',$$('email').value)
 					setCookie('savePass',$$('password').value)					
-					setTimeout(function(){
-						load()
-						regUser()
-						setTimeout(function(){
-							window.top.location.href = "home.html"		
-						},1000)
-					},1)
+					window.top.location.href = "home.html"		
 				}
 			}
 		})

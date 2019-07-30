@@ -45,7 +45,6 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
     <plugin name="cordova-plugin-splashscreen" />
     <plugin name="cordova-plugin-whitelist" version="1.0.0" />
     <plugin name="cordova-plugin-inappbrowser" version="1.7.1" />
-    <plugin name="cordova-plugin-crosswalk-webview" spec="~2.2.0" />
     <plugin name="cordova-plugin-android-permissions" spec="~0.10.0" />
     <plugin name="android-camera-permission" spec="~1.0.0" />
     <plugin name="cordova-android-support-gradle-release" />

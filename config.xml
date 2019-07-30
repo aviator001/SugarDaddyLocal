@@ -164,5 +164,5 @@ A new experience from the pioneeers of sugar daddy dating - the first site based
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <engine name="android" spec="^7.0.0" />
+    <engine name="android" spec="^9.0.0" />
 </widget>

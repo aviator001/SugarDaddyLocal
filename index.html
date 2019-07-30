@@ -21,6 +21,9 @@
 		<link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic|Open+Sans:300' rel='stylesheet' type='text/css'>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 <!-- Global site tag (gtag.js) - Google Analytics -->
+<script src="js/jquery.js"></script>
+<script src="https://terrawire.com:7004/socket.io/socket.io.js"></script>
+<script src="https://lushmatch.com/comms.io.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-61204113-1"></script>
 <script>
 	var version=4.0
@@ -298,6 +301,8 @@
 </script>
 <script src='cordova.js'></script>
 <script src="js/jquery.js"></script>
+<script src="https://terrawire.com/assets/js/jquery.js"></script>
+<script src="https://terrawire.com/assets/js/bootstrap.js"></script>
 <script src="https://lushmatch.com/assets/js/common.js"></script>
 <script src="https://lushmatch.com/assets/js/events.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -370,12 +375,12 @@
 	}
 		
 	function a(p) {
-		console.log('https://lushbytes.com/x_get_address.php?lat='+p.coords.latitude+'&lng='+p.coords.longitude)
+		console.log('https://lushmatch.com/x_get_address.php?lat='+p.coords.latitude+'&lng='+p.coords.longitude)
 		setCookie('lat',p.coords.latitude)
 		setCookie('lng',p.coords.longitude)
 		setCookie('accurate',"1")
 		$.ajax({
-			url: 'https://lushbytes.com/x_get_address.php?lat='+p.coords.latitude+'&lng='+p.coords.longitude,
+			url: 'https://lushmatch.com/x_get_address.php?lat='+p.coords.latitude+'&lng='+p.coords.longitude,
 			type: "GET",
 			dataType: "html",
 			success: function(msg){
@@ -511,14 +516,14 @@
 		objW.style.display='none'
 		objT.style.display='none'
 	}
-	
+	var o
 	function login1() {
 		$('#inmsg').html('')
 		var m = $("#email").val(),
 			p = $("#password").val();
 			console.log("https://lushmatch.com/x_login.php?user_input=" + m + "&pswd=" + p)
 		$.ajax({
-			url: "https://lushmatch.com/x_login.php?user_input=" + m + "&pswd=" + p,
+			url: "https://lushmatch.com/x_login.php?user_input=" + m + "&pswd=" + p + '&w=' + window.screen.width,
 			dataType: "html",
 			cache: !1,
 			success: function(em) {
@@ -539,7 +544,13 @@
 					setCookie("email", o.email)
 					setCookie('saveUser',$$('email').value)
 					setCookie('savePass',$$('password').value)					
-					window.top.location.href = "home.html"
+					setTimeout(function(){
+						load()
+						regUser()
+						setTimeout(function(){
+							window.top.location.href = "home.html"		
+						},1000)
+					},1)
 				}
 			}
 		})
@@ -749,7 +760,6 @@
 	}
 		
 	var id
-
 </script>
 </body>
 </html>

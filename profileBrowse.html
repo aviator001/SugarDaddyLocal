@@ -470,6 +470,7 @@
 			success: function(msg) {
 				if (msg.trim()=='true') {
 					$$('fav'+currMID).src='https://lushmatch.com/yyy_fav.png'
+					new_fav_notification(getCookie('chatting_with_login'))
 				} else {
 					$$('fav'+currMID).src='https://lushmatch.com/yyy_fav_off.png'
 				}
@@ -521,7 +522,7 @@
 				cache: false,
 				success: function(msg) {
 					var data=JSON.parse(msg)
-					show_double_match(data.id,data.login,'https://lushmatch.com/sb/'+data.filename_1);
+					new_match_notification(data.id,data.login,'https://lushmatch.com/sb/'+data.filename_1);
 				}
 			})
 		}
@@ -631,10 +632,7 @@
 			clearTimeout(tmrNb)
 		}
 	}
-	Cookie('chatting_with',qs('id'))
-
 	var winH, winW
-
 	function window_height() {
 		if (document.body) {
 		 winH = document.body.offsetHeight;
@@ -711,24 +709,6 @@ function detectswipe(el,func) {
 			return false
 		 }
     }
-		
-	$("#searchLocation").autocomplete({
-		source: "https://lushmatch.com/x_ac_location.php",
-		minLength: 1,
-		select: function( event, ui ) {
-			$('#searchLocation').val( ui.item.value);
-		}
-	});
-
-	$("#quickSearchTerm").autocomplete({
-		position: { my : "left top", at: "left top", of: ".portfolio-filter-list" },
-		source: "https://lushmatch.com/x_ac_location.php",
-		minLength: 1,
-		select: function( event, ui ) {
-			$('#quickSearchTerm').val( ui.item.value);
-		}
-	});
-	$( "#quickSearchTerm" ).autocomplete( "option", "appendTo", "#xresults" );
 
 </script>
 </body>

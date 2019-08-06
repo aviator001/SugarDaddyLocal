@@ -437,6 +437,7 @@
 				} else {
 					$$('fav'+currMID).src='https://lushmatch.com/yyy_fav_off.png'
 				}
+				new_fav_notification(getCookie('chatting_with_login'))
 			}
 		})
 	}
@@ -454,6 +455,7 @@
 				if(msg) yes_list=JSON.parse(msg)
 				console.log(yes_list)
 				setCookie('yes_list',yes_list)
+				new_like_notification(getCookie('chatting_with_login'))
 			}
 		})		
 	}

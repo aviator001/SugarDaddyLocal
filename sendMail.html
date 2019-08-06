@@ -29,10 +29,8 @@
 			margin-right:0;
 		}
 		</style>
-		<script src="https://lushmatch.com/jsSocketNode.js"></script>
 	</head>
 	<body style="overflow:auto!Important;"><script>var padding=15</script>
-		<script src="https://lushmatch.com/custom_menu.js"></script>
 	<script>
 		/* FETCH-INJECT LIBRARY */
 		!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):e.fetchInject=t()}(this,function(){"use strict";const e=function(e,t,n,r,o,c,i){c=t.createElement(n),i=t.getElementsByTagName(n)[0],c.appendChild(t.createTextNode(r.text)),c.onload=o(r),i?i.parentNode.insertBefore(c,i):t.head.appendChild(c)};return function(t,n){if(!arguments.length)return Promise.reject(new ReferenceError("Failed to execute 'fetchInject': 1 argument required but only 0 present."));if(arguments[0]&&arguments[0].constructor!==Array)return Promise.reject(new TypeError("Failed to execute 'fetchInject': argument 1 must be of type 'Array'."));if(arguments[1]&&arguments[1].constructor!==Promise)return Promise.reject(new TypeError("Failed to execute 'fetchInject': argument 2 must be of type 'Promise'."));const r=[],o=n?[].concat(n):[],c=[];return t.forEach(e=>o.push(window.fetch(e).then(e=>[e.clone().text(),e.blob()]).then(e=>Promise.all(e).then(e=>{r.push({text:e[0],blob:e[1]})})))),Promise.all(o).then(()=>(r.forEach(t=>{c.push({then:n=>{t.blob.type.includes("text/css")?e(window,document,"style",t,n):e(window,document,"script",t,n)}})}),Promise.all(c)))}});
@@ -134,6 +132,9 @@
 		})	
 	}
 	</script>
+	<script src="https://lushmatch.com/jsSocketNode.js"></script>
+	<script src="https://lushmatch.com/custom_menu.js"></script>
+	
 	  <!--========================================================
                             HEADER
   =========================================================-->
@@ -704,6 +705,7 @@
 			<form style="width:100%;max-width:650px;border:none" class="dropzone dz-preview" id="member" action="upload.php"></form>
 		</div>
 <script>
+var mid
 function fs(el) {
 if (!el) el = document.documentElement
 , rfs = // for newer Webkit and Firefox
@@ -813,33 +815,33 @@ function $$(ox) {
 			}
 		})
 	}
-	function sendmessage(to_member_id,msg) {
-		if ($$('mail_pad').value.trim()=='' && !uploads) return false
-		var message=document.getElementById('mail_pad').value
-		message=message.replace(/\&/g,'\&amp;')
-		message=message.replace(/'/g,"\'")
-		message=message.replace(/"/g,'\"')
-		message=message.replace(/\//g,'\/')
+	<!-- function sendmessage(to_member_id,msg) { -->
+		<!-- if ($$('mail_pad').value.trim()=='' && !uploads) return false -->
+		<!-- var message=document.getElementById('mail_pad').value -->
+		<!-- message=message.replace(/\&/g,'\&amp;') -->
+		<!-- message=message.replace(/'/g,"\'") -->
+		<!-- message=message.replace(/"/g,'\"') -->
+		<!-- message=message.replace(/\//g,'\/') -->
 
-		var from_u=getCookie('mid')
-		var url = encodeURI('https://lushmatch.com/x_send_mail.php?to=' + to_member_id + '&from=' + from_u + '&message=\'<div class="container"><div class="row"><div class="col-md-4">' + message + '</div><div class="col-md-4">' + msg + '</div></div></div>\'')
-		console.log(url)
-		jwait('sending')
-		var request = $.ajax({
-			url: url, 
-			type: "GET",
-			dataType: "html",
-			cache: false,
-			success: function(data) {
-				$$('dz').style.display='none'
-				$$('mail_pad').value=''
-				$$('attachments').style.display='none'
-				socket.send(JSON.stringify({'type':'NEW_MAIL', 'data': {'fromUser':getCookie('login'),'toUser':getCookie('chatting_with_login'),'msg':'<span id="toaster"><img style="height:25px;position:fixed;left:5px;padding-bottom:5px" src="assets/images/new_mail_msg.png"><span style="margin-left:40px;font-family:Open Sans; font-weight:300">NEW MAIL FROM '+ getCookie('login').toUpperCase() + '</span><img onclick="viewMessageDetail('+getCookie('mid')+',\'' + getCookie('login') + '\')" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:35px;padding-bottom:5px" src="assets/images/open_email.png"><img onclick="closeToaster()" src="assets/images/close_email.png" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:5px;padding-bottom:5px"><span>'}}))
-				location.href='viewMessage.html?xid='+to_member_id
-			}
+		<!-- var from_u=getCookie('mid') -->
+		<!-- var url = encodeURI('https://lushmatch.com/x_send_mail.php?to=' + to_member_id + '&from=' + from_u + '&message=\'<div class="container"><div class="row"><div class="col-md-4">' + message + '</div><div class="col-md-4">' + msg + '</div></div></div>\'') -->
+		<!-- console.log(url) -->
+		<!-- jwait('sending') -->
+		<!-- var request = $.ajax({ -->
+			<!-- url: url,  -->
+			<!-- type: "GET", -->
+			<!-- dataType: "html", -->
+			<!-- cache: false, -->
+			<!-- success: function(data) { -->
+				<!-- $$('dz').style.display='none' -->
+				<!-- $$('mail_pad').value='' -->
+				<!-- $$('attachments').style.display='none' -->
+				<!-- new_mail_notification(getCookie('chatting_with_login')) -->
+				<!-- location.href='viewMessage.html?xid='+to_member_id -->
+			<!-- } -->
 			
-		})
-	}
+		<!-- }) -->
+	<!-- } -->
 	var str=''
 	Dropzone.autoDiscover=false
 	var iErr=0, attach_id
@@ -938,7 +940,7 @@ function $$(ox) {
 				wscript.SendKeys("{F11}");
 			}
 		}
-	}
+	} ss
 
 	function $$(ox) {
 		return document.getElementById(ox)
@@ -950,9 +952,9 @@ function $$(ox) {
 	
 	var to_u=qs('member_id')
 	function send_message() {
-		if ($$('mail_pad').value.trim()=='' && !uploads) return false
+//		if ($$('mail_pad').value.trim()=='' && !uploads) return false
 		var message=document.getElementById('mail_pad').value
-		message=message.replace(/\&/g,'\&amp;')
+		message=message.replace(/\&/g,'\&amp;')  
 		message=message.replace(/'/g,"\'")
 		message=message.replace(/"/g,'\"')
 		message=message.replace(/\//g,'\/')
@@ -967,7 +969,7 @@ function $$(ox) {
 			dataType: "html",
 			cache: false,
 			success: function(msg) {
-				socket.send(JSON.stringify({'type':'NEW_MAIL', 'data': {'fromUser':getCookie('login'),'toUser':getCookie('chatting_with_login'),'msg':'<span id="toaster"><img style="height:25px;position:fixed;left:5px;padding-bottom:5px" src="assets/images/new_mail_msg.png"><span style="margin-left:40px;font-family:Open Sans; font-weight:300">NEW MAIL FROM '+ getCookie('login').toUpperCase() + '</span><img onclick="viewMessageDetail('+getCookie('mid')+',\'' + getCookie('login') + '\')" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:35px;padding-bottom:5px" src="assets/images/open_email.png"><img onclick="closeToaster()" src="assets/images/close_email.png" style="cursor:hand;cursor:pointer;height:27px;position:fixed;right:5px;padding-bottom:5px"><span>'}}))
+				new_mail_notification(getCookie('chatting_with_login'))
 				location.href='viewMessage.html?xid=' + getCookie('chatting_with')
 			}
 			

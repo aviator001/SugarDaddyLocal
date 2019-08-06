@@ -221,14 +221,16 @@
 			var magic_w='65px'
 			var magic_h='65px'
 		</script>	
+		<script type="text/javascript" src="js/jquery.js"></script>
 		<script type="text/javascript" src="https://lushmatch.com/custom_js/cookie.js"></script>
 		<script type="text/javascript" src="https://lushmatch.com/custom_js/wait.js"></script>
 		<script type="text/javascript" src="https://lushmatch.com/custom_js/locate.js"></script>
-		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="https://lushmatch.com/custom_js/awesomplete.js"></script>
+		<link rel="stylesheet" href="https://lushmatch.com/css/jquery-confirm.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>	
-		<script>
+		<script>		
 	var login
 	var html = document.documentElement;
 	var objText, objType, objStyle, objWait, spinner
@@ -547,6 +549,10 @@
 			mobile="11234567890"
 		} else {
 			mobile=document.getElementById('mobile').value
+		}
+		if ((getCookie('location').indexOf('[NA]')>=0) || (getCookie('location').indexOf('undefined')>=0) || (getCookie('location').indexOf('null')>=0)) {
+			b('Error')
+			return false
 		}
 		x += 'mob=' + mobile
 		x += '&password=' + document.getElementById('pswd').value 

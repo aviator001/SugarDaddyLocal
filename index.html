@@ -33,6 +33,7 @@
 	gtag('config', 'UA-61204113-1');
 
 	function handleOpenURL(url) {
+		setCookie('url',url)
 		var q=url.split('=')[1]
 		location.href='search.html?q='+q
 	}
@@ -325,6 +326,7 @@
 	}
 	
 	function onDeviceReady() {
+		setCookie('href',location.href)
 		$$('email').value=getCookie('saveUser')
 		$$('password').value=getCookie('savePass')
 		var	options = {

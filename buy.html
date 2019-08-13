@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -46,6 +45,8 @@
 			text {
 				disbled:true
 			}
+			h2,h3,h4 {font-family: Open Sans;
+					font-weight:300}
 /**
  * The CSS shown here will not be introduced in the Quickstart guide, but shows
  * how you can use CSS to style your Element's container.
@@ -76,7 +77,10 @@
 
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
-}			
+}
+.cardbox {
+display:;background:aliceblue;padding:10px;text-align:center
+}		
 		</style>
 		<script>
 			var wl = window.location.href;
@@ -142,31 +146,7 @@
 
 			}
 	function dinit() {
-		var url = 'https://lushmatch.com/x_get_user_info.php?member_id=' + getCookie('mid')
-		console.log(url)
-		var request = $.ajax({
-				url: url,
-				type: "GET",
-				dataType: "html",
-				cache: false,
-				success: function(msg) {
-					console.log(msg)
-					msg=JSON.parse(msg)
-					document.getElementById('mobile').value=msg.mobile
-					document.getElementById('name').value=msg.name
-					document.getElementById('email').value=msg.email
-					document.getElementById('login').value=msg.login
-					document.getElementById('gender').value=msg.gender
-					document.getElementById('looking_for').value=msg.looking_for
-					document.getElementById('age').value=msg.age
-					document.getElementById('general_info').value=msg.general_info
-					document.getElementById('location').value=msg.location
-					var pswd=msg.pswd
-					document.getElementById('pswd').value=pswd
-					setCookie('gender',msg.gender)
-					setCookie('looking_for',msg.looking_for)
-				}
-			})			
+		
 	}
 	function setGender(gen) {
 		var looking_for=document.createElement('div')
@@ -204,59 +184,41 @@
 				}
 			})			
 	}
-//	setTimeout('dinit()',2000)
-
-/*
-
-	1.	Triggers
-	2.	Canned Emails
-	3.	Canned words composition
-	4.	Alerts
-	5.	Video Calls
-	6.	Public Shows
-	7.	Auctions
-	8.	Spending Power
-	9.	I Need
-	10.	I expect to getCookie
-	11. I'm willing to give
-	12. Golden Buzzer!!
-
-*/			
+	setTimeout('dinit()',2000)
+			
 		</script>
 	</head> 
 	<script src="js/jquery.js"></script>
 	<script async defer src="https://lushmatch.com/assets/js/bootstrap.min.js"></script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-pdjniiApMjAV7j92Nfn5zgd3k2s3ze4&libraries=places" type="text/javascript"></script>
+	<script src="https://lushmatch.com/custom_js/wait.js"></script>
 	<script src="https://lushmatch.com/assets/js/jquery.geocomplete.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
 	
-		<body onload=""><script src="assets/js/custom_menu_no_footer.js"></script>
-				<div class="container" style="background:url('https://lushmatch.com/assets/images/b18.jpg');background-size:cover;height:100%;width:100%;left:0;right:0;position:fixed;margin:auto;left:0;right:0;margin-top:50px">
-							<img src="https://lushmatch.com/store/awning_red.png" style="width:100%; position:fixed;top:0px; z-index:9999999999999999; left:0;right:0;" />
-							<img src="https://lushmatch.com/assets/images/guide_question.png" style="position:fixed;z-index:99999999; left:0;right:0;top:100px;width:60%;padding:10px;opacity:1;margin:auto" />
-							
-							<div style="color:white;width:100%; position:fixed;top:250px; z-index:999999999999; left:0;right:0;padding:10px;text-align:left">
-								<table>
-									<tr>
-										<td>
-											<img src="https://lushmatch.com/assets/images/no.png" style="width:120px;padding:10px;opacity:1" />
-										</td>
-										<td>
-											<div>1. Get notified via SMS whenever your are contacted</div>
-										</td>
-									</tr>
+		<body onload="">
+				<div class="container" style="background:url('https://lushmatch.com/p1.png');background-size:cover;height:100%;width:100%;left:0;right:0;position:fixed;margin:auto;left:0;right:0">
+								<div style="margin-top:150px;text-align:center">
+								<h2>Pay Using Stripe</h2>
+								<div id="product"></div>			
+								</div>
+								<script src="https://js.stripe.com/v3/"></script>
+								  <div class="www_box2 form-row cardbox">
+									<div id="card-element">
+									  A Stripe Element will be inserted here.
+									</div>
+									<div id="card-errors" role="alert"></div>
+								  <button onclick="pay()"  class="btn btn-info" style="width:100%;border-radius:0 0 0 0">Pay Now</button>
+								</div>
 
-									<tr>
-										<td>
-											<img src="https://lushmatch.com/assets/images/yes.png" style="width:120px;padding:10px;opacity:1" />
-										</td>
-										<td>
-											<div>1. Get notified via SMS whenever your are contacted</div>
-										</td>
-									</tr>
-								</table>
-							</div>
-
+						</div>
+						<!-- /card -->
+					</div>
+					<!-- /accordion payment -->
+					
+					</div>		
+						</div>		
+					</div>
+				</div>
 		<!-- /REGISTER -->	
 		<script>
 			var start_magic=false
@@ -265,6 +227,13 @@
 		</script>	
 
 <script type="text/javascript">
+var desc=qs('desc')
+var amt=qs('amt')
+var pid = qs('id')
+setTimeout(function(){
+	$$('product').innerHTML = '<h4><b>' + desc + ' - $' + qs('amt')*1/100 + '</b></h4>'
+},1000)
+
 var test_mode=false
 // Create a Stripe client.
 if (test_mode===true) {
@@ -311,10 +280,9 @@ card.addEventListener('change', function(event) {
 });
 var amt,plan,desc
 
-function pay(a,p,d) {
-	amt=a
-	plan=p
-	desc=d
+function pay() {
+	plan=pid
+	desc=desc
   stripe.createToken(card).then(function(result) {
     if (result.error) {
       // Inform the user if there was an error.
@@ -322,15 +290,60 @@ function pay(a,p,d) {
       errorElement.textContent = result.error.message;
     } else {
       // Send the token to your server.
+	  wait()
       stripeTokenHandler(result.token);
     }
   });
 }
 	// Submit the form with the token ID.
 	function stripeTokenHandler(token) {
-		
 		var url='https://lushmatch.com/x_charge.php?stripe_test_mode=' + test_mode + '&token='+token.id+'&login='+getCookie('login')+'&mid='+getCookie('mid')+'&mobile='+getCookie('mobile')+'&email='+getCookie('email')+'&amt='+amt+'&plan='+plan+'&desc='+desc
-		$.ajax({url:url,success:function(data){$.alert(data)}})
+		$.ajax({
+			url:url,
+			success:function(data){
+				hide()
+				if (data=='Payment Failed') {
+					$.confirm({
+						title: 'Failed!',
+						content: data,
+						type: 'red',
+						typeAnimated: true,
+						buttons: {
+							tryAgain: {
+								text: 'Try Again',
+								btnClass: 'btn-green',
+								action: function(){
+									location.href=location.href
+								}
+							},
+							cancel: {
+								text: 'Cancel',
+								btnClass: 'btn-red',
+								action: function(){
+									location.href='home.html'
+								}
+							}
+						}
+					});
+				} else {
+					$.confirm({
+						title: 'Success!',
+						content: data,
+						type: 'green',
+						typeAnimated: true,
+						buttons: {
+							tryAgain: {
+								text: 'Ok',
+								btnClass: 'btn-green',
+								action: function(){
+									location.href='home.html'
+								}
+							}
+						}
+					});
+				}
+			}
+		})
 	  }
 		
 		function getLocation() {
@@ -524,5 +537,6 @@ function showPosition(position) {
 	</script>
 	</body>
 		<script async defer src="https://lushmatch.com/assets/js/jquery-ui.js"></script>
+		<script src="https://lushmatch.com/custom_menu.js"></script>
 		<script src="https://lushmatch.com/custom_js/wait.js"></script>
 </html>

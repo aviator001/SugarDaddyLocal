@@ -196,7 +196,6 @@
 	currMID=qs('id')
 	setCookie('currMID',qs('id'))
 	
-	
 	function mobile_render() {
 	}
 	function getLocation(type,ox) {
@@ -210,6 +209,7 @@
 			}
 		})
 	}
+	var data1=[]
 	var start_local=0
 	var start_new=0
 	var start_new_local=0
@@ -230,6 +230,7 @@
 	function rr() {
 		location.reload()
 	}
+	var first=true
 	var profileBatchCount,ur,currUR,urs=[],prevEl
 	var wh=window_height()*1 
 	function loadProfiles(no) {
@@ -240,13 +241,13 @@
 			var url='https://lushmatch.com/x_get_browse_profiles.php?member_id='+nextMID+'&type=search&count='+no+'&search='+qs('search')+'&x_start='+x_start+'&miles='+miles+'&gender='+getCookie('gender')
 		} else {
 			if (qs('browse')=='local') {
-				var url='https://lushmatch.com/x_browse_local.php?start='+start_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')
-			} else if (qs('browse')=='new') {
-				url='https://lushmatch.com/x_browse_new.php?start='+start_new+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')
+				var url='https://lushmatch.com/x_browse_local.php?start='+start_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
+			} else if (qs('browse')=='latest') {
+				url='https://lushmatch.com/x_browse_new.php?start='+start_new+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
 			} else if (qs('browse')=='new_local') {
-				url='https://lushmatch.com/x_browse_new_local.php?start='+start_new_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')
+				url='https://lushmatch.com/x_browse_new_local.php?start='+start_new_local+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
 			} else if (qs('browse')=='popular') {
-				url='https://lushmatch.com/x_get_browse_profiles.php?start='+start_popular+'&user_rights='+currUR+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')
+				url='https://lushmatch.com/x_browse_popular.php?start='+start_popular+'&user_rights='+currUR+'&type='+qs('browse')+'&count='+no+'&gender='+getCookie('gender')+'&mid='+qs('id')
 			}
 		}
 		console.log(url)
@@ -279,8 +280,14 @@
 				var sql=msg.split('|')[1]
 				console.log(sql)
 				data=JSON.parse(data1)
-				console.log('Here')
-				console.log(data)
+				if (first===true) {
+					if (data) {
+						data=fixdata(data)
+						data.reverse()
+						first = false
+					}
+				}
+
 				profileBatchCount=data.length
 				var www=''
 				for (var i=0;i<profileBatchCount;i++) {
@@ -395,7 +402,18 @@
 			}
 		})
 	}
-	
+	function fixdata(data) {
+	var dat1=[ ]
+		data.reverse()
+		for (var j=0; j<data.length; j++ ) {
+			if (qs('id') == data[j].id) {
+				for (var k=j; k<data.length; k++ ) {
+					dat1.push(data[k])
+				}
+				return dat1
+			}
+		}	
+	}
 	function showText(txt) {
 		$('#aboutM').animate({height: 150}, "fast")
         $('#aboutM').css("opacity", 0.5);

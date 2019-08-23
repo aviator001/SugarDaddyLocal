@@ -36,7 +36,7 @@
 				<li><a id="popular" class="hand" onclick="setCookie('x_start','');getPhotoGallery('popular')"><div style="font-size:0.8em">POP</div></a></li>
 				<li><a id="latest" class="hand" onclick="setCookie('x_start','');getPhotoGallery('latest')"><div style="font-size:0.8em">NEW</div></a></li>
 				<li><a id="local" class="hand" onclick="setCookie('x_start','');getPhotoGallery('local')"><div style="font-size:0.8em">LOCAL</div></a></li>
-				<li><a id="new_local" class="hand" onclick="setCookie('x_start','');getPhotoGallery('new_local')"><div style="font-size:0.8em">NEW LOCAL</div></a></li>
+				<li><a id="new_local" class="hand" onclick="getPhotoGallery('new_local')"><div style="font-size:0.8em">NEW LOCAL</div></a></li>
 			</ul>
 		</div>
 		<div class="container" style="text-align:center;margin-top:-20px">
@@ -299,15 +299,13 @@
 	var no=12
 	var currUR
 	function getPhotoGallery(type,ox) {
-		setCookie('type',type)
+		if (type) setCookie('type',type)
 		if (type !== 'new_local') {
 			$$('new_local').style.backgroundColor='white'
 			$$('new_local').style.color='black'
 		} else {
 			$$('new_local').style.backgroundColor='#20b2aa'
 		}
-		console.log(type)
-		console.log(ox)
 		if (!type) type=getCookie('browse')
 			else setBrowse(type)
 		if (!getCookie('gender')) setCookie('gender','Sugar Daddy')
@@ -316,7 +314,7 @@
 		} else {
 			looking_for='Sugar Babies'
 		}
-		$('#browse_summary').html('Showing ' + type.replace('_',' ').toUpperCase() + ' ' + looking_for.toUpperCase())
+	//	$('#browse_summary').html('Showing ' + type.replace('_',' ').toUpperCase() + ' ' + looking_for.toUpperCase())
 		$('#showGen').html(looking_for.toUpperCase())
 		$$('photoGallery').style.opacity='0.2'
 		if (ox)	ox.className='active hand'
@@ -386,18 +384,22 @@
 				}
 				if (type=='local') {
 					start_local=start_local+no
+					start=start_local
 				} else if (type=='latest') {
 					start_new=start_new+no
+					start=start_new
 				} else if (type=='new_local') {
 					start_new_local=start_new_local+no
+					start=start_new_local
 				} else if (type=='popular') {
 					start_popular=start_popular+no
+					start=start_popular
 				}				
 				var apn=document.createElement('div')
 				<!-- if (lx<24) { -->
 					<!-- apn.innerHTML='</div></div><div><br><table style="width:100%"><tr><td><input type="button" value="BACK" style="width:100px;padding:5px;border-radius:6px;background:gold;border:none;height:60px" onclick="back()"></td><td></td></tr></table><br><br><br><br></div>' -->
 				<!-- } else { -->
-					apn.innerHTML='</div></div><div><br><table style="width:100%"><tr><td><input type="button" value="BACK" style="width:100px;padding:5px;border-radius:6px;background:gold;border:none;height:60px" onclick="back()"></td><td><input type="button" value="FETCH NEXT" style="width:100px;padding:5px;border-radius:6px;background:skyblue;border:none;height:60px" onclick="more()"></td></tr></table><br><br><br><br></div>'
+					apn.innerHTML='</div></div><div><br><table style="width:100%"><tr><td><input type="button" value="BACK" style="width:100px;padding:5px;border-radius:6px;background:gold;border:none;height:60px" onclick="back()"></td><td><input type="button" value="FETCH NEXT" style="width:100px;padding:5px;border-radius:6px;background:skyblue;border:none;height:60px" onclick="getPhotoGallery()"></td></tr></table><br><br><br><br></div>'
 				<!-- } -->
 				$$('photoGallery').appendChild(apn)
 				$("html, body").animate({
@@ -412,15 +414,19 @@
 		var tp='popular'
 		$.ajax({'url':url,'success':function(x){setTimeout('getPhotoGallery()',1)}})
 	}
-	
+	var type
 	function more() {
-		if (getCookie('x_start')=='') {
-			x_start=per_page
-		} else {
-			x_start=getCookie('x_start')*1+per_page
+		type=getCookie('type')
+		if (type=='local') {
+			start_local=start_local+no
+		} else if (type=='latest') {
+			start_new=start_new+no
+		} else if (type=='new_local') {
+			start_new_local=start_new_local+no
+		} else if (type=='popular') {
+			start_popular=start_popular+no
 		}
-		setCookie('x_start', x_start)
-		setTimeout('getPhotoGallery()',1)
+		setTimeout('getPhotoGallery('+type+')',1)
 	}
 
 	function back() {
@@ -434,14 +440,11 @@
 	function view_profile(e) {
 		if (e.target.id) {
 			if (e.target.id.indexOf('img_')>-1) {
-				if (e.target.id.indexOf('img_new_local_')>-1) {
-					location.href='profileBrowse.html?id='+e.target.id.split('_')[3]+'&type=browse&browse='+getCookie('type')
-				} else {
-					location.href='profileBrowse.html?id='+e.target.id.split('_')[2]+'&type=browse&browse='+e.target.id.split('_')[1]
-				}
+				var sp=e.target.id.split('_')
+				location.href='profileBrowse.html?id='+sp[sp.length-1]+'&type=browse&browse='+getCookie('type')+'&start=' + (start*1-no)
 			}
 			if (e.target.id.indexOf('search_')>-1) {
-				location.href='profileSearch?id='+e.target.id.split('_')[1]+'&type=search&search='+$$('searchLocation').value
+				location.href='profileSearch?id='+e.target.id.split('_')[1]+'&type=search&search='+$$('searchLocation').value+'&x_start=' + (start*1-no)
 			}
 		}
 	}

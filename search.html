@@ -910,21 +910,19 @@ h1,h2,h3,h4 {
 		}
 	});
 
-	$("#quickSearchTerm").autocomplete({
-		position: { my : "left top", at: "left top", of: ".portfolio-filter-list" },
-		source: "https://lushmatch.com/x_ac_location.php",
-		minLength: 1,
-		select: function( event, ui ) {
-			$('#quickSearchTerm').val( ui.item.value);
-		}
-	});
-	$( "#quickSearchTerm" ).autocomplete( "option", "appendTo", "#xresults" );
+	<!-- $("#quickSearchTerm").autocomplete({ -->
+		<!-- position: { my : "left top", at: "left top", of: ".portfolio-filter-list" }, -->
+		<!-- source: "https://lushmatch.com/x_ac_location.php", -->
+		<!-- minLength: 1, -->
+		<!-- select: function( event, ui ) { -->
+			<!-- $('#quickSearchTerm').val( ui.item.value); -->
+		<!-- } -->
+	<!-- }); -->
+	<!-- $( "#quickSearchTerm" ).autocomplete( "option", "appendTo", "#xresults" ); -->
 
 jQuery(function($) {
     $('window').on('scroll', function() {
-		alert()
         if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
-            alert('end reached');
         }
     })
 });

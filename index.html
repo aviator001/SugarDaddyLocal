@@ -742,16 +742,24 @@
 		}
 	}
 	function getLocation(type,ox) {
-		var request = $.ajax({
-			url: 'https://lushmatch.com/x_location.php',
+		$.ajax({
+			url: "https://lushmatch.com/x_location.php",
 			type: "GET",
 			dataType: "html",
-			cache: false,
-			success: function(msg) {
-			//	setTimeout('mobile_render()',1)
+			success: function(msg){
+				if (!!msg) {
+					var data=JSON.parse(msg)[0]
+					setCookie('lat', data.lat)
+					setCookie('lng', data.lng)
+					setCookie('city', data.city)
+					setCookie('state', data.state)
+					setCookie('zip', data.zip)
+					setCookie('location', data.city + ' ' + data.state + ' ' + data.zip)
+					
+				}
 			}
 		})
-	}
+	}		
 		
 	var id
 </script>

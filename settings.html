@@ -23,6 +23,7 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css">
 		<style>
+			* {box-shadow:none!Important;}
 			.tooltipsy {
 				color: #0093D9;
 				background-size:cover;
@@ -77,10 +78,53 @@
   background-color: #fefde5 !important;
 }			
 		</style>
+		<script src="https://lushmatch.com/assets/js/jquery.js"></script>
+		
 		<script>
 			var wl = window.location.href;
 			var mob = (window.location.href.indexOf('file://')>=0);
 			setTimeout('dinit()',1)
+	var winH, winW
+	function window_height() {
+		if (document.body) {
+		 winH = document.body.offsetHeight;
+		}
+
+		if (document.compatMode=='CSS1Compat' &&
+			document.documentElement &&
+			document.documentElement.offsetHeight ) {
+			winH = document.documentElement.offsetHeight;
+			return winH
+		}
+
+		if (window.innerHeight && window.innerHeight) {
+			 winH = window.innerHeight;
+			 return winH;
+		}
+	}		
+
+		function window_width() {
+			if (document.body) {
+			 winW = document.body.offsetWidth;
+			}
+
+			if (document.compatMode=='CSS1Compat' &&
+				document.documentElement &&
+				document.documentElement.offsetWidth ) {
+				winW = document.documentElement.offsetWidth;
+				return winW
+			}
+
+			if (window.innerWidth && window.innerWidth) {
+				 winW = window.innerWidth;
+				 return winW;
+			}
+		}
+			
+				
+			function $$(id) {
+				return document.getElementById(id)
+			}
 			function qs(name, url) {
 				if (!url) {
 				  url = window.location.href;
@@ -214,58 +258,41 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
 	
 		<body onload=""><script src="assets/js/custom_menu_no_footer.js"></script>
-				<div class="col-md-6" style="position:absolute;margin:auto;left:0;right:0;margin-bottom:5px">
-					<div class="white-row"  style="box-shadow:0 0 20px #333;background:#f0f0f0">		
+					<input type="hidden" name="source" id="phonegap">
+					<input type="hidden" name="photo" id="photo">
+					<input type="hidden" name="address" id="address">
+					<input type="hidden" name="street" id="street">
+					<input type="hidden" name="cc_city" id="cc_city">
+					<input type="hidden" name="cc_state" id="cc_state">
+					<input type="hidden" name="zip" id="zip">
+					<input type="hidden" name="filename_1" id="filename_1">
+					<div id="main_row" class="row"  style="width:500px;max-width:500px;background:#f0f0f0;margin:auto;margin-top:50px">		
+						<div id="main" class="col-md-12" style="width:100%;margin:auto;margin-bottom:5px;background:#f0f0f0">
+<br/><br/>
 						<span style='font-family:Open Sans;color:black;font-size:18px'>EDIT ACCOUNT</span>
 						<div id="form_errors" class="alert alert-info" style="display:none"></div>
-						<div class="row">			
-							<br>
-							<div class="form-group">
-								<div class="col-md-6" style="text-align:left;font-weight:300;width:150px">					
-									<table style="width:270px;background:none">
-										<tr>
-											<td>
-																	
-											</td>
-											<td>
-											</td>
-										</tr>
-									</table>
-									<input type="hidden" name="source" id="phonegap">
-									<input type="hidden" name="photo" id="photo">
-									<input type="hidden" name="address" id="address">
-									<input type="hidden" name="street" id="street">
-									<input type="hidden" name="cc_city" id="cc_city">
-									<input type="hidden" name="cc_state" id="cc_state">
-									<input type="hidden" name="zip" id="zip">
-									<input type="hidden" name="filename_1" id="filename_1">
-									<div id="mobile_err_txt" style="color:skyblue;text-align:left"></div>
-								</div>
-							</div>
-						</div>
-						<div class="row" style="font-size:0.8em">			
-							<div class="form-group" style="font-size:1.0em!Important;margin:10px;background:whitesmoke;border:10px solid white"> 
+							<div id="main_sub_row" class="row" style="font-size:0.8em;margin:0">			
 								<br/>
-								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
+								<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
 									<label class="block">MOBILE NUMBER</label>					
 									<input class="form-control" type="text" style="width:100%;height:40px;font-size:16px!Important" id="mobile"  onchange="update(this)">
 								</div>	
-								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none;display:none">					
+								<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none;display:none">					
 									<label class="block">NAME</label>					
 									<input class="form-control" type="text" style="width:100%;height:40px;font-size:16px!Important" id="name"  onchange="update(this)">
 								</div>	
 								<br>
-								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
+								<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
 									<label class="block">LOGIN</label>					
 									<input class="form-control" disabled type="text" style=";height:40px;font-size:16px!Important" id="login">
 								</div>	
 								<br>
-								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
+								<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
 									<label class="block">EMAIL</label>						
 									<input class="form-control"type="text" style=";height:40px;font-size:16px!Important" id="email">
 								</div>
 								<br>
-								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
+								<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
 									<label class="block">I AM A</label>					
 									<select class="form-control" type="select" id="gender" style="height:40px;font-size:16px!Important" onchange="update(this);setGender(this.value)">
 										<option name="Sugar Daddy">Sugar Daddy</option>
@@ -282,35 +309,37 @@
 									<!-- </select>								 -->
 								<!-- </div> -->
 								<br>
-								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
+								<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
 									<label class="block">GENERATED PASSWORD</label>				
 									<input class="form-control" type="text" style=";height:40px;font-size:16px!Important" id="pswd">								
 								</div>				
 								<br>
-								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
+								<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
 									<label class="block">AGE</label>
 									<input class="form-control" type="text" style=";height:40px;font-size:16px!Important" id="age">						
 								</div>
 								<br>
-								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
+								<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
 									<label class="block">ABOUT YOU</label>
 									<textarea class="form-control" id="general_info" style=";height:160px;font-size:16px!Important" onchange="update(this)"></textarea>						
 								</div>								
 								<br>
-								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
+								<div class="col-md-12" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
 									<label class="block">YOUR LOCATION</label>
 									<input class="form-control"type="text" id="location" style=";height:40px;font-size:16px!Important" onclick="loc()">						
 								</div>								
-								<br>
-								<div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
+								<br><br>
+								<div class="col-md-12">
+								<br/><div class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
 									<input class="form-control btn btn-info" type="button" style=";height:40px;font-size:16px!Important;color:#fff;background:" id="go_fb" onclick="update_form()" value="UPDATE ACCOUNT">						
 								</div>	
-								<br>
 								<div id="xsa" class="col-md-6" style="text-align:left;font-weight:300;font-style:normal;color:#333;text-shadow:none">					
 									<input class="form-control btn btn-danger" type="button" style=";height:40px;font-size:16px!Important;color:#fff;background:" id="" onclick="suspend_account()" value="SUSPEND ACCOUNT">						
 								</div>	
-								<br/>
 								</div>
+								<br/>
+								</div>								<br/><br/>
+
 								
 								<script src="https://js.stripe.com/v3/"></script>
 								  <div class="www_box2 form-row" style="display:none;background:aliceblue;padding:10px;text-align:center;margin:10px;border:10px solid white">
@@ -331,13 +360,7 @@
 						</div>
 						<!-- /card -->
 					</div>
-					<!-- /accordion payment -->
-					
-					</div>		
-						</div>		
-					</div>
-				</div>
-		<!-- /REGISTER -->	
+					<br/><br/>
 		<script>
 			var start_magic=false
 			var magic_w='65px'
@@ -558,80 +581,22 @@ function showPosition(position) {
 			}
 		})
 	}
-
-	function create_fb_user() {
-		if (!getCookie('location')) {
-			var url='https://sugardaddydays.com/inc/x_get_city_state_zip.php?lat='+getCookie('lat')+'&lng='+getCookie('lng')
-			var request = $.ajax({
-				url: url,
-				type: "GET",
-				dataType: "html",
-				cache: false,
-				success: function(msg) {
-					var lxc=msg.trim()
-					lx=lxc.split(',')
-					var cc_city = lx[0]
-					var cc_state=lx[1]
-					var cc_location = cc_city + ', ' + cc_state + ' ' + getCookie('zip')
-				}
-			})
-		} else {
-			var cc_city=getCookie('city')
-			var cc_state=getCookie('state')
-			var cc_location=getCookie('location')
-		}
-		var x=''
-		var filename_1 = document.getElementById('filename_1').value
-		var location = document.getElementById('location').value
-		var address = document.getElementById('address').value
-		var age = document.getElementById('age').value
-		var gender = getCookie('gender')
-		var looking_for = getCookie('looking_for')
-		if (gender=='') {
-			gender = 'Sugar Baby'
-			looking_for = 'Sugar Daddy'
-		}		
-		x += 'mob=' + document.getElementById('mobile').value 
-		x += '&password=' + document.getElementById('pswd').value 
-		x += '&email=' + document.getElementById('email').value 
-		x += '&login=' + document.getElementById('login').value 
-		x += '&gender=' + gender
-		x += '&looking_for=' + looking_for
-		x += '&general_info=' + document.getElementById('general_info').value 
-		x += '&age=' + age 
-		x += '&cc_city=' + cc_city
-		x += '&cc_state=' + cc_state
-		x += '&cc_street=' + getCookie('street_no') + ' ' + getCookie('street')
-		x += '&lat=' + getCookie('lat')
-		x += '&lng=' + getCookie('lng')
-		x += '&zip=' + getCookie('zip')
-		x += '&location=' + cc_city + ' ' + cc_state
-		x += '&aff=' + getCookie('aff')
-		x += '&pic=' + filename_1 
-		x += '&pro=' + Math.random() * 100000000 + '' + Math.random() * 100000000 + '' + Math.random() * 100000000 + '' + Math.random() * 100000000 + '' + Math.random() * 100000000
-
-		var url = 'https://lushmatch.com/edit.php?' + x
-		console.log(url)
-		var request = $.ajax({
-		url: url,
-		type: "GET",
-		dataType: "html",
-		cache: false,
-		success: function(msg) {
-				msg=msg.split('|')
-				var res=msg[0]
-				if (res=='OK') {
-					$.alert({theme: 'modern', content: 'Update Successful!',title:false})
-				} else {
-					$.alert({theme: 'black', content: 'Registration Failed!',title:false})
-				}
-			
-			}
-		})		
+	if (getCookie('isMobile')=='mobile') {
+		render_mob()
+	} else {
+	
 	}
+	function render_mob() {
+		$$('main_row').style.maxWidth=window_width()+'px'
+		$$('main_row').style.width=window_width()+'px'
+		$$('main').style.maxWidth=window_width()+'px'
+		$$('main').style.width=window_width()+'px'
+		$$('main_sub_row').style.width='100%'
+	}		
 	</script>
 	</body>
-		<script async defer src="https://lushmatch.com/assets/js/jquery-ui.js"></script>
-		<script src="https://lushmatch.com/custom_menu.js"></script>
+		<script src="https://lushmatch.com/assets/js/jquery-ui.js"></script>
+		<script src="https://sugardaddylocal.com/custom_menu.js"></script>
+		<script src="https://lushmatch.com/custom_js/base.js"></script>
 		<script src="https://lushmatch.com/custom_js/wait.js"></script>
 </html>
